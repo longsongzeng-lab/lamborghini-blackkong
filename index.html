@@ -1252,53 +1252,6 @@ function saveAgentContact(){
 function copyShopUrl(){
   var url=document.getElementById('ag-shop-url').value;
   navigator.clipboard.writeText(url).then(function(){toast('✅ Đã copy link cửa hàng!');});
-function shareZalo(){
-  var url=document.getElementById('ag-shop-url').value;
-  var agent=loggedAgent;
-  var lvlMap={district:'Đại Lý Quận',city:'Đại Lý Thành Phố',province:'Đại Lý Tỉnh'};
-  var lvl=lvlMap[agent.agent_level||'district'];
-  var text='🏪 '+(agent.shop_name||'Shop LBK')+'\n'
-    +'💎 Lamborghini Black Kong - '+lvl+'\n'
-    +'📞 '+( agent.phone||'')+'\n'
-    +'🛍 Xem sản phẩm tại:\n'+url;
-  // Zalo không hỗ trợ web share URL trực tiếp
-  // Copy text + link để paste vào Zalo
-  navigator.clipboard.writeText(text).then(function(){
-    toast('✅ Đã copy nội dung! Mở Zalo và dán vào tin nhắn.');
-    setTimeout(function(){
-      if(confirm('Nội dung đã được copy!\n\nMở Zalo để chia sẻ?\n(Paste vào tin nhắn hoặc story Zalo)')){
-        window.open('https://zalo.me','_blank');
-      }
-    },500);
-  }).catch(function(){
-    // fallback: dùng Web Share API nếu có
-    if(navigator.share){
-      navigator.share({title:'Shop '+( agent.shop_name||'LBK'),text:'🏪 Lamborghini Black Kong - '+lvl,url:url});
-    }else{
-      prompt('Copy link này và chia sẻ lên Zalo:',url);
-    }
-  });
-}
-function shareWA(){
-  var url=document.getElementById('ag-shop-url').value;
-  var agent=loggedAgent;
-  var text='🏪 '+(agent.shop_name||'Shop LBK')+' - Lamborghini Black Kong\n'
-    +'Xem sản phẩm tại: '+url;
-  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
-}
-function copyForZalo(url, shopName){
-  var text='🏪 '+(shopName||'Shop LBK')+' - Lamborghini Black Kong\n🛍 Xem sản phẩm tại:\n'+url;
-  if(navigator.share){
-    navigator.share({title:'Shop Lamborghini Black Kong',text:text,url:url})
-    .catch(function(){
-      navigator.clipboard.writeText(text).then(function(){toast('✅ Đã copy! Mở Zalo và dán vào tin nhắn.');});
-    });
-  }else{
-    navigator.clipboard.writeText(text).then(function(){
-      toast('✅ Đã copy nội dung! Mở Zalo và dán vào tin nhắn.');
-    }).catch(function(){prompt('Copy link này:',url);});
-  }
-}
 
 function loadAgentOrders(){
   if(!loggedAgent)return;
