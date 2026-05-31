@@ -1252,10 +1252,6 @@ function saveAgentContact(){
 function copyShopUrl(){
   var url=document.getElementById('ag-shop-url').value;
   navigator.clipboard.writeText(url).then(function(){toast('✅ Đã copy link cửa hàng!');});
-}
-  var url=document.getElementById('ag-shop-url').value;
-  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
-}
 function shareZalo(){
   var url=document.getElementById('ag-shop-url').value;
   var agent=loggedAgent;
