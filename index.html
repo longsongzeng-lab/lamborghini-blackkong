@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lamborghini Black Kong</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--gold-light:#E8C97A;--gold-dark:#9A7A30;--black:#0A0A0A;--dark:#111111;--dark2:#1A1A1A;--dark3:#242424;--white:#FFFFFF;--gray:#888888;--light-gray:#CCCCCC;--danger:#E24B4A;--success:#1D9E75;--warning:#EF9F27;--info:#3B9EE8}
+body{background:var(--black);color:var(--white);font-family:'Segoe UI',Arial,sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
+button{cursor:pointer;font-family:inherit}input,select,textarea{font-family:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.97);border-bottom:1px solid rgba(201,168,76,0.3)}
+.nav-top{display:flex;align-items:center;justify-content:space-between;padding:8px 16px}
+.nav-brand{display:flex;align-items:center;gap:8px}
+.nav-logo{width:32px;height:32px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:var(--black);flex-shrink:0}
+.nav-title{font-size:11px;font-weight:700;color:var(--gold);line-height:1.3}
+.nav-title span{display:block;font-size:9px;font-weight:400;color:var(--gray)}
+.nav-bottom{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 8px;flex-wrap:wrap;gap:6px;border-top:1px solid rgba(201,168,76,0.1)}
+.lang-btns{display:flex;gap:4px}
+.lang-btn{background:transparent;border:1px solid rgba(201,168,76,0.3);color:var(--gray);padding:4px 8px;border-radius:4px;font-size:11px;transition:all 0.2s}
+.lang-btn.active,.lang-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.1)}
+.nav-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn-nav{border:none;padding:6px 12px;border-radius:4px;font-size:11px;font-weight:700;transition:all 0.2s;white-space:nowrap}
+.btn-gold{background:var(--gold);color:var(--black)}.btn-gold:hover{background:var(--gold-light)}
+.btn-outline{background:transparent;border:1px solid var(--gray);color:var(--gray)}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.cart-wrap{position:relative}
+.cart-badge{position:absolute;top:-6px;right:-6px;background:var(--danger);color:white;border-radius:50%;width:16px;height:16px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden;min-height:88vh}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-track{display:flex;height:100%;transition:transform 0.6s ease}
+.hero-bg-slide{min-width:100%;height:100%}
+.hero-bg-slide img{width:100%;height:100%;object-fit:cover;opacity:0.22}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,10,10,0.4) 0%,rgba(10,10,10,0.82) 60%,rgba(10,10,10,0.97) 100%);z-index:1}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:10px;letter-spacing:2px;padding:5px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:clamp(26px,5vw,50px);font-weight:900;letter-spacing:2px;line-height:1.1;margin-bottom:14px}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:13px;color:var(--gray);margin-bottom:28px;line-height:1.8;max-width:600px}
+.hero-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--black);border:none;padding:13px 28px;border-radius:4px;font-size:13px;font-weight:700;transition:all 0.3s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline-lg{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:13px 28px;border-radius:4px;font-size:13px;font-weight:700;transition:all 0.3s}
+.btn-outline-lg:hover{background:rgba(201,168,76,0.1)}
+.hero-stats{display:flex;gap:32px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+.hero-stat-num{font-size:26px;font-weight:900;color:var(--gold)}
+.hero-stat-label{font-size:11px;color:var(--gray);margin-top:4px}
+
+section{padding:56px 20px}
+.section-title{text-align:center;margin-bottom:36px}
+.section-title h2{font-size:clamp(18px,4vw,30px);font-weight:900;letter-spacing:2px;margin-bottom:8px}
+.section-title p{color:var(--gray);font-size:13px}
+.gold-line{width:50px;height:2px;background:var(--gold);margin:12px auto}
+
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;max-width:880px;margin:0 auto}
+.cat-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:16px 10px;text-align:center;transition:all 0.3s;cursor:pointer}
+.cat-card:hover{border-color:var(--gold);background:rgba(201,168,76,0.08);transform:translateY(-3px)}
+.cat-icon{font-size:24px;margin-bottom:8px}
+.cat-name{font-size:11px;font-weight:600;color:var(--light-gray)}
+
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;max-width:1000px;margin:0 auto}
+.product-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.15);border-radius:10px;overflow:hidden;transition:all 0.3s;cursor:pointer}
+.product-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 24px rgba(201,168,76,0.12)}
+.product-card-img{width:100%;height:170px;object-fit:cover;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:44px}
+.product-card-img img{width:100%;height:100%;object-fit:cover}
+.product-card-body{padding:12px}
+.product-card-cat{font-size:10px;color:var(--gold);letter-spacing:1px;margin-bottom:4px}
+.product-card-name{font-size:13px;font-weight:700;margin-bottom:6px;line-height:1.3}
+.product-card-price{font-size:16px;font-weight:900;color:var(--gold)}
+.product-card-actions{display:flex;gap:6px;margin-top:10px}
+.btn-cart{flex:1;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--gold);padding:7px;border-radius:4px;font-size:12px;font-weight:600;transition:all 0.2s}
+.btn-cart:hover{background:var(--gold);color:var(--black)}
+.btn-buy{flex:1;background:var(--gold);border:none;color:var(--black);padding:7px;border-radius:4px;font-size:12px;font-weight:700;transition:all 0.2s}
+.btn-buy:hover{background:var(--gold-light)}
+.profit-tag{font-size:10px;color:var(--success);background:rgba(29,158,117,0.12);border:1px solid rgba(29,158,117,0.3);border-radius:6px;padding:3px 7px;margin-top:4px;display:inline-block}
+
+.tnl-section{background:var(--dark2)}
+.slideshow{position:relative;max-width:900px;margin:0 auto 20px;border-radius:12px;overflow:hidden}
+.slideshow-track{display:flex;transition:transform 0.5s ease}
+.slide{min-width:100%;position:relative}
+.slide img{width:100%;height:380px;object-fit:cover;display:block}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:14px 18px 12px;font-size:12px;color:var(--light-gray)}
+.slide-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(201,168,76,0.85);border:none;color:var(--black);width:36px;height:36px;border-radius:50%;font-size:18px;font-weight:700;cursor:pointer;z-index:10}
+.slide-prev{left:10px}.slide-next{right:10px}
+.slide-dots{display:flex;justify-content:center;gap:6px;margin-bottom:20px}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(201,168,76,0.3);cursor:pointer;transition:all 0.2s}
+.dot.active{background:var(--gold);transform:scale(1.3)}
+.slide-counter{position:absolute;top:10px;right:12px;background:rgba(0,0,0,0.5);color:var(--gold);font-size:11px;padding:3px 8px;border-radius:10px}
+.tnl-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:880px;margin:0 auto}
+.tnl-feat{background:var(--dark3);border-left:3px solid var(--gold);padding:14px;border-radius:0 6px 6px 0}
+.tnl-feat-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:5px}
+.tnl-feat-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;max-width:880px;margin:0 auto}
+.adv-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:20px}
+.adv-num{font-size:28px;font-weight:900;color:rgba(201,168,76,0.3);margin-bottom:8px}
+.adv-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.adv-desc{font-size:12px;color:var(--gray);line-height:1.5}
+
+.agent-promo{background:linear-gradient(135deg,var(--dark2),rgba(201,168,76,0.06));border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:36px;max-width:880px;margin:0 auto;text-align:center}
+.agent-promo h3{font-size:clamp(16px,3vw,24px);font-weight:900;color:var(--gold);margin-bottom:12px}
+.agent-promo p{color:var(--gray);font-size:13px;line-height:1.8;margin-bottom:24px}
+.level-cards{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.level-card{background:var(--dark3);border:2px solid rgba(201,168,76,0.2);border-radius:10px;padding:18px 20px;text-align:center;flex:1;min-width:130px;max-width:180px}
+.level-card.open{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+.level-icon{font-size:26px;margin-bottom:8px}
+.level-name{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.level-desc{font-size:11px;color:var(--gray)}
+.level-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:6px}
+
+.contact-section{background:var(--dark2)}
+.contact-form{max-width:560px;margin:0 auto}
+.contact-channels{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.channel-btn{display:flex;align-items:center;gap:6px;background:var(--dark2);border:1px solid rgba(201,168,76,0.3);color:var(--light-gray);padding:8px 14px;border-radius:4px;font-size:12px}
+
+footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.2);padding:24px 20px;text-align:center}
+footer p{color:var(--gray);font-size:12px;line-height:1.8}
+footer span{color:var(--gold)}
+
+/* CART */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:2000}
+.cart-overlay.open{display:block}
+.cart-sidebar{position:fixed;right:0;top:0;bottom:0;width:340px;max-width:94vw;background:var(--dark2);border-left:1px solid rgba(201,168,76,0.3);z-index:2001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.3s}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-header{padding:18px;border-bottom:1px solid rgba(201,168,76,0.2);display:flex;justify-content:space-between;align-items:center}
+.cart-header h3{font-size:15px;font-weight:700;color:var(--gold)}
+.cart-close{background:transparent;border:none;color:var(--gray);font-size:20px}
+.cart-items{flex:1;overflow-y:auto;padding:14px}
+.cart-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.cart-item-img{width:52px;height:52px;border-radius:6px;object-fit:cover;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:12px;font-weight:600;margin-bottom:3px}
+.cart-item-price{font-size:13px;color:var(--gold);font-weight:700}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:5px}
+.qty-btn{background:var(--dark3);border:1px solid rgba(201,168,76,0.3);color:var(--gold);width:22px;height:22px;border-radius:4px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.cart-item-del{background:transparent;border:none;color:var(--danger);font-size:16px;margin-left:auto}
+.cart-footer{padding:14px;border-top:1px solid rgba(201,168,76,0.2)}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:12px;font-size:14px;font-weight:700}
+.cart-total span:last-child{color:var(--gold)}
+
+/* CHECKOUT */
+.checkout-wrap{max-width:780px;margin:0 auto;padding:20px}
+.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.checkout-box{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:18px}
+.checkout-box h3{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:14px}
+.order-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.order-row:last-child{border:none;font-weight:700;color:var(--gold);font-size:14px}
+.momo-box{text-align:center;padding:18px;background:var(--dark3);border-radius:8px;margin-top:12px}
+.momo-amount{font-size:22px;font-weight:900;color:#AE2070;margin:8px 0}
+
+/* SHOP */
+.shop-header{background:linear-gradient(135deg,var(--dark2),rgba(201,168,76,0.08));border-bottom:1px solid rgba(201,168,76,0.2);padding:28px 20px;text-align:center}
+.shop-logo{width:68px;height:68px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:var(--black);margin:0 auto 10px}
+.shop-name{font-size:20px;font-weight:900;color:var(--gold);margin-bottom:6px}
+.shop-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold);font-size:11px;padding:3px 12px;border-radius:12px}
+.shop-wrap{max-width:1000px;margin:0 auto;padding:20px}
+
+/* AUTH */
+.auth-wrap{max-width:440px;margin:0 auto;padding:32px 20px}
+.auth-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:26px}
+.auth-title{font-size:17px;font-weight:700;color:var(--gold);margin-bottom:5px}
+.auth-sub{font-size:12px;color:var(--gray);margin-bottom:22px}
+.auth-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.2);margin-bottom:18px}
+.auth-tab{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--gray);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s}
+.auth-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.auth-form{display:none}.auth-form.active{display:block}
+
+/* DASHBOARD */
+.dash-wrap{max-width:880px;margin:0 auto;padding:20px}
+.dash-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.dash-header h2{font-size:16px;font-weight:700;color:var(--gold)}
+.dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.dash-stat{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:14px;text-align:center}
+.dash-stat-num{font-size:22px;font-weight:900;color:var(--gold)}
+.dash-stat-label{font-size:10px;color:var(--gray);margin-top:3px}
+.dash-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.2);margin-bottom:16px;flex-wrap:wrap}
+.dash-tab{padding:8px 14px;font-size:12px;font-weight:600;color:var(--gray);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s}
+.dash-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.dash-panel{display:none}.dash-panel.active{display:block}
+
+/* FORMS */
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:11px;color:var(--gold);letter-spacing:1px;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,0.3);color:var(--white);padding:9px 12px;border-radius:4px;font-size:13px;outline:none;transition:border-color 0.2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg select option{background:var(--dark3)}
+.fg textarea{resize:vertical;min-height:70px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-full{width:100%;background:var(--gold);color:var(--black);border:none;padding:11px;border-radius:4px;font-size:13px;font-weight:700;transition:all 0.2s;margin-top:6px}
+.btn-full:hover{background:var(--gold-light)}
+.btn-full:disabled{opacity:0.5;cursor:not-allowed}
+
+/* UPLOAD */
+.upload-area{background:var(--dark3);border:2px dashed rgba(201,168,76,0.3);border-radius:8px;padding:26px;text-align:center;margin-bottom:14px;cursor:pointer;transition:all 0.2s}
+.upload-area:hover{border-color:var(--gold)}
+.product-form{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:16px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* PRODUCT LIST ITEM */
+.product-item{background:var(--dark2);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:14px;margin-bottom:10px;display:flex;gap:12px}
+.prod-thumb{width:56px;height:56px;border-radius:6px;object-fit:cover;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.prod-info{flex:1;min-width:0}
+.prod-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.prod-meta{font-size:11px;color:var(--gray);margin-bottom:5px}
+.prod-price{font-size:14px;font-weight:700;color:var(--gold)}
+.status-badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:600}
+.s-pending{background:rgba(239,159,39,0.15);color:var(--warning);border:1px solid rgba(239,159,39,0.3)}
+.s-approved{background:rgba(29,158,117,0.15);color:var(--success);border:1px solid rgba(29,158,117,0.3)}
+.s-rejected{background:rgba(226,75,74,0.15);color:var(--danger);border:1px solid rgba(226,75,74,0.3)}
+.reject-note{font-size:11px;color:var(--danger);margin-top:5px;padding:5px 8px;background:rgba(226,75,74,0.08);border-radius:4px;border-left:2px solid var(--danger)}
+
+/* ADMIN */
+.admin-wrap{max-width:980px;margin:0 auto;padding:20px}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.review-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:14px;margin-bottom:10px}
+.review-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.review-sup{font-size:11px;color:var(--gray)}
+.review-sup span{color:var(--gold);font-weight:600}
+.review-body{display:flex;gap:12px;margin-bottom:12px}
+.review-img{width:62px;height:62px;border-radius:6px;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;object-fit:cover}
+.review-detail h3{font-size:13px;font-weight:700;margin-bottom:3px}
+.review-detail p{font-size:11px;color:var(--gray);margin-bottom:2px}
+.review-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-approve{background:rgba(29,158,117,0.15);border:1px solid var(--success);color:var(--success);padding:7px 16px;border-radius:4px;font-size:12px;font-weight:600;transition:all 0.2s}
+.btn-approve:hover{background:var(--success);color:white}
+.btn-reject{background:rgba(226,75,74,0.15);border:1px solid var(--danger);color:var(--danger);padding:7px 16px;border-radius:4px;font-size:12px;font-weight:600;transition:all 0.2s}
+.btn-reject:hover{background:var(--danger);color:white}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.price-field{background:var(--dark3);border-radius:6px;padding:10px}
+.price-field label{font-size:10px;color:var(--gray);display:block;margin-bottom:4px}
+.price-field input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(201,168,76,0.3);color:var(--white);padding:3px 0;font-size:13px;font-weight:700;outline:none}
+.row-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.row-info h3{font-size:13px;font-weight:600;margin-bottom:2px}
+.row-info p{font-size:11px;color:var(--gray)}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn-sm{padding:5px 12px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid}
+.btn-sm-gold{border-color:rgba(201,168,76,0.4);color:var(--gold);background:transparent}
+.btn-sm-success{border-color:rgba(29,158,117,0.4);color:var(--success);background:transparent}
+.btn-sm-danger{border-color:rgba(226,75,74,0.4);color:var(--danger);background:transparent}
+.order-table{width:100%;border-collapse:collapse;font-size:12px}
+.order-table th{padding:9px 12px;text-align:left;color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.2);font-size:11px}
+.order-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.05)}
+
+/* SELECT PRODUCTS */
+.select-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.sel-card{background:var(--dark2);border:2px solid rgba(201,168,76,0.15);border-radius:10px;padding:12px;cursor:pointer;transition:all 0.2s;position:relative}
+.sel-card:hover{border-color:rgba(201,168,76,0.5)}
+.sel-card.selected{border-color:var(--success);background:rgba(29,158,117,0.06)}
+.sel-check{position:absolute;top:8px;right:8px;font-size:16px;min-width:20px;text-align:center}
+.sel-img{width:100%;height:110px;object-fit:cover;border-radius:6px;margin-bottom:8px;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:32px}
+
+/* SHARE BOX */
+.share-box{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:14px;margin-bottom:14px}
+.share-box h4{font-size:13px;color:var(--gold);margin-bottom:10px}
+.share-url{display:flex;gap:8px}
+.share-url input{flex:1;background:var(--dark3);border:1px solid rgba(201,168,76,0.2);color:var(--light-gray);padding:8px 12px;border-radius:4px;font-size:12px;outline:none}
+.btn-copy{background:var(--gold);color:var(--black);border:none;padding:8px 14px;border-radius:4px;font-size:12px;font-weight:700}
+.agent-info-bar{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:12px 14px;margin-bottom:14px;display:flex;gap:16px;flex-wrap:wrap}
+.agent-info-item{flex:1;min-width:100px}
+.agent-info-label{font-size:10px;color:var(--gray);margin-bottom:3px}
+.agent-info-value{font-size:13px;font-weight:700}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:3000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--dark2);border:1px solid rgba(201,168,76,0.4);border-radius:12px;padding:22px;width:100%;max-width:400px}
+.modal-box h3{font-size:15px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.modal-box p{font-size:12px;color:var(--gray);margin-bottom:14px}
+.modal-box textarea{width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,0.3);color:white;padding:9px;border-radius:4px;font-size:12px;resize:none;outline:none;min-height:70px}
+.modal-actions{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
+.btn-cancel{background:transparent;border:1px solid var(--gray);color:var(--gray);padding:7px 14px;border-radius:4px;font-size:12px;cursor:pointer}
+.btn-confirm{background:var(--danger);color:white;border:none;padding:7px 16px;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer}
+
+/* UTILS */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--dark2);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:8px;font-size:12px;font-weight:600;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.back-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid rgba(201,168,76,0.3);color:var(--gray);padding:6px 12px;border-radius:4px;font-size:11px;cursor:pointer;margin-bottom:14px;transition:all 0.2s}
+.back-btn:hover{border-color:var(--gold);color:var(--gold)}
+.empty{text-align:center;padding:32px;color:var(--gray);font-size:13px}
+.empty div{font-size:28px;margin-bottom:10px}
+.loading{text-align:center;padding:28px;color:var(--gray);font-size:12px}
+.loading::after{content:'';display:inline-block;width:14px;height:14px;border:2px solid var(--gold-dark);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-left:8px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-top">
+    <div class="nav-brand">
+      <div class="nav-logo">LB</div>
+      <div class="nav-title">LAMBORGHINI BLACK KONG<span>兰博基尼黑金刚</span></div>
+    </div>
+  </div>
+  <div class="nav-bottom">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="lang-btns">
+        <button class="lang-btn active" onclick="setLang('vi')">VI</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('zh')">中</button>
+      </div>
+      <div class="cart-wrap">
+        <button class="btn-nav btn-outline" onclick="openCart()">🛒 <span id="cart-count">0</span></button>
+        <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-nav btn-gold" onclick="showPage('supplier')">供应商入口</button>
+      <button class="btn-nav btn-outline" onclick="showPage('agent-login')">代理商入口</button>
+      <button class="btn-nav btn-outline" onclick="showPage('admin-login')" style="font-size:10px">管理员</button>
+    </div>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>🛒 <span data-vi="Giỏ Hàng" data-en="Cart" data-zh="购物车">Giỏ Hàng</span></h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span data-vi="Tổng Cộng" data-en="Total" data-zh="合计">Tổng Cộng</span>
+      <span id="cart-total">$0.00</span>
+    </div>
+    <button class="btn-full" onclick="goCheckout()">
+      <span data-vi="THANH TOÁN" data-en="CHECKOUT" data-zh="去结算">THANH TOÁN</span>
+    </button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-track" id="hero-track">
+        <div class="hero-bg-slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"></div>
+        <div class="hero-bg-slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"></div>
+        <div class="hero-bg-slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"></div>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span data-vi="THƯƠNG HIỆU ĐĂNG KÝ CHÍNH THỨC" data-en="OFFICIALLY REGISTERED BRAND" data-zh="正式注册品牌">THƯƠNG HIỆU ĐĂNG KÝ CHÍNH THỨC</span></div>
+      <h1>LAMBORGHINI<br><span>BLACK KONG</span></h1>
+      <p class="hero-sub"><span data-vi="Đối tác phân phối hàng đầu Việt Nam · TNL Plaza TP.HCM" data-en="Vietnam's Premier Distribution Partner · TNL Plaza HCMC" data-zh="越南顶级分销伙伴 · 胡志明TNL Plaza展厅">Đối tác phân phối hàng đầu Việt Nam · TNL Plaza TP.HCM</span></p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('sec-products').scrollIntoView({behavior:'smooth'})"><span data-vi="Mua Ngay" data-en="Shop Now" data-zh="立即购买">Mua Ngay</span></button>
+        <button class="btn-outline-lg" onclick="document.getElementById('sec-agent').scrollIntoView({behavior:'smooth'})"><span data-vi="Trở Thành Đại Lý" data-en="Become Agent" data-zh="成为代理商">Trở Thành Đại Lý</span></button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">12+</div><div class="hero-stat-label"><span data-vi="Danh Mục" data-en="Categories" data-zh="商品品类">Danh Mục</span></div></div>
+        <div><div class="hero-stat-num">500+</div><div class="hero-stat-label"><span data-vi="Nhà Máy" data-en="Factories" data-zh="工厂">Nhà Máy</span></div></div>
+        <div><div class="hero-stat-num">TNL</div><div class="hero-stat-label">Plaza · TP.HCM</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">
+      <h2><span style="color:var(--gold)" data-vi="DANH MỤC SẢN PHẨM" data-en="PRODUCT CATEGORIES" data-zh="商品品类">DANH MỤC SẢN PHẨM</span></h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="filterCat('Thời Trang')"><div class="cat-icon">👗</div><div class="cat-name" data-vi="Thời Trang" data-en="Fashion" data-zh="服装鞋帽">Thời Trang</div></div>
+      <div class="cat-card" onclick="filterCat('Trang Sức')"><div class="cat-icon">💎</div><div class="cat-name" data-vi="Trang Sức" data-en="Jewelry" data-zh="珠宝手表">Trang Sức</div></div>
+      <div class="cat-card" onclick="filterCat('Mỹ Phẩm')"><div class="cat-icon">💄</div><div class="cat-name" data-vi="Mỹ Phẩm" data-en="Beauty" data-zh="日化美妆">Mỹ Phẩm</div></div>
+      <div class="cat-card" onclick="filterCat('Điện Tử')"><div class="cat-icon">📱</div><div class="cat-name" data-vi="Điện Tử 3C" data-en="Electronics" data-zh="3C电子">Điện Tử 3C</div></div>
+      <div class="cat-card" onclick="filterCat('Điện Gia')"><div class="cat-icon">🏠</div><div class="cat-name" data-vi="Điện Gia Dụng" data-en="Appliances" data-zh="家用电器">Điện Gia Dụng</div></div>
+      <div class="cat-card" onclick="filterCat('Dệt')"><div class="cat-icon">🛏</div><div class="cat-name" data-vi="Dệt May" data-en="Bedding" data-zh="床上用品">Dệt May</div></div>
+      <div class="cat-card" onclick="filterCat('Ngoài')"><div class="cat-icon">⛺</div><div class="cat-name" data-vi="Ngoài Trời" data-en="Outdoor" data-zh="户外用品">Ngoài Trời</div></div>
+      <div class="cat-card" onclick="filterCat('Xe Máy')"><div class="cat-icon">🏍</div><div class="cat-name" data-vi="Xe Máy" data-en="Motorcycle" data-zh="摩托车">Xe Máy</div></div>
+      <div class="cat-card" onclick="filterCat('Xe Đạp')"><div class="cat-icon">🚲</div><div class="cat-name" data-vi="Xe Đạp" data-en="Bicycle" data-zh="自行车">Xe Đạp</div></div>
+      <div class="cat-card" onclick="filterCat('Túi')"><div class="cat-icon">👜</div><div class="cat-name" data-vi="Túi Xách" data-en="Bags" data-zh="箱包眼镜">Túi Xách</div></div>
+      <div class="cat-card" onclick="filterCat('Nội Thất')"><div class="cat-icon">🛋</div><div class="cat-name" data-vi="Nội Thất" data-en="Furniture" data-zh="家具">Nội Thất</div></div>
+      <div class="cat-card" onclick="filterCat('')"><div class="cat-icon">🔍</div><div class="cat-name" data-vi="Tất Cả" data-en="All" data-zh="全部">Tất Cả</div></div>
+    </div>
+  </section>
+
+  <section id="sec-products" style="background:var(--dark2)">
+    <div class="section-title">
+      <h2><span style="color:var(--gold)" data-vi="SẢN PHẨM NỔI BẬT" data-en="FEATURED PRODUCTS" data-zh="热销产品">SẢN PHẨM NỔI BẬT</span></h2>
+      <div class="gold-line"></div>
+      <p id="filter-label"></p>
+    </div>
+    <div class="products-grid" id="products-grid"><div class="loading">Đang tải</div></div>
+  </section>
+
+  <section id="tnl" class="tnl-section">
+    <div class="section-title">
+      <h2>TNL <span style="color:var(--gold)">PLAZA</span></h2>
+      <div class="gold-line"></div>
+      <p data-vi="Showroom tại TP. Hồ Chí Minh" data-en="Showroom in Ho Chi Minh City" data-zh="胡志明市实体展厅">Showroom tại TP. Hồ Chí Minh</p>
+    </div>
+    <div class="slideshow">
+      <div class="slideshow-track" id="slide-track">
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"><div class="slide-caption">📍 TNL Plaza · Mặt tiền ban ngày · 白天外观</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"><div class="slide-caption">✨ Ban đêm · 夜景</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"><div class="slide-caption">🏬 Nội thất · 内部空间</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl4.jpg"><div class="slide-caption">☕ Khu ẩm thực · 餐饮区</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl5.jpg"><div class="slide-caption">🚪 Lối vào · 主入口</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl6.jpg"><div class="slide-caption">🎊 Lễ hội · 节日活动</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl7.jpg"><div class="slide-caption">🌟 Hành lang · 走廊</div></div>
+        <div class="slide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl8.jpg"><div class="slide-caption">🌆 Quảng trường · 广场</div></div>
+      </div>
+      <button class="slide-btn slide-prev" onclick="moveSlide(-1)">‹</button>
+      <button class="slide-btn slide-next" onclick="moveSlide(1)">›</button>
+      <div class="slide-counter" id="slide-counter">1 / 8</div>
+    </div>
+    <div class="slide-dots" id="slide-dots"></div>
+    <div class="tnl-features">
+      <div class="tnl-feat"><div class="tnl-feat-title">🏬 12 Khu Vực · 12大展区</div><div class="tnl-feat-desc">Mỗi ngành hàng có khu vực riêng · 每个品类独立展区</div></div>
+      <div class="tnl-feat"><div class="tnl-feat-title">🏭 50+ Nhà Sản Xuất · 50+联名商家</div><div class="tnl-feat-desc">Nhà sản xuất uy tín · 优质工厂</div></div>
+      <div class="tnl-feat"><div class="tnl-feat-title">✅ Xem Hàng Thật · 实物看货</div><div class="tnl-feat-desc">Không đặt hàng mù · 无需盲订</div></div>
+      <div class="tnl-feat"><div class="tnl-feat-title">💰 Chi Phí Tối Ưu · 成本最优</div><div class="tnl-feat-desc">Chi phí chia sẻ · 多商家共担</div></div>
+    </div>
+  </section>
+
+  <section id="sec-agent">
+    <div class="section-title">
+      <h2><span style="color:var(--gold)" data-vi="TRỞ THÀNH ĐẠI LÝ" data-en="BECOME AN AGENT" data-zh="成为代理商">TRỞ THÀNH ĐẠI LÝ</span></h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="agent-promo">
+      <h3>🚀 <span data-vi="Khởi Nghiệp Nhẹ Với Cửa Hàng Riêng" data-en="Start Your Own Shop Easily" data-zh="轻松开启你的小店创业">Khởi Nghiệp Nhẹ Với Cửa Hàng Riêng</span></h3>
+      <p data-vi="Mỗi đại lý được cấp cửa hàng online riêng. Chọn sản phẩm muốn bán, chia sẻ link, khách hàng mua qua link của bạn, bạn hưởng chênh lệch giá tự động." data-en="Each agent gets their own online shop. Choose products, share the link, customers buy through your link, you earn the price difference automatically." data-zh="每位代理商拥有独立在线小店。自选产品、分享链接、客户购买、自动获得差价收益。">Mỗi đại lý được cấp cửa hàng online riêng.</p>
+      <div class="level-cards">
+        <div class="level-card open"><div class="level-icon">🏪</div><div class="level-name" data-vi="Đại Lý Quận" data-en="District Agent" data-zh="区级代理">Đại Lý Quận</div><div class="level-desc" data-vi="Chênh lệch ~10%" data-en="~10% Margin" data-zh="约10%利润空间">Chênh lệch ~10%</div><div class="level-badge" data-vi="Đang Mở" data-en="Open" data-zh="已开放">Đang Mở</div></div>
+        <div class="level-card open"><div class="level-icon">🏙️</div><div class="level-name" data-vi="Đại Lý TP" data-en="City Agent" data-zh="市级代理">Đại Lý TP</div><div class="level-desc" data-vi="Chênh lệch ~15%" data-en="~15% Margin" data-zh="约15%利润空间">Chênh lệch ~15%</div><div class="level-badge" data-vi="Đang Mở" data-en="Open" data-zh="已开放">Đang Mở</div></div>
+        <div class="level-card open"><div class="level-icon">🌏</div><div class="level-name" data-vi="Đại Lý Tỉnh" data-en="Province Agent" data-zh="省级代理">Đại Lý Tỉnh</div><div class="level-desc" data-vi="Chênh lệch ~20%" data-en="~20% Margin" data-zh="约20%利润空间">Chênh lệch ~20%</div><div class="level-badge" data-vi="Đang Mở" data-en="Open" data-zh="已开放">Đang Mở</div></div>
+      </div>
+      <button class="btn-primary" onclick="showPage('agent-login')"><span data-vi="ĐĂNG KÝ ĐẠI LÝ NGAY" data-en="REGISTER NOW" data-zh="立即注册代理商">ĐĂNG KÝ ĐẠI LÝ NGAY</span></button>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="section-title">
+      <h2><span data-vi="ĐĂNG KÝ" data-en="REGISTER AS" data-zh="申请成为">ĐĂNG KÝ</span> <span style="color:var(--gold)" data-vi="ĐẠI LÝ" data-en="DISTRIBUTOR" data-zh="代理商">ĐẠI LÝ</span></h2>
+      <div class="gold-line"></div>
+      <p data-vi="Điền thông tin, chúng tôi liên hệ trong 24 giờ" data-en="Fill the form, we contact you within 24 hours" data-zh="填写信息，24小时内联系">Điền thông tin, chúng tôi liên hệ trong 24 giờ</p>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="fg"><label data-vi="Họ và Tên" data-en="Full Name" data-zh="姓名">Họ và Tên</label><input type="text" id="lead-name" placeholder="Nguyễn Văn A"></div>
+        <div class="fg"><label data-vi="Điện Thoại" data-en="Phone" data-zh="电话">Điện Thoại</label><input type="text" id="lead-phone" placeholder="+84 xxx xxx xxx"></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label data-vi="Thành Phố" data-en="City" data-zh="城市">Thành Phố</label><input type="text" id="lead-city" placeholder="TP. Hồ Chí Minh"></div>
+        <div class="fg"><label data-vi="Ngành Hàng" data-en="Category" data-zh="品类">Ngành Hàng</label>
+          <select id="lead-cat"><option value="">-- Chọn --</option><option>Thời Trang / Fashion</option><option>Trang Sức / Jewelry</option><option>Mỹ Phẩm / Beauty</option><option>Điện Tử 3C</option><option>Điện Gia Dụng</option><option>Tất Cả / All</option></select>
+        </div>
+      </div>
+      <div class="fg"><label data-vi="Kinh Nghiệm" data-en="Experience" data-zh="经验">Kinh Nghiệm</label><textarea id="lead-exp" placeholder="Mô tả kinh nghiệm kinh doanh..."></textarea></div>
+      <button class="btn-full" id="lead-btn" onclick="submitLead()">GỬI ĐĂNG KÝ · SUBMIT · 提交</button>
+    </div>
+    <div class="contact-channels">
+      <div class="channel-btn">💬 Zalo: +84 0373306916</div>
+      <div class="channel-btn">📱 WhatsApp: longsongzeng</div>
+      <div class="channel-btn">💬 WeChat: wxid_p7gvsg6f7seu22</div>
+    </div>
+  </section>
+  <footer><p>© 2025 <span>LAMBORGHINI BLACK KONG</span> · 兰博基尼黑金刚</p><p style="margin-top:6px">TNL Plaza · TP. Hồ Chí Minh, Việt Nam</p></footer>
+</div>
+
+<!-- CHECKOUT -->
+<div id="page-checkout" class="page">
+  <div class="checkout-wrap">
+    <button class="back-btn" onclick="showPage('home')">← <span data-vi="Tiếp Tục Mua" data-en="Continue Shopping" data-zh="继续购物">Tiếp Tục Mua</span></button>
+    <h2 style="color:var(--gold);margin-bottom:18px;font-size:17px">💳 <span data-vi="Thanh Toán" data-en="Checkout" data-zh="结算">Thanh Toán</span></h2>
+    <div class="checkout-grid">
+      <div>
+        <div class="checkout-box">
+          <h3>📦 <span data-vi="Thông Tin Giao Hàng" data-en="Delivery Info" data-zh="收货信息">Thông Tin Giao Hàng</span></h3>
+          <div class="fg"><label data-vi="Họ Tên" data-en="Name" data-zh="姓名">Họ Tên</label><input type="text" id="co-name" placeholder="Nguyễn Văn A"></div>
+          <div class="fg"><label>Phone</label><input type="text" id="co-phone" placeholder="+84 xxx xxx xxx"></div>
+          <div class="fg"><label data-vi="Địa Chỉ" data-en="Address" data-zh="地址">Địa Chỉ</label><input type="text" id="co-address" placeholder="Số nhà, đường, quận..."></div>
+          <div class="fg"><label data-vi="Ghi Chú" data-en="Note" data-zh="备注">Ghi Chú</label><textarea id="co-note" placeholder="Ghi chú..."></textarea></div>
+        </div>
+        <div class="checkout-box" style="margin-top:14px">
+          <h3>💜 MoMo Payment</h3>
+          <div class="momo-box">
+            <div style="font-size:28px">💜</div>
+            <div style="font-size:13px;font-weight:700;color:#AE2070">MoMo Payment</div>
+            <div class="momo-amount" id="momo-amount">$0.00</div>
+            <p style="font-size:11px;color:var(--gray)">Sau khi đặt hàng sẽ chuyển đến MoMo<br>下单后跳转MoMo完成支付</p>
+          </div>
+        </div>
+      </div>
+      <div class="checkout-box">
+        <h3>🛒 <span data-vi="Đơn Hàng" data-en="Order Summary" data-zh="订单明细">Đơn Hàng</span></h3>
+        <div id="co-items"></div>
+        <div style="margin-top:14px">
+          <div class="order-row"><span data-vi="Tạm Tính" data-en="Subtotal" data-zh="小计">Tạm Tính</span><span id="co-sub">$0.00</span></div>
+          <div class="order-row"><span data-vi="Phí Ship" data-en="Shipping" data-zh="运费">Phí Ship</span><span>Free</span></div>
+          <div class="order-row"><span data-vi="Tổng Cộng" data-en="Total" data-zh="合计">Tổng Cộng</span><span id="co-total">$0.00</span></div>
+        </div>
+        <button class="btn-full" style="margin-top:18px" onclick="placeOrder()">💜 ĐẶT HÀNG & THANH TOÁN MOMO</button>
+        <p style="font-size:10px;color:var(--gray);text-align:center;margin-top:8px">Bảo mật bởi MoMo · MoMo Secured</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP PAGE -->
+<div id="page-shop" class="page">
+  <div class="shop-header">
+    <div class="shop-logo" id="shop-logo">🏪</div>
+    <div class="shop-name" id="shop-name-display">Shop LBK</div>
+    <div class="shop-badge">🏪 <span data-vi="Đại Lý Chính Thức Lamborghini Black Kong" data-en="Official LBK Agent" data-zh="兰博基尼黑金刚官方代理商">Đại Lý Chính Thức</span></div>
+  </div>
+  <!-- 代理商名片 -->
+  <div style="max-width:1000px;margin:0 auto;padding:20px 20px 0">
+    <div id="shop-biz-card"></div>
+  </div>
+  <div class="shop-wrap">
+    <div class="products-grid" id="shop-grid"><div class="loading">Đang tải</div></div>
+  </div>
+</div>
+
+<!-- SUPPLIER -->
+<div id="page-supplier" class="page">
+  <div id="sup-auth">
+    <div class="auth-wrap">
+      <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+      <div class="auth-card">
+        <div class="auth-title">🏭 供应商入口</div>
+        <div class="auth-sub">登录管理您的产品</div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="sup-tab-login" onclick="supTab('login')">登录</button>
+          <button class="auth-tab" id="sup-tab-register" onclick="supTab('register')">注册</button>
+        </div>
+        <div id="sup-login" class="auth-form active">
+          <div class="fg"><label>邮箱</label><input type="email" id="sup-email" placeholder="factory@email.com"></div>
+          <div class="fg"><label>密码</label><input type="password" id="sup-pass" placeholder="••••••••"></div>
+          <button class="btn-full" id="sup-login-btn" onclick="doSupLogin()">登录</button>
+        </div>
+        <div id="sup-register" class="auth-form">
+          <div class="fg"><label>公司/工厂名称</label><input type="text" id="sup-company" placeholder="工厂名称有限公司"></div>
+          <div class="fg"><label>邮箱</label><input type="email" id="sup-reg-email" placeholder="factory@email.com"></div>
+          <div class="fg"><label>电话</label><input type="text" id="sup-phone" placeholder="+86 xxx xxxx xxxx"></div>
+          <div class="fg"><label>主营品类</label>
+            <select id="sup-cat"><option>服装鞋帽</option><option>珠宝手表</option><option>日化美妆</option><option>3C电子</option><option>家用电器</option><option>其他</option></select>
+          </div>
+          <div class="fg"><label>密码</label><input type="password" id="sup-reg-pass" placeholder="至少6位"></div>
+          <button class="btn-full" id="sup-reg-btn" onclick="doSupRegister()">提交注册</button>
+          <p style="font-size:11px;color:var(--gray);text-align:center;margin-top:10px">账户将在1-2个工作日内审核激活</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="sup-dash" style="display:none">
+    <div class="dash-wrap">
+      <div class="dash-header">
+        <div><h2 id="sup-welcome">🏭 供应商</h2><p id="sup-status" style="font-size:11px;color:var(--gray)"></p></div>
+        <button class="back-btn" onclick="supLogout()">← 退出</button>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><div class="dash-stat-num" id="sup-total">-</div><div class="dash-stat-label">总产品数</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="sup-pending" style="color:var(--warning)">-</div><div class="dash-stat-label">待审核</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="sup-approved" style="color:var(--success)">-</div><div class="dash-stat-label">已通过</div></div>
+      </div>
+      <div class="dash-tabs">
+        <button class="dash-tab active" id="sup-dt-list" onclick="supDashTab('list')">我的产品</button>
+        <button class="dash-tab" id="sup-dt-upload" onclick="supDashTab('upload')">+ 上传产品</button>
+      </div>
+      <div id="sup-panel-list" class="dash-panel active"><div id="sup-product-list"><div class="loading">加载中</div></div></div>
+      <div id="sup-panel-upload" class="dash-panel">
+        <div class="upload-area" onclick="document.getElementById('img-file').click()">
+          <div style="font-size:30px;margin-bottom:8px">📸</div>
+          <div style="font-size:13px;color:var(--gray)">点击上传产品图片 · JPG/PNG 最大5MB</div>
+          <input type="file" id="img-file" accept="image/*" style="display:none" onchange="previewImg(this)">
+        </div>
+        <div id="img-prev" style="display:none;text-align:center;margin-bottom:12px">
+          <img id="prev-img" style="max-width:160px;max-height:130px;border-radius:8px;border:1px solid rgba(201,168,76,0.4)">
+        </div>
+        <div class="product-form">
+          <div class="form-grid">
+            <div class="fg"><label>产品名称</label><input type="text" id="p-name" placeholder="例：兰博基尼黑金刚男士Polo衫"></div>
+            <div class="fg"><label>品类</label>
+              <select id="p-cat"><option>服装鞋帽</option><option>珠宝手表</option><option>日化美妆</option><option>3C电子</option><option>家用电器</option><option>床上用品</option><option>户外用品</option><option>摩托车</option><option>自行车</option><option>箱包眼镜</option><option>家具窗帘</option></select>
+            </div>
+            <div class="fg"><label>建议价格 (USD)</label><input type="number" id="p-price" placeholder="0.00" step="0.01"></div>
+            <div class="fg"><label>库存数量</label><input type="number" id="p-stock" placeholder="0"></div>
+            <div class="fg"><label>最小起订量 MOQ</label><input type="number" id="p-moq" placeholder="100"></div>
+          </div>
+          <div class="fg"><label>产品描述</label><textarea id="p-desc" placeholder="材质、尺寸、颜色等详细信息..."></textarea></div>
+          <button class="btn-full" id="p-submit-btn" onclick="submitProduct()">提交审核</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT LOGIN -->
+<div id="page-agent-login" class="page">
+  <div id="ag-auth">
+    <div class="auth-wrap">
+      <button class="back-btn" onclick="showPage('home')">← Trang Chủ</button>
+      <div class="auth-card">
+        <div class="auth-title">🏪 Cổng Đại Lý</div>
+        <div class="auth-sub">Đăng nhập để quản lý cửa hàng & doanh thu</div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="ag-tab-login" onclick="agTab('login')">Đăng Nhập</button>
+          <button class="auth-tab" id="ag-tab-apply" onclick="agTab('apply')">Đăng Ký Đại Lý</button>
+        </div>
+        <div id="ag-login" class="auth-form active">
+          <div class="fg"><label>Mã Đại Lý (Agent Code)</label><input type="text" id="ag-code" placeholder="LBK-D001"></div>
+          <div class="fg"><label>Số Điện Thoại</label><input type="text" id="ag-phone" placeholder="+84 xxx xxx xxx"></div>
+          <button class="btn-full" id="ag-login-btn" onclick="doAgentLogin()">ĐĂNG NHẬP</button>
+        </div>
+        <div id="ag-apply" class="auth-form">
+          <div class="fg"><label>Họ và Tên</label><input type="text" id="ag-name" placeholder="Nguyễn Văn A"></div>
+          <div class="fg"><label>Điện Thoại / Zalo</label><input type="text" id="ag-apply-phone" placeholder="+84 xxx xxx xxx"></div>
+          <div class="fg"><label>Tỉnh / Thành Phố</label><input type="text" id="ag-city" placeholder="TP. Hồ Chí Minh"></div>
+          <div class="fg"><label>Tên Cửa Hàng</label><input type="text" id="ag-shop" placeholder="Shop LBK Quận 1"></div>
+          <div class="fg"><label>Ngành Hàng</label>
+            <select id="ag-cat"><option>Thời Trang / Fashion</option><option>Trang Sức / Jewelry</option><option>Mỹ Phẩm / Beauty</option><option>Điện Tử 3C</option><option>Tất Cả / All</option></select>
+          </div>
+          <button class="btn-full" id="ag-apply-btn" onclick="applyAgent()">GỬI ĐƠN ĐĂNG KÝ</button>
+          <p style="font-size:11px;color:var(--gray);text-align:center;margin-top:10px">Admin sẽ cấp mã đại lý trong 1-2 ngày làm việc</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- AGENT DASHBOARD -->
+  <div id="ag-dash" style="display:none">
+    <div class="dash-wrap">
+      <div class="dash-header">
+        <div><h2 id="ag-title">🏪 Cửa Hàng</h2><p id="ag-sub" style="font-size:11px;color:var(--gray)"></p></div>
+        <button class="back-btn" onclick="agLogout()">← Đăng Xuất</button>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><div class="dash-stat-num" id="ag-order-count">-</div><div class="dash-stat-label">Tổng Đơn Hàng</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="ag-profit" style="color:var(--success)">-</div><div class="dash-stat-label">Lợi Nhuận Tích Lũy</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="ag-pending-profit" style="color:var(--warning)">-</div><div class="dash-stat-label">Chờ Thanh Toán</div></div>
+      </div>
+      <!-- 代理信息 -->
+      <div class="agent-info-bar">
+        <div class="agent-info-item"><div class="agent-info-label">Cấp Đại Lý · 代理级别</div><div class="agent-info-value" id="ag-level-display"></div></div>
+        <div class="agent-info-item"><div class="agent-info-label">Mã Đại Lý · 代理编码</div><div class="agent-info-value" style="color:var(--gold)" id="ag-code-display"></div></div>
+        <div class="agent-info-item"><div class="agent-info-label">Sản Phẩm Đã Chọn · 已选产品</div><div class="agent-info-value" style="color:var(--gold)" id="ag-prod-count">-</div></div>
+      </div>
+      <!-- 小店链接 + 分享 -->
+      <div class="share-box">
+        <h4>🔗 Link Cửa Hàng Của Bạn · 我的小店链接</h4>
+        <div class="share-url">
+          <input type="text" id="ag-shop-url" readonly>
+          <button class="btn-copy" onclick="copyShopUrl()">📋 Copy</button>
+        </div>
+        <p style="font-size:11px;color:var(--gray);margin-top:8px">Khách hàng chỉ thấy sản phẩm bạn đã chọn với giá bán lẻ · 客户只看到您选的产品（零售价）。利润 = 零售价 - 代理进货价</p>
+        <!-- 一键分享按钮 -->
+        <div class="share-btns">
+          <button class="share-btn share-fb" onclick="shareFB()">📘 Facebook</button>
+          <button class="share-btn share-zalo" onclick="shareZalo()">💬 Zalo</button>
+          <button class="share-btn share-wa" onclick="shareWA()">📱 WhatsApp</button>
+          <button class="share-btn share-copy" onclick="copyShopUrl()">🔗 Copy Link</button>
+        </div>
+      </div>
+      <!-- 我的名片预览 -->
+      <div style="margin-bottom:14px">
+        <h4 style="font-size:13px;color:var(--gold);margin-bottom:10px">💳 名片预览 · Danh Thiếp Của Bạn</h4>
+        <div id="ag-biz-card"></div>
+        <!-- 补充联系信息 -->
+        <div style="background:var(--dark2);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:14px;margin-top:10px">
+          <p style="font-size:12px;color:var(--gold);margin-bottom:10px">✏️ 补充联系信息（显示在名片上）</p>
+          <div class="form-row">
+            <div class="fg"><label>邮箱 Email</label><input type="email" id="ag-email-input" placeholder="your@email.com"></div>
+            <div class="fg"><label>Zalo号码</label><input type="text" id="ag-zalo-input" placeholder="+84 xxx xxx xxx"></div>
+          </div>
+          <button class="btn-full" onclick="saveAgentContact()">💾 保存联系信息</button>
+        </div>
+      </div>
+      <div class="dash-tabs">
+        <button class="dash-tab active" id="ag-dt-orders" onclick="agDashTab('orders')">📋 Đơn Hàng</button>
+        <button class="dash-tab" id="ag-dt-profit" onclick="agDashTab('profit')">💰 Lợi Nhuận</button>
+        <button class="dash-tab" id="ag-dt-select" onclick="agDashTab('select')">🛍 Chọn Sản Phẩm</button>
+        <button class="dash-tab" id="ag-dt-preview" onclick="agDashTab('preview')">👁 Xem Cửa Hàng</button>
+      </div>
+      <div id="ag-panel-orders" class="dash-panel active"><div id="ag-orders-list"><div class="loading">Đang tải</div></div></div>
+      <div id="ag-panel-profit" class="dash-panel">
+        <div style="background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:14px;margin-bottom:14px">
+          <p style="font-size:12px;color:var(--gray);line-height:1.8">💡 <b style="color:var(--gold)">利润计算：</b>客户支付零售价，您按代理级别进货价结算，差额即您的利润。<br>例：零售价$100 · 进货价$80 · <b style="color:var(--success)">利润=$20</b></p>
+        </div>
+        <div id="ag-profit-list"><div class="loading">Đang tải</div></div>
+      </div>
+      <div id="ag-panel-select" class="dash-panel"><div id="ag-select-list"><div class="loading">Đang tải</div></div></div>
+      <div id="ag-panel-preview" class="dash-panel">
+        <div style="background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:18px;text-align:center;margin-bottom:14px">
+          <div style="font-size:28px;margin-bottom:10px">🏪</div>
+          <p style="font-size:13px;color:var(--gray);margin-bottom:14px">Nhấn để xem cửa hàng như khách hàng sẽ thấy · 预览客户看到的小店</p>
+          <button class="btn-primary" onclick="previewMyShop()">👁 Xem Cửa Hàng · 预览小店</button>
+        </div>
+        <div style="background:var(--dark3);border-radius:8px;padding:12px">
+          <p style="font-size:12px;color:var(--gray);line-height:1.8">📌 <b style="color:var(--white)">提示：</b><br>· 客户通过您的链接进入，只看到您选择的产品<br>· 每笔订单系统自动记录利润到您的账户</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="page-admin-login" class="page">
+  <div class="auth-wrap">
+    <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+    <div class="auth-card">
+      <div class="auth-title">👑 管理员登录</div>
+      <div class="auth-sub">兰博基尼黑金刚 · 后台管理系统</div>
+      <div style="margin-top:16px">
+        <div class="fg"><label>用户名</label><input type="text" id="adm-user" placeholder="admin"></div>
+        <div class="fg"><label>密码</label><input type="password" id="adm-pass" placeholder="••••••••"></div>
+        <button class="btn-full" id="adm-login-btn" onclick="doAdminLogin()">登录管理后台</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div id="page-admin" class="page">
+  <div class="admin-wrap">
+    <div class="dash-header">
+      <div><h2>👑 管理控制台</h2><p style="font-size:11px;color:var(--gray)">兰博基尼黑金刚 · Lamborghini Black Kong</p></div>
+      <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+    </div>
+    <div class="admin-stats">
+      <div class="dash-stat"><div class="dash-stat-num" id="adm-suppliers">-</div><div class="dash-stat-label">供应商数</div></div>
+      <div class="dash-stat"><div class="dash-stat-num" id="adm-pending" style="color:var(--warning)">-</div><div class="dash-stat-label">待审核产品</div></div>
+      <div class="dash-stat"><div class="dash-stat-num" id="adm-agents">-</div><div class="dash-stat-label">活跃代理商</div></div>
+      <div class="dash-stat"><div class="dash-stat-num" id="adm-orders">-</div><div class="dash-stat-label">总订单数</div></div>
+    </div>
+    <div class="dash-tabs">
+      <button class="dash-tab active" id="adm-dt-review" onclick="admTab('review')">审核产品 <span id="pending-badge" style="background:var(--warning);color:var(--black);border-radius:10px;padding:1px 7px;font-size:10px;margin-left:4px">0</span></button>
+      <button class="dash-tab" id="adm-dt-prices" onclick="admTab('prices')">六档价格</button>
+      <button class="dash-tab" id="adm-dt-agents" onclick="admTab('agents')">代理商管理</button>
+      <button class="dash-tab" id="adm-dt-suppliers" onclick="admTab('suppliers')">供应商管理</button>
+      <button class="dash-tab" id="adm-dt-orders" onclick="admTab('orders')">订单管理</button>
+      <button class="dash-tab" id="adm-dt-leads" onclick="admTab('leads')">代理商申请</button>
+    </div>
+    <div id="adm-panel-review" class="dash-panel active"><div id="adm-review-list"><div class="loading">加载中</div></div></div>
+    <div id="adm-panel-prices" class="dash-panel"><div id="adm-prices-list"><div class="loading">加载中</div></div></div>
+    <div id="adm-panel-agents" class="dash-panel"><div id="adm-agents-list"><div class="loading">加载中</div></div></div>
+    <div id="adm-panel-suppliers" class="dash-panel"><div id="adm-suppliers-list"><div class="loading">加载中</div></div></div>
+    <div id="adm-panel-orders" class="dash-panel"><div id="adm-orders-list"><div class="loading">加载中</div></div></div>
+    <div id="adm-panel-leads" class="dash-panel"><div id="adm-leads-list"><div class="loading">加载中</div></div></div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-reject">
+  <div class="modal-box">
+    <h3>✖ 退回产品</h3>
+    <p>请注明退回原因，供应商修改后可重新提交</p>
+    <textarea id="reject-reason" placeholder="例：图片不清晰，请提供白底图..."></textarea>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModals()">取消</button>
+      <button class="btn-confirm" onclick="confirmReject()">确认退回</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-agent">
+  <div class="modal-box">
+    <h3>✅ 激活代理商</h3>
+    <p>分配代理编码并设置小店信息</p>
+    <div class="fg"><label>代理商编码</label><input type="text" id="modal-code" placeholder="LBK-D003"></div>
+    <div class="fg"><label>小店名称</label><input type="text" id="modal-shop-name" placeholder="黑金刚时装店·第三郡"></div>
+    <div class="fg"><label>小店链接标识（英文+横线）</label><input type="text" id="modal-slug" placeholder="shop-q3"></div>
+    <div class="fg"><label>代理级别</label>
+      <select id="modal-level"><option value="district">区级 District</option><option value="city">市级 City</option><option value="province">省级 Province</option></select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModals()">取消</button>
+      <button class="btn-confirm" style="background:var(--success)" onclick="confirmActivate()">✅ 确认激活</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SB='https://leauestkrtvwyanfbghs.supabase.co';
+var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxlYXVlc3RrcnR2d3lhbmZiZ2hzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNDk4MTcsImV4cCI6MjA5NDcyNTgxN30._OA7hE0FRt_bdMFsBzLtz58VQHO4YwOYbj6rgMtet5A';
+
+function sbFetch(path,opts){
+  var headers={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=representation'};
+  if(opts&&opts.headers){Object.assign(headers,opts.headers);}
+  return fetch(SB+'/rest/v1/'+path,Object.assign({},opts,{headers:headers})).then(function(r){return r.text().then(function(t){if(!r.ok)throw new Error(t);return t?JSON.parse(t):[];});});
+}
+function GET(p){return sbFetch(p,{method:'GET'});}
+function POST(p,b){return sbFetch(p,{method:'POST',body:JSON.stringify(b)});}
+function PATCH(p,b){return sbFetch(p,{method:'PATCH',body:JSON.stringify(b)});}
+function DEL(p){return sbFetch(p,{method:'DELETE'});}
+
+var lang='vi',cart=[],allProds=[],loggedSup=null,loggedAgent=null,adminIn=false;
+var currentRejectId=null,currentAgentActivateId=null,agentSelectedProds=[];
+var slideIdx=0,slideTotal=8,heroBgIdx=0;
+
+// NAV HEIGHT
+function fixNav(){
+  var h=document.getElementById('main-nav').offsetHeight;
+  document.querySelectorAll('.page').forEach(function(p){p.style.paddingTop=h+'px';});
+}
+window.addEventListener('load',fixNav);
+window.addEventListener('resize',fixNav);
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelector('.lang-btn[onclick="setLang(\''+l+'\')"]').classList.add('active');
+  document.querySelectorAll('[data-'+l+']').forEach(function(el){el.textContent=el.getAttribute('data-'+l);});
+}
+
+function showPage(p){
+  document.querySelectorAll('.page').forEach(function(pg){pg.classList.remove('active');});
+  var map={home:'page-home',supplier:'page-supplier','agent-login':'page-agent-login','admin-login':'page-admin-login',admin:'page-admin',checkout:'page-checkout',shop:'page-shop'};
+  var el=document.getElementById(map[p]||'page-home');
+  el.classList.add('active');
+  fixNav();
+  window.scrollTo(0,0);
+  if(p==='admin'&&adminIn)loadAdminData();
+  if(p==='home'&&!allProds.length)loadProducts();
+}
+
+function toast(msg,dur){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},dur||3000);
+}
+function setBtn(id,loading,txt){
+  var b=document.getElementById(id);
+  if(!b)return;
+  b.disabled=loading;
+  b.textContent=loading?'处理中...':(txt||b.textContent);
+}
+
+// TABS
+function supTab(t){
+  document.getElementById('sup-tab-login').classList.toggle('active',t==='login');
+  document.getElementById('sup-tab-register').classList.toggle('active',t==='register');
+  document.getElementById('sup-login').classList.toggle('active',t==='login');
+  document.getElementById('sup-register').classList.toggle('active',t==='register');
+}
+function agTab(t){
+  document.getElementById('ag-tab-login').classList.toggle('active',t==='login');
+  document.getElementById('ag-tab-apply').classList.toggle('active',t==='apply');
+  document.getElementById('ag-login').classList.toggle('active',t==='login');
+  document.getElementById('ag-apply').classList.toggle('active',t==='apply');
+}
+function supDashTab(t){
+  ['list','upload'].forEach(function(x){
+    document.getElementById('sup-dt-'+x).classList.toggle('active',x===t);
+    document.getElementById('sup-panel-'+x).classList.toggle('active',x===t);
+  });
+  if(t==='list')loadSupProducts();
+}
+function agDashTab(t){
+  ['orders','profit','select','preview'].forEach(function(x){
+    document.getElementById('ag-dt-'+x).classList.toggle('active',x===t);
+    document.getElementById('ag-panel-'+x).classList.toggle('active',x===t);
+  });
+  if(t==='orders')loadAgentOrders();
+  if(t==='profit')loadAgentProfit();
+  if(t==='select')loadAgentSelectProds();
+}
+function admTab(t){
+  ['review','prices','agents','suppliers','orders','leads'].forEach(function(x){
+    document.getElementById('adm-dt-'+x).classList.toggle('active',x===t);
+    document.getElementById('adm-panel-'+x).classList.toggle('active',x===t);
+  });
+}
+
+// PRICE LOGIC
+function retailPrice(p){return parseFloat(p.price_retail||p.price||0);}
+function agentCostPrice(p){
+  if(!loggedAgent)return retailPrice(p);
+  var lvl=loggedAgent.agent_level||'district';
+  if(lvl==='province')return parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);
+  if(lvl==='city')return parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);
+  return parseFloat(p.price_district||p.price_retail||p.price||0);
+}
+function agentProfit(p){return retailPrice(p)-agentCostPrice(p);}
+
+// PRODUCTS
+function loadProducts(){
+  var el=document.getElementById('products-grid');
+  el.innerHTML='<div class="loading">Đang tải sản phẩm</div>';
+  GET('products?status=eq.approved&order=created_at.desc').then(function(rows){
+    allProds=rows;
+    renderProds(rows,'',el);
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>⚠</div><p>'+e.message+'</p></div>';});
+}
+
+function renderProds(rows,cat,el){
+  var filtered=cat?rows.filter(function(p){return p.category&&p.category.toLowerCase().indexOf(cat.toLowerCase())>-1;}):rows;
+  if(!filtered.length){el.innerHTML='<div class="empty"><div>📦</div><p>Chưa có sản phẩm</p></div>';return;}
+  var html='';
+  filtered.forEach(function(p){
+    var price=retailPrice(p);
+    var cost=agentCostPrice(p);
+    var profit=agentProfit(p);
+    var imgHtml=p.image_url?'<img class="product-card-img" src="'+p.image_url+'" alt="'+p.name+'">'  :'<div class="product-card-img">📦</div>';
+    var profitHtml=loggedAgent&&profit>0?'<div class="profit-tag">进货价 $'+cost.toFixed(2)+' · 利润 +$'+profit.toFixed(2)+'</div>':'';
+    html+='<div class="product-card" onclick="openProdModal(\''+p.id+'\')">'
+      +imgHtml
+      +'<div class="product-card-body">'
+      +'<div class="product-card-cat">'+(p.category||'')+'</div>'
+      +'<div class="product-card-name">'+p.name+'</div>'
+      +'<div class="product-card-price">$'+price.toFixed(2)+'</div>'
+      +profitHtml
+      +'<div class="product-card-actions">'
+      +'<button class="btn-cart" onclick="event.stopPropagation();addCart(\''+p.id+'\')">🛒 Thêm</button>'
+      +'<button class="btn-buy" onclick="event.stopPropagation();buyNow(\''+p.id+'\')">Mua Ngay</button>'
+      +'</div></div></div>';
+  });
+  el.innerHTML=html;
+}
+
+function filterCat(cat){
+  document.getElementById('sec-products').scrollIntoView({behavior:'smooth'});
+  document.getElementById('filter-label').textContent=cat?'Danh mục: '+cat:'Tất cả sản phẩm';
+  renderProds(allProds,cat,document.getElementById('products-grid'));
+}
+
+function openProdModal(pid){
+  var p=allProds.find(function(x){return x.id===pid;});
+  if(!p)return;
+  var price=retailPrice(p);
+  var cost=agentCostPrice(p);
+  var profit=agentProfit(p);
+  var m=document.getElementById('modal-reject');
+  m.innerHTML='<div class="modal-box" style="max-width:480px">'
+    +(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:14px">':'<div style="width:100%;height:180px;background:var(--dark3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:14px">📦</div>')
+    +'<div style="font-size:11px;color:var(--gold);margin-bottom:4px">'+(p.category||'')+'</div>'
+    +'<h3 style="font-size:16px;font-weight:700;margin-bottom:8px;color:var(--white)">'+p.name+'</h3>'
+    +'<p style="font-size:12px;color:var(--gray);margin-bottom:12px">'+(p.description||'')+'</p>'
+    +'<div style="font-size:12px;color:var(--gray);margin-bottom:8px">库存: '+p.stock+' · MOQ: '+p.moq+'</div>'
+    +'<div style="font-size:22px;font-weight:900;color:var(--gold);margin-bottom:'+(loggedAgent&&profit>0?'6':'14')+'px">$'+price.toFixed(2)+'</div>'
+    +(loggedAgent&&profit>0?'<div class="profit-tag" style="margin-bottom:14px">进货价 $'+cost.toFixed(2)+' · 利润 +$'+profit.toFixed(2)+'</div>':'')
+    +'<div style="display:flex;gap:10px">'
+    +'<button class="btn-cart" style="flex:1;padding:11px" onclick="addCart(\''+p.id+'\');closeModals()">🛒 Thêm Vào Giỏ</button>'
+    +'<button class="btn-buy" style="flex:1;padding:11px" onclick="buyNow(\''+p.id+'\');closeModals()">⚡ Mua Ngay</button>'
+    +'</div>'
+    +'<div class="modal-actions" style="margin-top:10px"><button class="btn-cancel" onclick="closeModals()">Đóng</button></div>'
+    +'</div>';
+  m.classList.add('open');
+}
+
+// CART
+function addCart(pid){
+  var p=allProds.find(function(x){return x.id===pid;});
+  if(!p)return;
+  var ex=cart.find(function(i){return i.id===pid;});
+  var dispPrice=retailPrice(p);
+  if(ex){ex.qty++;}
+  else{cart.push(Object.assign({},p,{qty:1,dispPrice:dispPrice}));}
+  updateCartUI();
+  toast('✅ Đã thêm vào giỏ hàng!');
+}
+function buyNow(pid){addCart(pid);openCart();}
+function openCart(){
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-sidebar').classList.add('open');
+  renderCart();
+}
+function closeCart(){
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-sidebar').classList.remove('open');
+}
+function updateCartUI(){
+  var n=cart.reduce(function(s,i){return s+i.qty;},0);
+  document.getElementById('cart-count').textContent=n;
+  var badge=document.getElementById('cart-badge');
+  badge.style.display=n>0?'flex':'none';
+  badge.textContent=n;
+}
+function renderCart(){
+  var el=document.getElementById('cart-items');
+  if(!cart.length){el.innerHTML='<div class="empty"><div>🛒</div><p>Giỏ hàng trống</p></div>';document.getElementById('cart-total').textContent='$0.00';return;}
+  var total=cart.reduce(function(s,i){return s+i.dispPrice*i.qty;},0);
+  document.getElementById('cart-total').textContent='$'+total.toFixed(2);
+  var html='';
+  cart.forEach(function(i){
+    var imgHtml=i.image_url?'<img class="cart-item-img" src="'+i.image_url+'">'  :'<div class="cart-item-img">📦</div>';
+    html+='<div class="cart-item">'+imgHtml
+      +'<div class="cart-item-info">'
+      +'<div class="cart-item-name">'+i.name+'</div>'
+      +'<div class="cart-item-price">$'+(i.dispPrice*i.qty).toFixed(2)+'</div>'
+      +'<div class="cart-item-qty">'
+      +'<button class="qty-btn" onclick="changeQty(\''+i.id+'\',-1)">−</button>'
+      +'<span>'+i.qty+'</span>'
+      +'<button class="qty-btn" onclick="changeQty(\''+i.id+'\',1)">+</button>'
+      +'<button class="cart-item-del" onclick="removeCart(\''+i.id+'\')">🗑</button>'
+      +'</div></div></div>';
+  });
+  el.innerHTML=html;
+}
+function changeQty(id,d){
+  var item=cart.find(function(i){return i.id===id;});
+  if(!item)return;
+  item.qty+=d;
+  if(item.qty<=0)cart=cart.filter(function(i){return i.id!==id;});
+  updateCartUI();renderCart();
+}
+function removeCart(id){cart=cart.filter(function(i){return i.id!==id;});updateCartUI();renderCart();}
+
+function goCheckout(){
+  if(!cart.length){toast('❌ Giỏ hàng trống!');return;}
+  closeCart();
+  var sub=cart.reduce(function(s,i){return s+i.dispPrice*i.qty;},0);
+  document.getElementById('co-sub').textContent='$'+sub.toFixed(2);
+  document.getElementById('co-total').textContent='$'+sub.toFixed(2);
+  document.getElementById('momo-amount').textContent='$'+sub.toFixed(2);
+  var html='';
+  cart.forEach(function(i){html+='<div class="order-row"><span>'+i.name+' x'+i.qty+'</span><span>$'+(i.dispPrice*i.qty).toFixed(2)+'</span></div>';});
+  document.getElementById('co-items').innerHTML=html;
+  showPage('checkout');
+}
+
+function placeOrder(){
+  var name=document.getElementById('co-name').value.trim();
+  var phone=document.getElementById('co-phone').value.trim();
+  if(!name||!phone){toast('❌ Vui lòng nhập họ tên và số điện thoại');return;}
+  var sub=cart.reduce(function(s,i){return s+i.dispPrice*i.qty;},0);
+  var commission=0;
+  if(loggedAgent){
+    cart.forEach(function(i){
+      var p=allProds.find(function(x){return x.id===i.id;});
+      if(p){commission+=agentProfit(p)*i.qty;}
+    });
+  }
+  var orderNo='LBK-'+Date.now();
+  POST('orders',{order_no:orderNo,agent_id:loggedAgent?loggedAgent.id:null,customer_name:name,customer_phone:phone,customer_address:document.getElementById('co-address').value,items:cart,subtotal:sub,shipping_fee:0,total:sub,agent_commission:commission,payment_method:'momo',payment_status:'pending',order_status:'new',note:document.getElementById('co-note').value})
+  .then(function(order){
+    if(loggedAgent&&commission>0){
+      POST('commissions',{agent_id:loggedAgent.id,order_id:order[0].id,amount:commission,status:'pending'});
+    }
+    cart=[];updateCartUI();
+    toast('✅ Đặt hàng thành công! Mã: '+orderNo);
+    setTimeout(function(){alert('💜 MoMo Payment\n\nMã đơn: '+orderNo+'\nSố tiền: $'+sub.toFixed(2)+'\n\n(Sẽ chuyển đến app MoMo)');showPage('home');},800);
+  }).catch(function(e){toast('❌ Lỗi: '+e.message);});
+}
+
+// SUPPLIER
+function doSupLogin(){
+  var email=document.getElementById('sup-email').value.trim();
+  var pass=document.getElementById('sup-pass').value.trim();
+  if(!email||!pass){toast('❌ Nhập email và mật khẩu');return;}
+  setBtn('sup-login-btn',true);
+  GET('suppliers?email=eq.'+encodeURIComponent(email)+'&password_hash=eq.'+encodeURIComponent(pass)+'&select=*')
+  .then(function(rows){
+    if(!rows.length){toast('❌ Thông tin không đúng');setBtn('sup-login-btn',false,'登录');return;}
+    loggedSup=rows[0];
+    document.getElementById('sup-auth').style.display='none';
+    document.getElementById('sup-dash').style.display='block';
+    document.getElementById('sup-welcome').textContent='🏭 '+loggedSup.company_name;
+    if(loggedSup.status==='pending')document.getElementById('sup-status').textContent='⏳ 账户待审核激活';
+    loadSupProducts();
+    setBtn('sup-login-btn',false,'登录');
+  }).catch(function(e){toast('❌ '+e.message);setBtn('sup-login-btn',false,'登录');});
+}
+function doSupRegister(){
+  var company=document.getElementById('sup-company').value.trim();
+  var email=document.getElementById('sup-reg-email').value.trim();
+  var pass=document.getElementById('sup-reg-pass').value.trim();
+  if(!company||!email||!pass||pass.length<6){toast('❌ 请填写完整信息，密码至少6位');return;}
+  setBtn('sup-reg-btn',true);
+  POST('suppliers',{company_name:company,email:email,phone:document.getElementById('sup-phone').value,category:document.getElementById('sup-cat').value,password_hash:pass,status:'pending'})
+  .then(function(){toast('✅ 注册成功！等待管理员审核激活。');setBtn('sup-reg-btn',false,'提交注册');})
+  .catch(function(e){toast(e.message.indexOf('unique')>-1?'❌ 邮箱已被注册':'❌ '+e.message);setBtn('sup-reg-btn',false,'提交注册');});
+}
+function supLogout(){loggedSup=null;document.getElementById('sup-auth').style.display='block';document.getElementById('sup-dash').style.display='none';showPage('home');}
+
+function loadSupProducts(){
+  var el=document.getElementById('sup-product-list');
+  el.innerHTML='<div class="loading">加载中</div>';
+  GET('products?supplier_id=eq.'+loggedSup.id+'&order=created_at.desc')
+  .then(function(rows){
+    document.getElementById('sup-total').textContent=rows.length;
+    document.getElementById('sup-pending').textContent=rows.filter(function(p){return p.status==='pending';}).length;
+    document.getElementById('sup-approved').textContent=rows.filter(function(p){return p.status==='approved';}).length;
+    if(!rows.length){el.innerHTML='<div class="empty"><div>📦</div><p>暂无产品</p></div>';return;}
+    var html='';
+    rows.forEach(function(p){
+      var imgHtml=p.image_url?'<img class="prod-thumb" src="'+p.image_url+'">'  :'<div class="prod-thumb">📦</div>';
+      var rejectHtml=p.status==='rejected'&&p.reject_reason?'<div class="reject-note">⚠ '+p.reject_reason+'</div>':'';
+      var sClass=p.status==='approved'?'s-approved':p.status==='rejected'?'s-rejected':'s-pending';
+      var sLabel=p.status==='approved'?'✅ 已通过':p.status==='rejected'?'✖ 已退回':'⏳ 待审核';
+      html+='<div class="product-item">'+imgHtml+'<div class="prod-info"><div class="prod-name">'+p.name+'</div><div class="prod-meta">'+p.category+' · 库存:'+p.stock+' · MOQ:'+p.moq+'</div><div class="prod-price">$'+parseFloat(p.price||0).toFixed(2)+' <span class="status-badge '+sClass+'" style="margin-left:8px">'+sLabel+'</span></div>'+rejectHtml+'</div></div>';
+    });
+    el.innerHTML=html;
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>⚠</div><p>'+e.message+'</p></div>';});
+}
+
+function previewImg(input){
+  if(input.files&&input.files[0]){
+    var r=new FileReader();
+    r.onload=function(e){document.getElementById('prev-img').src=e.target.result;document.getElementById('img-prev').style.display='block';};
+    r.readAsDataURL(input.files[0]);
+  }
+}
+
+function submitProduct(){
+  if(!loggedSup){toast('❌ 请先登录');return;}
+  if(loggedSup.status!=='active'){toast('❌ 账户未激活，请等待管理员审核');return;}
+  var name=document.getElementById('p-name').value.trim();
+  var price=document.getElementById('p-price').value;
+  var stock=document.getElementById('p-stock').value;
+  if(!name||!price||!stock){toast('❌ 请填写产品名称、价格和库存');return;}
+  setBtn('p-submit-btn',true);
+  var imgFile=document.getElementById('img-file').files[0];
+  var uploadPromise;
+  if(imgFile){
+    var fname=loggedSup.id+'_'+Date.now()+'.'+imgFile.name.split('.').pop();
+    uploadPromise=fetch(SB+'/storage/v1/object/product-images/'+fname,{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':imgFile.type},body:imgFile})
+    .then(function(r){return r.ok?SB+'/storage/v1/object/public/product-images/'+fname:null;});
+  }else{uploadPromise=Promise.resolve(null);}
+  uploadPromise.then(function(imgUrl){
+    return POST('products',{supplier_id:loggedSup.id,name:name,category:document.getElementById('p-cat').value,price:parseFloat(price),stock:parseInt(stock),moq:parseInt(document.getElementById('p-moq').value)||1,description:document.getElementById('p-desc').value,image_url:imgUrl,status:'pending'});
+  }).then(function(){
+    toast('✅ 产品已提交审核！');
+    ['p-name','p-price','p-stock','p-moq','p-desc'].forEach(function(id){document.getElementById(id).value='';});
+    document.getElementById('img-file').value='';document.getElementById('img-prev').style.display='none';
+    supDashTab('list');
+    setBtn('p-submit-btn',false,'提交审核');
+  }).catch(function(e){toast('❌ '+e.message);setBtn('p-submit-btn',false,'提交审核');});
+}
+
+// AGENT
+function doAgentLogin(){
+  var code=document.getElementById('ag-code').value.trim().toUpperCase();
+  var phone=document.getElementById('ag-phone').value.trim();
+  if(!code||!phone){toast('❌ 请输入代理编码和手机号');return;}
+  setBtn('ag-login-btn',true);
+  GET('distributor_leads?agent_code=eq.'+encodeURIComponent(code)+'&is_active=eq.true&select=*')
+  .then(function(rows){
+    if(!rows.length){toast('❌ 代理编码不存在或未激活');setBtn('ag-login-btn',false,'ĐĂNG NHẬP');return;}
+    loggedAgent=rows[0];
+    document.getElementById('ag-auth').style.display='none';
+    document.getElementById('ag-dash').style.display='block';
+    document.getElementById('ag-title').textContent='🏪 '+(loggedAgent.shop_name||'My Shop');
+    document.getElementById('ag-sub').textContent=(loggedAgent.city||'')+' · '+new Date().toLocaleDateString('vi-VN');
+    document.getElementById('ag-code-display').textContent=loggedAgent.agent_code;
+    var lvlMap={district:'🏪 Đại Lý Quận · 区级',city:'🏙️ Đại Lý TP · 市级',province:'🌏 Đại Lý Tỉnh · 省级'};
+    var lvlColor={district:'var(--success)',city:'var(--warning)',province:'var(--gold)'};
+    var lvl=loggedAgent.agent_level||'district';
+    document.getElementById('ag-level-display').innerHTML='<span style="color:'+lvlColor[lvl]+'">'+lvlMap[lvl]+'</span>';
+    var shopUrl=window.location.origin+window.location.pathname+'?shop='+loggedAgent.shop_slug;
+    document.getElementById('ag-shop-url').value=shopUrl;
+    GET('agent_products?agent_id=eq.'+loggedAgent.id+'&select=product_id')
+    .then(function(sel){document.getElementById('ag-prod-count').textContent=sel.length>0?sel.length+' sản phẩm':'Chưa chọn · 未选';});
+    loadAgentOrders();
+    setBtn('ag-login-btn',false,'ĐĂNG NHẬP');
+  }).catch(function(e){toast('❌ '+e.message);setBtn('ag-login-btn',false,'ĐĂNG NHẬP');});
+}
+
+function applyAgent(){
+  var name=document.getElementById('ag-name').value.trim();
+  var phone=document.getElementById('ag-apply-phone').value.trim();
+  var shop=document.getElementById('ag-shop').value.trim();
+  if(!name||!phone||!shop){toast('❌ Vui lòng điền đầy đủ');return;}
+  setBtn('ag-apply-btn',true);
+  POST('distributor_leads',{full_name:name,phone:phone,city:document.getElementById('ag-city').value.trim(),category_interest:document.getElementById('ag-cat').value,shop_name:shop,status:'new',agent_level:'district',is_active:false,commission_rate:10})
+  .then(function(){toast('✅ Đã gửi đơn! Admin sẽ cấp mã trong 1-2 ngày.');setBtn('ag-apply-btn',false,'GỬI ĐƠN ĐĂNG KÝ');})
+  .catch(function(e){toast('❌ '+e.message);setBtn('ag-apply-btn',false,'GỬI ĐƠN ĐĂNG KÝ');});
+}
+
+function agLogout(){loggedAgent=null;document.getElementById('ag-auth').style.display='block';document.getElementById('ag-dash').style.display='none';showPage('home');}
+// 名片生成函数
+function buildBizCard(agent, shopUrl, forShop){
+  var lvlMap={district:'区级代理商 · Đại Lý Quận',city:'市级代理商 · Đại Lý Thành Phố',province:'省级代理商 · Đại Lý Tỉnh'};
+  var lvl=agent.agent_level||'district';
+  var lvlLabel=lvlMap[lvl]||'区级代理商';
+  var initial=(agent.full_name||agent.shop_name||'A')[0].toUpperCase();
+  var html='<div class="biz-card">'
+    +'<div class="biz-card-top">'
+    +'<div class="biz-avatar">'+initial+'</div>'
+    +'<div class="biz-info">'
+    +'<div class="biz-name">'+(agent.full_name||agent.shop_name||'')+'</div>'
+    +'<div class="biz-title">LAMBORGHINI BLACK KONG<br>'+lvlLabel+'</div>'
+    +'<div class="biz-brand">兰博基尼黑金刚 · 官方授权</div>'
+    +'</div></div>'
+    +'<div class="biz-divider"></div>'
+    +'<div class="biz-contacts">';
+  if(agent.phone){
+    html+='<div class="biz-contact"><div class="biz-contact-icon">📞</div><a href="tel:'+agent.phone+'">'+agent.phone+'</a></div>';
+  }
+  if(agent.zalo){
+    html+='<div class="biz-contact"><div class="biz-contact-icon">💬</div><span>Zalo: '+agent.zalo+'</span></div>';
+  }
+  if(agent.email){
+    html+='<div class="biz-contact"><div class="biz-contact-icon">✉️</div><a href="mailto:'+agent.email+'">'+agent.email+'</a></div>';
+  }
+  if(agent.city){
+    html+='<div class="biz-contact"><div class="biz-contact-icon">📍</div><span>'+agent.city+'</span></div>';
+  }
+  html+='</div>';
+  if(shopUrl){
+    html+='<div class="biz-shop-link">'
+      +'<span>🛍 '+( agent.shop_name||'My Shop')+'</span>'
+      +'<a href="'+shopUrl+'" target="_blank">'+shopUrl.replace('https://','')+'</a>'
+      +'</div>';
+  }
+  // 分享按钮（仅在小店页面显示）
+  if(forShop&&shopUrl){
+    var waText=encodeURIComponent('🏪 '+(agent.shop_name||'Shop LBK')+' - Lamborghini Black Kong\nXem sản phẩm tại:\n'+shopUrl);
+    var safeUrl=shopUrl.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    var safeName=(agent.shop_name||'Shop LBK').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    html+='<div class="share-btns" style="margin-top:12px">'
+      +'<a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shopUrl)+'" target="_blank">📘 Facebook</a>'
+      +'<button class="share-btn share-zalo" onclick="copyForZalo(\''+safeUrl+'\',\''+safeName+'\')">💬 Zalo</button>'
+      +'<a class="share-btn share-wa" href="https://wa.me/?text='+waText+'" target="_blank">📱 WhatsApp</a>'
+      +'</div>';
+  }
+  html+='</div>';
+  return html;
+}
+
+// 代理商后台：加载名片
+function renderAgentBizCard(){
+  if(!loggedAgent)return;
+  var shopUrl=document.getElementById('ag-shop-url').value;
+  var el=document.getElementById('ag-biz-card');
+  if(el)el.innerHTML=buildBizCard(loggedAgent,shopUrl,false);
+  // 填入已有联系信息
+  if(loggedAgent.email)document.getElementById('ag-email-input').value=loggedAgent.email;
+  if(loggedAgent.zalo)document.getElementById('ag-zalo-input').value=loggedAgent.zalo;
+}
+
+// 保存代理商联系信息
+function saveAgentContact(){
+  if(!loggedAgent)return;
+  var email=document.getElementById('ag-email-input').value.trim();
+  var zalo=document.getElementById('ag-zalo-input').value.trim();
+  PATCH('distributor_leads?id=eq.'+loggedAgent.id,{email:email,zalo:zalo})
+  .then(function(){
+    loggedAgent.email=email;
+    loggedAgent.zalo=zalo;
+    renderAgentBizCard();
+    toast('✅ 联系信息已保存！名片已更新。');
+  }).catch(function(e){toast('❌ '+e.message);});
+}
+
+function copyShopUrl(){
+  var url=document.getElementById('ag-shop-url').value;
+  navigator.clipboard.writeText(url).then(function(){toast('✅ Đã copy link cửa hàng!');});
+}
+  var url=document.getElementById('ag-shop-url').value;
+  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+}
+function shareZalo(){
+  var url=document.getElementById('ag-shop-url').value;
+  var agent=loggedAgent;
+  var lvlMap={district:'Đại Lý Quận',city:'Đại Lý Thành Phố',province:'Đại Lý Tỉnh'};
+  var lvl=lvlMap[agent.agent_level||'district'];
+  var text='🏪 '+(agent.shop_name||'Shop LBK')+'\n'
+    +'💎 Lamborghini Black Kong - '+lvl+'\n'
+    +'📞 '+( agent.phone||'')+'\n'
+    +'🛍 Xem sản phẩm tại:\n'+url;
+  // Zalo không hỗ trợ web share URL trực tiếp
+  // Copy text + link để paste vào Zalo
+  navigator.clipboard.writeText(text).then(function(){
+    toast('✅ Đã copy nội dung! Mở Zalo và dán vào tin nhắn.');
+    setTimeout(function(){
+      if(confirm('Nội dung đã được copy!\n\nMở Zalo để chia sẻ?\n(Paste vào tin nhắn hoặc story Zalo)')){
+        window.open('https://zalo.me','_blank');
+      }
+    },500);
+  }).catch(function(){
+    // fallback: dùng Web Share API nếu có
+    if(navigator.share){
+      navigator.share({title:'Shop '+( agent.shop_name||'LBK'),text:'🏪 Lamborghini Black Kong - '+lvl,url:url});
+    }else{
+      prompt('Copy link này và chia sẻ lên Zalo:',url);
+    }
+  });
+}
+function shareWA(){
+  var url=document.getElementById('ag-shop-url').value;
+  var agent=loggedAgent;
+  var text='🏪 '+(agent.shop_name||'Shop LBK')+' - Lamborghini Black Kong\n'
+    +'Xem sản phẩm tại: '+url;
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+}
+function copyForZalo(url, shopName){
+  var text='🏪 '+(shopName||'Shop LBK')+' - Lamborghini Black Kong\n🛍 Xem sản phẩm tại:\n'+url;
+  if(navigator.share){
+    navigator.share({title:'Shop Lamborghini Black Kong',text:text,url:url})
+    .catch(function(){
+      navigator.clipboard.writeText(text).then(function(){toast('✅ Đã copy! Mở Zalo và dán vào tin nhắn.');});
+    });
+  }else{
+    navigator.clipboard.writeText(text).then(function(){
+      toast('✅ Đã copy nội dung! Mở Zalo và dán vào tin nhắn.');
+    }).catch(function(){prompt('Copy link này:',url);});
+  }
+}
+
+function loadAgentOrders(){
+  if(!loggedAgent)return;
+  var el=document.getElementById('ag-orders-list');
+  el.innerHTML='<div class="loading">Đang tải</div>';
+  GET('orders?agent_id=eq.'+loggedAgent.id+'&order=created_at.desc')
+  .then(function(orders){
+    document.getElementById('ag-order-count').textContent=orders.length;
+    var total=orders.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    var pending=orders.filter(function(o){return o.payment_status!=='paid';}).reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    document.getElementById('ag-profit').textContent='$'+total.toFixed(2);
+    document.getElementById('ag-pending-profit').textContent='$'+pending.toFixed(2);
+    if(!orders.length){el.innerHTML='<div class="empty"><div>📋</div><p>Chưa có đơn hàng · 暂无订单</p></div>';return;}
+    var html='<table class="order-table"><thead><tr><th>订单号</th><th>客户</th><th>客户付款</th><th>我的利润</th><th>状态</th></tr></thead><tbody>';
+    orders.forEach(function(o){
+      html+='<tr><td style="color:var(--gold);font-weight:600">'+o.order_no+'</td><td>'+o.customer_name+'<br><span style="font-size:10px;color:var(--gray)">'+o.customer_phone+'</span></td><td>$'+parseFloat(o.total).toFixed(2)+'</td><td style="color:var(--success);font-weight:700">+$'+parseFloat(o.agent_commission||0).toFixed(2)+'</td><td><span class="status-badge '+(o.payment_status==='paid'?'s-approved':'s-pending')+'">'+(o.payment_status==='paid'?'✅ 已付':'⏳ 待付')+'</span></td></tr>';
+    });
+    html+='</tbody></table>';
+    el.innerHTML=html;
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>⚠</div><p>'+e.message+'</p></div>';});
+}
+
+function loadAgentProfit(){
+  if(!loggedAgent)return;
+  var el=document.getElementById('ag-profit-list');
+  el.innerHTML='<div class="loading">Đang tải</div>';
+  GET('commissions?agent_id=eq.'+loggedAgent.id+'&order=created_at.desc')
+  .then(function(comms){
+    if(!comms.length){el.innerHTML='<div class="empty"><div>💰</div><p>暂无利润记录</p></div>';return;}
+    var html='<table class="order-table"><thead><tr><th>日期</th><th>利润</th><th>状态</th></tr></thead><tbody>';
+    comms.forEach(function(c){
+      html+='<tr><td>'+new Date(c.created_at).toLocaleDateString('zh-CN')+'</td><td style="color:var(--success);font-weight:700">+$'+parseFloat(c.amount).toFixed(2)+'</td><td><span class="status-badge '+(c.status==='settled'?'s-approved':'s-pending')+'">'+(c.status==='settled'?'✅ 已结算':'⏳ 待结算')+'</span></td></tr>';
+    });
+    html+='</tbody></table>';
+    el.innerHTML=html;
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>⚠</div><p>'+e.message+'</p></div>';});
+}
+
+function loadAgentSelectProds(){
+  if(!loggedAgent)return;
+  var el=document.getElementById('ag-select-list');
+  el.innerHTML='<div class="loading">Đang tải</div>';
+  Promise.all([
+    GET('products?status=eq.approved&order=created_at.desc'),
+    GET('agent_products?agent_id=eq.'+loggedAgent.id+'&select=product_id')
+  ]).then(function(results){
+    var prods=results[0],sel=results[1];
+    agentSelectedProds=sel.map(function(s){return s.product_id;});
+    if(!prods.length){el.innerHTML='<div class="empty"><div>📦</div><p>暂无产品</p></div>';return;}
+    var html='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">'
+      +'<p style="font-size:13px;color:var(--gray)">勾选您想在小店推广的产品</p>'
+      +'<div style="display:flex;gap:8px"><button class="btn-sm btn-sm-gold" onclick="selAll()">✅ 全选</button><button class="btn-sm btn-sm-danger" onclick="deselAll()">✕ 全取消</button></div>'
+      +'</div>'
+      +'<div class="select-grid">';
+    prods.forEach(function(p){
+      var isSel=agentSelectedProds.indexOf(p.id)>-1;
+      var cost=agentCostPrice(p);
+      var profit=agentProfit(p);
+      html+='<div class="sel-card'+(isSel?' selected':'')+'" id="sc-'+p.id+'" onclick="toggleSel(\''+p.id+'\')">'
+        +'<div class="sel-check">'+(isSel?'✅':'')+'</div>'
+        +(p.image_url?'<img class="sel-img" src="'+p.image_url+'">'  :'<div class="sel-img">📦</div>')
+        +'<div style="font-size:10px;color:var(--gold);margin-bottom:3px">'+(p.category||'')+'</div>'
+        +'<div style="font-size:12px;font-weight:700;margin-bottom:5px;line-height:1.3">'+p.name+'</div>'
+        +'<div style="font-size:11px;color:var(--gray)">零售价: <b style="color:var(--white)">$'+retailPrice(p).toFixed(2)+'</b></div>'
+        +'<div style="font-size:11px;color:var(--gray)">进货价: <b style="color:var(--gold)">$'+cost.toFixed(2)+'</b></div>'
+        +(profit>0?'<div style="font-size:11px;color:var(--success);font-weight:700;margin-top:3px">利润: +$'+profit.toFixed(2)+'</div>':'')
+        +'</div>';
+    });
+    html+='</div>'
+      +'<div style="margin-top:18px;text-align:center">'
+      +'<button class="btn-primary" onclick="saveSelProds()">💾 保存选品</button>'
+      +'<p style="font-size:11px;color:var(--gray);margin-top:8px">已选 <span id="sel-count" style="color:var(--gold);font-weight:700">'+agentSelectedProds.length+'</span> 件产品</p>'
+      +'</div>';
+    el.innerHTML=html;
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>⚠</div><p>'+e.message+'</p></div>';});
+}
+
+function toggleSel(pid){
+  var card=document.getElementById('sc-'+pid);
+  var idx=agentSelectedProds.indexOf(pid);
+  if(idx>-1){agentSelectedProds.splice(idx,1);card.classList.remove('selected');card.querySelector('.sel-check').textContent='';}
+  else{agentSelectedProds.push(pid);card.classList.add('selected');card.querySelector('.sel-check').textContent='✅';}
+  var cnt=document.getElementById('sel-count');
+  if(cnt)cnt.textContent=agentSelectedProds.length;
+}
+function selAll(){
+  document.querySelectorAll('[id^="sc-"]').forEach(function(c){
+    var pid=c.id.replace('sc-','');
+    if(agentSelectedProds.indexOf(pid)<0){agentSelectedProds.push(pid);c.classList.add('selected');c.querySelector('.sel-check').textContent='✅';}
+  });
+  var cnt=document.getElementById('sel-count');if(cnt)cnt.textContent=agentSelectedProds.length;
+}
+function deselAll(){
+  agentSelectedProds=[];
+  document.querySelectorAll('[id^="sc-"]').forEach(function(c){c.classList.remove('selected');c.querySelector('.sel-check').textContent='';});
+  var cnt=document.getElementById('sel-count');if(cnt)cnt.textContent=0;
+}
+function saveSelProds(){
+  if(!loggedAgent)return;
+  fetch(SB+'/rest/v1/agent_products?agent_id=eq.'+loggedAgent.id,{method:'DELETE',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}})
+  .then(function(){
+    if(agentSelectedProds.length===0)return Promise.resolve();
+    var rows=agentSelectedProds.map(function(pid){return{agent_id:loggedAgent.id,product_id:pid};});
+    return POST('agent_products',rows);
+  }).then(function(){
+    toast('✅ 已保存 '+agentSelectedProds.length+' 件产品到小店！');
+    document.getElementById('ag-prod-count').textContent=agentSelectedProds.length>0?agentSelectedProds.length+' sản phẩm':'Chưa chọn';
+  }).catch(function(e){toast('❌ '+e.message);});
+}
+function previewMyShop(){if(loggedAgent&&loggedAgent.shop_slug)loadShopPage(loggedAgent.shop_slug);}
+
+// SHOP PAGE
+function loadShopPage(slug){
+  showPage('shop');
+  var el=document.getElementById('shop-grid');
+  el.innerHTML='<div class="loading">Đang tải</div>';
+  GET('distributor_leads?shop_slug=eq.'+encodeURIComponent(slug)+'&select=*')
+  .then(function(agents){
+    if(!agents.length){el.innerHTML='<div class="empty"><div>🏪</div><p>Cửa hàng không tồn tại</p></div>';return;}
+    var agent=agents[0];
+    document.getElementById('shop-name-display').textContent=agent.shop_name||'Shop LBK';
+    document.getElementById('shop-logo').textContent=(agent.shop_name||'S')[0];
+    // 显示代理商名片
+    var shopUrl=window.location.href.split('?')[0]+'?shop='+slug;
+    var bizCardEl=document.getElementById('shop-biz-card');
+    if(bizCardEl)bizCardEl.innerHTML=buildBizCard(agent,shopUrl,true);
+    return Promise.all([
+      GET('products?status=eq.approved&order=created_at.desc'),
+      GET('agent_products?agent_id=eq.'+agent.id+'&select=product_id')
+    ]).then(function(results){
+      var prods=results[0],sel=results[1];
+      allProds=prods;
+      var selectedIds=sel.map(function(s){return s.product_id;});
+      var display=selectedIds.length>0?prods.filter(function(p){return selectedIds.indexOf(p.id)>-1;}):prods;
+      if(!display.length){el.innerHTML='<div class="empty"><div>📦</div><p>Cửa hàng chưa có sản phẩm</p></div>';return;}
+      var html='';
+      display.forEach(function(p){
+        var lvl=agent.agent_level||'district';
+        var cost;
+        if(lvl==='province')cost=parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);
+        else if(lvl==='city')cost=parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);
+        else cost=parseFloat(p.price_district||p.price_retail||p.price||0);
+        var price=retailPrice(p);
+        var imgHtml=p.image_url?'<img class="product-card-img" src="'+p.image_url+'">'  :'<div class="product-card-img">📦</div>';
+        html+='<div class="product-card" onclick="openProdModal(\''+p.id+'\')">'
+          +imgHtml
+          +'<div class="product-card-body">'
+          +'<div class="product-card-cat">'+(p.category||'')+'</div>'
+          +'<div class="product-card-name">'+p.name+'</div>'
+          +'<div class="product-card-price">$'+price.toFixed(2)+'</div>'
+          +'<div class="product-card-actions">'
+          +'<button class="btn-cart" onclick="event.stopPropagation();addCart(\''+p.id+'\')">🛒 Thêm</button>'
+          +'<button class="btn-buy" onclick="event.stopPropagation();buyNow(\''+p.id+'\')">Mua Ngay</button>'
+          +'</div></div></div>';
+      });
+      el.innerHTML=html;
+    });
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>⚠</div><p>'+e.message+'</p></div>';});
+}
+
+// ADMIN
+function doAdminLogin(){
+  var u=document.getElementById('adm-user').value.trim();
+  var p=document.getElementById('adm-pass').value.trim();
+  setBtn('adm-login-btn',true);
+  GET('admins?username=eq.'+encodeURIComponent(u)+'&password_hash=eq.'+encodeURIComponent(p)+'&select=id')
+  .then(function(rows){
+    if(!rows.length){toast('❌ 用户名或密码错误');setBtn('adm-login-btn',false,'登录管理后台');return;}
+    adminIn=true;showPage('admin');
+    setBtn('adm-login-btn',false,'登录管理后台');
+  }).catch(function(e){toast('❌ '+e.message);setBtn('adm-login-btn',false,'登录管理后台');});
+}
+
+function loadAdminData(){
+  Promise.all([
+    GET('suppliers?select=*&order=created_at.desc'),
+    GET('products?select=*,suppliers(company_name)&order=created_at.desc'),
+    GET('distributor_leads?select=*&order=created_at.desc'),
+    GET('orders?select=*&order=created_at.desc')
+  ]).then(function(results){
+    var suppliers=results[0],products=results[1],agents=results[2],orders=results[3];
+    var pending=products.filter(function(p){return p.status==='pending';});
+    var approved=products.filter(function(p){return p.status==='approved';});
+    document.getElementById('adm-suppliers').textContent=suppliers.length;
+    document.getElementById('adm-pending').textContent=pending.length;
+    document.getElementById('adm-agents').textContent=agents.filter(function(a){return a.is_active;}).length;
+    document.getElementById('adm-orders').textContent=orders.length;
+    document.getElementById('pending-badge').textContent=pending.length;
+    renderReview(pending,suppliers);
+    renderPrices(approved);
+    renderAgents(agents);
+    renderSuppliers(suppliers);
+    renderOrders(orders);
+    renderLeads(agents.filter(function(a){return !a.is_active;}));
+  }).catch(function(e){toast('❌ '+e.message);});
+}
+
+function renderReview(pending,suppliers){
+  var el=document.getElementById('adm-review-list');
+  if(!pending.length){el.innerHTML='<div class="empty"><div>✅</div><p>暂无待审核产品！</p></div>';return;}
+  var html='';
+  pending.forEach(function(p){
+    var sup=p.suppliers||{company_name:'未知'};
+    html+='<div class="review-card">'
+      +'<div class="review-head"><div class="review-sup">供应商：<span>'+sup.company_name+'</span> · '+new Date(p.created_at).toLocaleDateString('zh-CN')+'</div><span class="status-badge s-pending">⏳ 待审核</span></div>'
+      +'<div class="review-body">'
+      +(p.image_url?'<img class="review-img" src="'+p.image_url+'">'  :'<div class="review-img">📦</div>')
+      +'<div class="review-detail"><h3>'+p.name+'</h3><p>'+p.category+' · 建议价: $'+parseFloat(p.price||0).toFixed(2)+' · 库存: '+p.stock+' · MOQ: '+p.moq+'</p><p>'+(p.description||'')+'</p></div>'
+      +'</div>'
+      +'<div class="review-actions"><button class="btn-approve" onclick="approveProduct(\''+p.id+'\')">✅ 审核通过</button><button class="btn-reject" onclick="openRejectModal(\''+p.id+'\')">✖ 退回</button></div>'
+      +'</div>';
+  });
+  el.innerHTML=html;
+}
+
+function renderPrices(approved){
+  var el=document.getElementById('adm-prices-list');
+  if(!approved.length){el.innerHTML='<div class="empty"><div>💰</div><p>暂无已审核产品</p></div>';return;}
+  var html='<p style="font-size:12px;color:var(--gray);margin-bottom:14px">为每个产品设置6档价格</p>';
+  approved.forEach(function(p){
+    html+='<div class="review-card">'
+      +'<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:12px">'
+      +(p.image_url?'<img style="width:50px;height:50px;border-radius:6px;object-fit:cover" src="'+p.image_url+'">'  :'<div style="width:50px;height:50px;border-radius:6px;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:20px">📦</div>')
+      +'<div><div style="font-size:13px;font-weight:700">'+p.name+'</div><div style="font-size:11px;color:var(--gray)">'+p.category+'</div></div>'
+      +'</div>'
+      +'<div class="price-grid">'
+      +'<div class="price-field"><label style="color:var(--danger)">结算价（供应商）</label><input type="number" step="0.01" id="ps_'+p.id+'" value="'+(p.price_settlement||0)+'"></div>'
+      +'<div class="price-field"><label>零售价（消费者）</label><input type="number" step="0.01" id="pr_'+p.id+'" value="'+(p.price_retail||p.price||0)+'"></div>'
+      +'<div class="price-field"><label style="color:var(--info)">会员价</label><input type="number" step="0.01" id="pm_'+p.id+'" value="'+(p.price_member||0)+'"></div>'
+      +'<div class="price-field"><label style="color:var(--success)">区级代理价</label><input type="number" step="0.01" id="pd_'+p.id+'" value="'+(p.price_district||0)+'"></div>'
+      +'<div class="price-field"><label style="color:var(--warning)">市级代理价</label><input type="number" step="0.01" id="pc_'+p.id+'" value="'+(p.price_city||0)+'"></div>'
+      +'<div class="price-field"><label style="color:var(--gold)">省级代理价</label><input type="number" step="0.01" id="pp_'+p.id+'" value="'+(p.price_province||0)+'"></div>'
+      +'</div>'
+      +'<button class="btn-sm btn-sm-gold" style="margin-top:10px;padding:8px 16px" onclick="savePrices(\''+p.id+'\')">💾 保存价格</button>'
+      +'</div>';
+  });
+  el.innerHTML=html;
+}
+
+function savePrices(pid){
+  PATCH('products?id=eq.'+pid,{
+    price_settlement:parseFloat(document.getElementById('ps_'+pid).value)||0,
+    price_retail:parseFloat(document.getElementById('pr_'+pid).value)||0,
+    price_member:parseFloat(document.getElementById('pm_'+pid).value)||0,
+    price_district:parseFloat(document.getElementById('pd_'+pid).value)||0,
+    price_city:parseFloat(document.getElementById('pc_'+pid).value)||0,
+    price_province:parseFloat(document.getElementById('pp_'+pid).value)||0,
+    updated_at:new Date().toISOString()
+  }).then(function(){toast('✅ 价格已保存！');}).catch(function(e){toast('❌ '+e.message);});
+}
+
+function renderAgents(agents){
+  var el=document.getElementById('adm-agents-list');
+  if(!agents.length){el.innerHTML='<div class="empty"><div>🏪</div><p>暂无代理商</p></div>';return;}
+  var html='';
+  agents.forEach(function(a){
+    var lvlLabel=a.agent_level==='province'?'省级':a.agent_level==='city'?'市级':'区级';
+    html+='<div class="row-card">'
+      +'<div class="row-info"><h3>'+(a.shop_name||a.full_name)+' <span class="status-badge '+(a.is_active?'s-approved':'s-pending')+'" style="margin-left:6px">'+(a.is_active?'✅ 已激活':'⏳ 待激活')+'</span> <span class="status-badge s-pending" style="margin-left:4px;background:rgba(201,168,76,0.15);color:var(--gold);border-color:rgba(201,168,76,0.3)">'+lvlLabel+'</span></h3>'
+      +'<p>'+a.full_name+' · '+a.phone+' · '+(a.city||'')+' · 编码: '+(a.agent_code||'—')+'</p>'
+      +(a.shop_slug?'<p style="font-size:10px;color:var(--info)">小店: ?shop='+a.shop_slug+'</p>':'')
+      +'</div>'
+      +'<div class="row-actions">'
+      +(!a.is_active?'<button class="btn-sm btn-sm-success" onclick="openActivateModal(\''+a.id+'\',\''+a.full_name+'\')">✅ 激活</button>':'')
+      +(a.is_active?'<button class="btn-sm btn-sm-danger" onclick="deactivateAgent(\''+a.id+'\')">🚫 停用</button>':'')
+      +'</div></div>';
+  });
+  el.innerHTML=html;
+}
+
+function renderSuppliers(suppliers){
+  var el=document.getElementById('adm-suppliers-list');
+  if(!suppliers.length){el.innerHTML='<div class="empty"><div>🏭</div><p>暂无供应商</p></div>';return;}
+  var html='';
+  suppliers.forEach(function(s){
+    html+='<div class="row-card">'
+      +'<div class="row-info"><h3>'+s.company_name+' <span class="status-badge '+(s.status==='active'?'s-approved':'s-pending')+'" style="margin-left:6px">'+(s.status==='active'?'✅ 已激活':'⏳ 待审核')+'</span></h3>'
+      +'<p>'+s.email+' · '+(s.category||'')+'</p></div>'
+      +'<div class="row-actions">'
+      +(s.status==='pending'?'<button class="btn-sm btn-sm-success" onclick="updateSupStatus(\''+s.id+'\',\'active\')">✅ 激活</button>':'')
+      +(s.status==='active'?'<button class="btn-sm btn-sm-danger" onclick="updateSupStatus(\''+s.id+'\',\'suspended\')">🚫 停用</button>':'')
+      +'</div></div>';
+  });
+  el.innerHTML=html;
+}
+
+function renderOrders(orders){
+  var el=document.getElementById('adm-orders-list');
+  if(!orders.length){el.innerHTML='<div class="empty"><div>📋</div><p>暂无订单</p></div>';return;}
+  var html='<table class="order-table"><thead><tr><th>订单号</th><th>客户</th><th>金额</th><th>支付</th><th>状态</th><th>代理利润</th></tr></thead><tbody>';
+  orders.forEach(function(o){
+    var statusMap={new:'新订单',confirmed:'已确认',shipping:'配送中',delivered:'已送达',cancelled:'已取消'};
+    html+='<tr><td style="color:var(--gold);font-weight:600">'+o.order_no+'</td><td>'+o.customer_name+'<br><span style="font-size:10px;color:var(--gray)">'+o.customer_phone+'</span></td><td>$'+parseFloat(o.total).toFixed(2)+'</td><td><span class="status-badge '+(o.payment_status==='paid'?'s-approved':'s-pending')+'">'+(o.payment_status==='paid'?'已付':'待付')+'</span></td><td><span class="status-badge s-pending">'+(statusMap[o.order_status]||o.order_status)+'</span></td><td style="color:var(--success)">+$'+parseFloat(o.agent_commission||0).toFixed(2)+'</td></tr>';
+  });
+  html+='</tbody></table>';
+  el.innerHTML=html;
+}
+
+function renderLeads(leads){
+  var el=document.getElementById('adm-leads-list');
+  if(!leads.length){el.innerHTML='<div class="empty"><div>📝</div><p>暂无新的代理商申请</p></div>';return;}
+  var html='';
+  leads.forEach(function(l){
+    html+='<div class="row-card">'
+      +'<div class="row-info"><h3>'+l.full_name+' <span class="status-badge s-pending" style="margin-left:6px;background:rgba(59,158,232,0.15);color:var(--info);border-color:rgba(59,158,232,0.3)">🆕 新申请</span></h3>'
+      +'<p>'+l.phone+' · '+(l.city||'')+' · 小店: '+(l.shop_name||'未填')+' · '+new Date(l.created_at).toLocaleDateString('zh-CN')+'</p></div>'
+      +'<div class="row-actions"><button class="btn-sm btn-sm-success" onclick="openActivateModal(\''+l.id+'\',\''+l.full_name+'\')">✅ 审核激活</button></div>'
+      +'</div>';
+  });
+  el.innerHTML=html;
+}
+
+function approveProduct(id){
+  PATCH('products?id=eq.'+id,{status:'approved',reject_reason:null,updated_at:new Date().toISOString()})
+  .then(function(){toast('✅ 已审核通过！');loadAdminData();}).catch(function(e){toast('❌ '+e.message);});
+}
+
+function openRejectModal(id){
+  currentRejectId=id;
+  document.getElementById('reject-reason').value='';
+  document.getElementById('modal-reject').classList.add('open');
+}
+function confirmReject(){
+  var reason=document.getElementById('reject-reason').value.trim();
+  if(!reason){toast('❌ 请填写退回原因');return;}
+  PATCH('products?id=eq.'+currentRejectId,{status:'rejected',reject_reason:reason,updated_at:new Date().toISOString()})
+  .then(function(){toast('✖ 已退回');closeModals();loadAdminData();}).catch(function(e){toast('❌ '+e.message);});
+}
+
+function openActivateModal(id,name){
+  currentAgentActivateId=id;
+  document.getElementById('modal-shop-name').value=name+' Shop';
+  document.getElementById('modal-slug').value='shop-'+Date.now();
+  document.getElementById('modal-code').value='LBK-D'+Math.floor(Math.random()*900+100);
+  document.getElementById('modal-agent').classList.add('open');
+}
+function confirmActivate(){
+  var code=document.getElementById('modal-code').value.trim();
+  var shopName=document.getElementById('modal-shop-name').value.trim();
+  var slug=document.getElementById('modal-slug').value.trim().toLowerCase().replace(/\s+/g,'-');
+  var level=document.getElementById('modal-level').value;
+  var commMap={district:10,city:15,province:20};
+  if(!code||!shopName||!slug){toast('❌ 请填写完整信息');return;}
+  PATCH('distributor_leads?id=eq.'+currentAgentActivateId,{agent_code:code,shop_name:shopName,shop_slug:slug,agent_level:level,commission_rate:commMap[level]||10,is_active:true,status:'converted'})
+  .then(function(){toast('✅ 已激活！代理编码: '+code);closeModals();loadAdminData();}).catch(function(e){toast('❌ '+e.message);});
+}
+
+function deactivateAgent(id){
+  PATCH('distributor_leads?id=eq.'+id,{is_active:false})
+  .then(function(){toast('🚫 已停用');loadAdminData();}).catch(function(e){toast('❌ '+e.message);});
+}
+function updateSupStatus(id,status){
+  PATCH('suppliers?id=eq.'+id,{status:status})
+  .then(function(){toast(status==='active'?'✅ 已激活':'🚫 已停用');loadAdminData();}).catch(function(e){toast('❌ '+e.message);});
+}
+
+function closeModals(){
+  document.getElementById('modal-reject').classList.remove('open');
+  document.getElementById('modal-agent').classList.remove('open');
+  currentRejectId=null;currentAgentActivateId=null;
+}
+
+function submitLead(){
+  var name=document.getElementById('lead-name').value.trim();
+  var phone=document.getElementById('lead-phone').value.trim();
+  if(!name||!phone){toast('❌ Vui lòng nhập họ tên và số điện thoại');return;}
+  setBtn('lead-btn',true);
+  POST('distributor_leads',{full_name:name,phone:phone,city:document.getElementById('lead-city').value.trim(),category_interest:document.getElementById('lead-cat').value,experience:document.getElementById('lead-exp').value.trim(),status:'new',agent_level:'district',is_active:false,commission_rate:10})
+  .then(function(){
+    toast('✅ Đăng ký thành công! Chúng tôi sẽ liên hệ trong 24 giờ.');
+    ['lead-name','lead-phone','lead-city','lead-exp'].forEach(function(id){document.getElementById(id).value='';});
+    document.getElementById('lead-cat').selectedIndex=0;
+    setBtn('lead-btn',false,'GỬI ĐĂNG KÝ · SUBMIT · 提交');
+  }).catch(function(e){toast('❌ '+e.message);setBtn('lead-btn',false,'GỬI ĐĂNG KÝ · SUBMIT · 提交');});
+}
+
+// SLIDESHOW
+function initDots(){
+  var el=document.getElementById('slide-dots');
+  if(!el)return;
+  el.innerHTML='';
+  for(var i=0;i<slideTotal;i++){
+    var d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    (function(idx){d.onclick=function(){goSlide(idx);};})(i);
+    el.appendChild(d);
+  }
+}
+function goSlide(n){
+  slideIdx=n;
+  var t=document.getElementById('slide-track');
+  if(t)t.style.transform='translateX(-'+n*100+'%)';
+  var c=document.getElementById('slide-counter');
+  if(c)c.textContent=(n+1)+' / '+slideTotal;
+  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===n);});
+}
+function moveSlide(d){goSlide((slideIdx+d+slideTotal)%slideTotal);}
+setInterval(function(){moveSlide(1);},4000);
+initDots();
+
+// HERO BG
+setInterval(function(){
+  heroBgIdx=(heroBgIdx+1)%3;
+  var t=document.getElementById('hero-track');
+  if(t)t.style.transform='translateX(-'+heroBgIdx*100+'%)';
+},5000);
+
+// URL SHOP PARAM
+var urlP=new URLSearchParams(window.location.search);
+var shopSlug=urlP.get('shop');
+if(shopSlug){loadShopPage(shopSlug);}
+else{loadProducts();}
+</script>
+</body>
+</html>
