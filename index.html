@@ -548,8 +548,10 @@ footer span{color:var(--g)}
       <div class="dtabs">
         <button class="dtab on" id="sdt-list" onclick="supDT('list')">我的产品</button>
         <button class="dtab" id="sdt-up" onclick="supDT('up')">+ 上传产品</button>
+        <button class="dtab" id="sdt-ord" onclick="supDT('ord')">订单与备货</button>
       </div>
       <div id="sp-list" class="dpanel on"><div id="splist"><div class="ld">加载中</div></div></div>
+      <div id="sp-ord" class="dpanel"><div id="spord"><div class="ld">Loading...</div></div></div>
       <div id="sp-up" class="dpanel">
         <div style="background:var(--d3);border:2px dashed rgba(201,168,76,.3);border-radius:8px;padding:26px;text-align:center;margin-bottom:14px;cursor:pointer" onclick="document.getElementById('imgf').click()">
           <div style="font-size:30px;margin-bottom:8px">📸</div>
@@ -796,11 +798,12 @@ function agTab(t){
   document.getElementById('agform-a').classList.toggle('on',t==='a');
 }
 function supDT(t){
-  ['list','up'].forEach(function(x){
+  ['list','up','ord'].forEach(function(x){
     document.getElementById('sdt-'+x).classList.toggle('on',x===t);
     document.getElementById('sp-'+x).classList.toggle('on',x===t);
   });
   if(t==='list')loadSupProds();
+  if(t==='ord')loadSupOrders();
 }
 function agDT(t){
   ['o','p','s','v'].forEach(function(x){
@@ -975,7 +978,83 @@ function loadSupProds(){
   }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
 }
 
-function prevImg(inp){
+function loadSupOrders(){
+  if(!logSup)return;
+  var el=document.getElementById('spord');
+  el.innerHTML='<div class="ld">加载中</div>';
+  GET('products?supplier_id=eq.'+logSup.id+'&status=eq.approved&select=id,name,category,stock')
+  .then(function(prods){
+    if(!prods.length){
+      el.innerHTML='<div class="empty"><div>📦</div><p>暂无已上架产品</p></div>';
+      return;
+    }
+    var prodIds=prods.map(function(p){return p.id;});
+    var stats={};
+    prodIds.forEach(function(id){stats[id]={orders:0,qty:0,pending:0};});
+    GET('orders?order=created_at.desc&select=order_no,items,order_status,payment_status')
+    .then(function(orders){
+      orders.forEach(function(o){
+        if(!o.items)return;
+        var items=typeof o.items==='string'?JSON.parse(o.items):o.items;
+        if(!Array.isArray(items))return;
+        items.forEach(function(it){
+          if(it.id&&stats[it.id]){
+            stats[it.id].orders++;
+            stats[it.id].qty+=(it.qty||1);
+            if(o.order_status==='new'||o.order_status==='confirmed'){
+              stats[it.id].pending+=(it.qty||1);
+            }
+          }
+        });
+      });
+      GET('agent_products?select=product_id')
+      .then(function(ap){
+        var apCnt={};
+        ap.forEach(function(x){
+          apCnt[x.product_id]=(apCnt[x.product_id]||0)+1;
+        });
+        var totalOrders=0,totalQty=0,totalPending=0;
+        prods.forEach(function(p){
+          totalOrders+=stats[p.id].orders;
+          totalQty+=stats[p.id].qty;
+          totalPending+=stats[p.id].pending;
+        });
+        var h='';
+        h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">';
+        h+='<div class="dstat"><div class="dsn">'+totalOrders+'</div><div class="dsl">累计订单数</div></div>';
+        h+='<div class="dstat"><div class="dsn" style="color:var(--warn)">'+totalPending+'</div><div class="dsl">待备货数量</div></div>';
+        h+='<div class="dstat"><div class="dsn" style="color:var(--ok)">'+totalQty+'</div><div class="dsl">累计销售件数</div></div>';
+        h+='</div>';
+        h+='<p style="font-size:12px;color:var(--gr);margin-bottom:14px">注：仅显示产品销售数据，不显示代理商个人信息</p>';
+        h+='<table class="otbl"><thead><tr>';
+        h+='<th>产品名称</th><th>品类</th><th>库存</th><th>被推广</th><th>累计订单</th><th>待备货</th><th>总销量</th>';
+        h+='</tr></thead><tbody>';
+        prods.forEach(function(p){
+          var s=stats[p.id];
+          var agCnt=apCnt[p.id]||0;
+          h+='<tr>';
+          h+='<td style="font-weight:600">'+p.name+'</td>';
+          h+='<td style="color:var(--gr)">'+p.category+'</td>';
+          h+='<td>'+p.stock+'</td>';
+          h+='<td><span class="sb '+(agCnt>0?'s-ok':'s-p')+'">'+agCnt+' 代理商</span></td>';
+          h+='<td>'+s.orders+'</td>';
+          h+='<td style="color:'+(s.pending>0?'var(--warn)':'var(--gr)')+'">'+s.pending+'</td>';
+          h+='<td style="color:var(--ok);font-weight:700">'+s.qty+'</td>';
+          h+='</tr>';
+        });
+        h+='</tbody></table>';
+        h+='<div style="background:var(--d3);border-radius:8px;padding:14px;margin-top:16px">';
+        h+='<p style="font-size:12px;color:var(--gr);line-height:1.8">';
+        h+='备货说明：<br>';
+        h+='- 待备货 = 新订单和已确认订单的产品数量之和<br>';
+        h+='- 被推广 = 选择推广您产品的代理商数量<br>';
+        h+='- 请根据待备货数量及时准备库存，平台会统一联系发货';
+        h+='</p></div>';
+        el.innerHTML=h;
+      }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
+    }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
+  }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
+}
   if(inp.files&&inp.files[0]){
     var r=new FileReader();
     r.onload=function(e){document.getElementById('previmg').src=e.target.result;document.getElementById('imgprev').style.display='block';};
