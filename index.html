@@ -13,28 +13,22 @@ button{cursor:pointer;font-family:inherit}
 input,select,textarea{font-family:inherit}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:var(--g);border-radius:3px}
-
-/* NAV */
-#nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.97);border-bottom:1px solid rgba(201,168,76,.3)}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.97);border-bottom:1px solid rgba(201,168,76,.3)}
 .nav-top{display:flex;align-items:center;gap:10px;padding:8px 16px}
 .nav-logo{width:32px;height:32px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:var(--b);flex-shrink:0}
 .nav-brand{font-size:11px;font-weight:700;color:var(--g);line-height:1.3}
 .nav-brand small{display:block;font-size:9px;font-weight:400;color:var(--gr)}
 .nav-bot{display:flex;justify-content:space-between;align-items:center;padding:5px 16px 8px;border-top:1px solid rgba(201,168,76,.1);flex-wrap:wrap;gap:6px}
 .lbtn{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gr);padding:3px 8px;border-radius:4px;font-size:11px}
-.lbtn.on,.lbtn:hover{border-color:var(--g);color:var(--g);background:rgba(201,168,76,.1)}
+.lbtn.on{border-color:var(--g);color:var(--g);background:rgba(201,168,76,.1)}
 .nbtn{border:none;padding:6px 12px;border-radius:4px;font-size:11px;font-weight:700}
 .nbtn-g{background:var(--g);color:var(--b)}
 .nbtn-o{background:transparent;border:1px solid var(--gr);color:var(--gr)}
 .nbtn-o:hover{border-color:var(--g);color:var(--g)}
 .cart-wrap{position:relative}
 .cbadge{position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;border-radius:50%;width:16px;height:16px;font-size:10px;font-weight:700;display:none;align-items:center;justify-content:center}
-
-/* PAGES */
 .pg{display:none;min-height:100vh}
 .pg.on{display:block}
-
-/* HERO */
 .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;position:relative;overflow:hidden;min-height:88vh}
 .hbg{position:absolute;inset:0;z-index:0}
 .hbgt{display:flex;height:100%;transition:transform .6s}
@@ -49,27 +43,20 @@ input,select,textarea{font-family:inherit}
 .hcta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .btn-p{background:var(--g);color:var(--b);border:none;padding:13px 28px;border-radius:4px;font-size:13px;font-weight:700;transition:all .3s}
 .btn-p:hover{background:var(--gl);transform:translateY(-2px)}
-.btn-o{background:transparent;border:1px solid var(--g);color:var(--g);padding:13px 28px;border-radius:4px;font-size:13px;font-weight:700;transition:all .3s}
-.btn-o:hover{background:rgba(201,168,76,.1)}
+.btn-o{background:transparent;border:1px solid var(--g);color:var(--g);padding:13px 28px;border-radius:4px;font-size:13px;font-weight:700}
 .hstats{display:flex;gap:32px;margin-top:40px;flex-wrap:wrap;justify-content:center;text-align:center}
 .hsn{font-size:26px;font-weight:900;color:var(--g)}
 .hsl{font-size:11px;color:var(--gr);margin-top:4px}
-
-/* SECTIONS */
 section{padding:56px 20px}
 .stit{text-align:center;margin-bottom:36px}
 .stit h2{font-size:clamp(18px,4vw,30px);font-weight:900;letter-spacing:2px;margin-bottom:8px}
 .stit p{color:var(--gr);font-size:13px}
 .gline{width:50px;height:2px;background:var(--g);margin:12px auto}
-
-/* CATEGORIES */
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;max-width:880px;margin:0 auto}
 .ccard{background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:16px 10px;text-align:center;transition:all .3s;cursor:pointer}
 .ccard:hover{border-color:var(--g);transform:translateY(-3px)}
 .cicon{font-size:24px;margin-bottom:8px}
 .cname{font-size:11px;font-weight:600;color:var(--lg)}
-
-/* PRODUCTS */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;max-width:1000px;margin:0 auto}
 .pcard{background:var(--d2);border:1px solid rgba(201,168,76,.15);border-radius:10px;overflow:hidden;transition:all .3s;cursor:pointer}
 .pcard:hover{border-color:var(--g);transform:translateY(-4px)}
@@ -77,15 +64,12 @@ section{padding:56px 20px}
 .pbody{padding:12px}
 .pcat{font-size:10px;color:var(--g);margin-bottom:4px}
 .pname{font-size:13px;font-weight:700;margin-bottom:6px;line-height:1.3}
-.pprice{font-size:16px;font-weight:900;color:var(--g)}
+.pprice{font-size:15px;font-weight:900;color:var(--g)}
 .ptag{font-size:10px;color:var(--ok);background:rgba(29,158,117,.12);border:1px solid rgba(29,158,117,.3);border-radius:6px;padding:3px 7px;margin-top:4px;display:inline-block}
 .pacts{display:flex;gap:6px;margin-top:10px}
 .bcart{flex:1;background:rgba(201,168,76,.12);border:1px solid var(--g);color:var(--g);padding:7px;border-radius:4px;font-size:12px;font-weight:600}
 .bcart:hover{background:var(--g);color:var(--b)}
 .bbuy{flex:1;background:var(--g);border:none;color:var(--b);padding:7px;border-radius:4px;font-size:12px;font-weight:700}
-.bbuy:hover{background:var(--gl)}
-
-/* TNL SLIDESHOW */
 .tnl-sec{background:var(--d2)}
 .sshow{position:relative;max-width:900px;margin:0 auto 20px;border-radius:12px;overflow:hidden}
 .strack{display:flex;transition:transform .5s}
@@ -102,8 +86,6 @@ section{padding:56px 20px}
 .tfeat{background:var(--d3);border-left:3px solid var(--g);padding:14px;border-radius:0 6px 6px 0}
 .tfeat-t{font-size:13px;font-weight:700;color:var(--g);margin-bottom:5px}
 .tfeat-d{font-size:12px;color:var(--gr);line-height:1.6}
-
-/* AGENT PROMO */
 .apromo{background:linear-gradient(135deg,var(--d2),rgba(201,168,76,.06));border:1px solid rgba(201,168,76,.3);border-radius:16px;padding:36px;max-width:880px;margin:0 auto;text-align:center}
 .apromo h3{font-size:clamp(16px,3vw,24px);font-weight:900;color:var(--g);margin-bottom:12px}
 .apromo p{color:var(--gr);font-size:13px;line-height:1.8;margin-bottom:24px}
@@ -113,8 +95,6 @@ section{padding:56px 20px}
 .lvl-n{font-size:13px;font-weight:700;color:var(--g);margin-bottom:4px}
 .lvl-d{font-size:11px;color:var(--gr)}
 .lvl-b{display:inline-block;background:var(--g);color:var(--b);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:6px}
-
-/* CONTACT */
 .csec{background:var(--d2)}
 .cform{max-width:560px;margin:0 auto}
 .grow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -129,8 +109,6 @@ section{padding:56px 20px}
 footer{background:var(--d2);border-top:1px solid rgba(201,168,76,.2);padding:24px 20px;text-align:center}
 footer p{color:var(--gr);font-size:12px;line-height:1.8}
 footer span{color:var(--g)}
-
-/* CART SIDEBAR */
 .cov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000}
 .cov.on{display:block}
 .csbar{position:fixed;right:0;top:0;bottom:0;width:340px;max-width:94vw;background:var(--d2);border-left:1px solid rgba(201,168,76,.3);z-index:2001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s}
@@ -145,13 +123,11 @@ footer span{color:var(--g)}
 .csi-name{font-size:12px;font-weight:600;margin-bottom:3px}
 .csi-price{font-size:13px;color:var(--g);font-weight:700}
 .csi-qty{display:flex;align-items:center;gap:8px;margin-top:5px}
-.qbtn{background:var(--d3);border:1px solid rgba(201,168,76,.3);color:var(--g);width:22px;height:22px;border-radius:4px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.qbtn{background:var(--d3);border:1px solid rgba(201,168,76,.3);color:var(--g);width:22px;height:22px;border-radius:4px;font-size:13px;display:flex;align-items:center;justify-content:center}
 .csi-del{background:transparent;border:none;color:var(--red);font-size:16px;margin-left:auto}
 .csfoot{padding:14px;border-top:1px solid rgba(201,168,76,.2)}
 .ctotal{display:flex;justify-content:space-between;margin-bottom:12px;font-size:14px;font-weight:700}
 .ctotal span:last-child{color:var(--g)}
-
-/* CHECKOUT */
 .cowrap{max-width:780px;margin:0 auto;padding:20px}
 .cogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .cobox{background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:18px}
@@ -159,16 +135,12 @@ footer span{color:var(--g)}
 .orow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
 .orow:last-child{border:none;font-weight:700;color:var(--g);font-size:14px}
 .mbox{text-align:center;padding:18px;background:var(--d3);border-radius:8px;margin-top:12px}
-.mamt{font-size:22px;font-weight:900;color:#AE2070;margin:8px 0}
-
-/* SHOP */
+.mamt{font-size:20px;font-weight:900;color:#AE2070;margin:8px 0}
 .shhead{background:linear-gradient(135deg,var(--d2),rgba(201,168,76,.08));border-bottom:1px solid rgba(201,168,76,.2);padding:28px 20px;text-align:center}
 .shlogo{width:68px;height:68px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:var(--b);margin:0 auto 10px}
 .shname{font-size:20px;font-weight:900;color:var(--g);margin-bottom:6px}
 .shbadge{display:inline-block;background:rgba(201,168,76,.15);border:1px solid var(--g);color:var(--g);font-size:11px;padding:3px 12px;border-radius:12px}
 .shwrap{max-width:1000px;margin:0 auto;padding:20px}
-
-/* BIZ CARD */
 .bcard{background:linear-gradient(135deg,var(--d2),rgba(201,168,76,.08));border:1px solid rgba(201,168,76,.4);border-radius:16px;padding:24px;max-width:480px;margin:0 auto 20px}
 .bctop{display:flex;gap:16px;align-items:center;margin-bottom:16px}
 .bcav{width:64px;height:64px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:var(--b);flex-shrink:0}
@@ -180,7 +152,6 @@ footer span{color:var(--g)}
 .bcct{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--lg)}
 .bcct-i{width:28px;height:28px;background:rgba(201,168,76,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .bcct a{color:var(--lg);text-decoration:none}
-.bcct a:hover{color:var(--g)}
 .bcshop{margin-top:12px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .bcshop span{font-size:11px;color:var(--g)}
 .bcshop a{font-size:11px;color:var(--w);text-decoration:none;word-break:break-all}
@@ -189,8 +160,6 @@ footer span{color:var(--g)}
 .sbt-fb{background:#1877F2;color:#fff}
 .sbt-wa{background:#25D366;color:#fff}
 .sbt-cp{background:rgba(201,168,76,.15);border:1px solid var(--g)!important;color:var(--g)}
-
-/* AUTH */
 .awrap{max-width:440px;margin:0 auto;padding:32px 20px}
 .acard{background:var(--d2);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:26px}
 .atit{font-size:17px;font-weight:700;color:var(--g);margin-bottom:5px}
@@ -198,10 +167,7 @@ footer span{color:var(--g)}
 .atabs{display:flex;border-bottom:1px solid rgba(201,168,76,.2);margin-bottom:18px}
 .atab{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--gr);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
 .atab.on{color:var(--g);border-bottom-color:var(--g)}
-.aform{display:none}
-.aform.on{display:block}
-
-/* DASHBOARD */
+.aform{display:none}.aform.on{display:block}
 .dwrap{max-width:880px;margin:0 auto;padding:20px}
 .dhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .dhead h2{font-size:16px;font-weight:700;color:var(--g)}
@@ -212,10 +178,7 @@ footer span{color:var(--g)}
 .dtabs{display:flex;border-bottom:1px solid rgba(201,168,76,.2);margin-bottom:16px;flex-wrap:wrap}
 .dtab{padding:8px 14px;font-size:12px;font-weight:600;color:var(--gr);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
 .dtab.on{color:var(--g);border-bottom-color:var(--g)}
-.dpanel{display:none}
-.dpanel.on{display:block}
-
-/* SHARE BOX */
+.dpanel{display:none}.dpanel.on{display:block}
 .sbox{background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:14px;margin-bottom:14px}
 .sbox h4{font-size:13px;color:var(--g);margin-bottom:10px}
 .surl{display:flex;gap:8px}
@@ -225,16 +188,11 @@ footer span{color:var(--g)}
 .ainf-item{flex:1;min-width:100px}
 .ainf-l{font-size:10px;color:var(--gr);margin-bottom:3px}
 .ainf-v{font-size:13px;font-weight:700}
-
-/* SELECT PRODUCTS */
 .selgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
 .selcard{background:var(--d2);border:2px solid rgba(201,168,76,.15);border-radius:10px;padding:12px;cursor:pointer;transition:all .2s;position:relative}
-.selcard:hover{border-color:rgba(201,168,76,.5)}
 .selcard.on{border-color:var(--ok);background:rgba(29,158,117,.06)}
 .selchk{position:absolute;top:8px;right:8px;font-size:16px}
 .selimg{width:100%;height:110px;object-fit:cover;border-radius:6px;margin-bottom:8px;background:var(--d3);display:flex;align-items:center;justify-content:center;font-size:32px}
-
-/* PRODUCT ITEM */
 .pitem{background:var(--d2);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px;margin-bottom:10px;display:flex;gap:12px}
 .pthumb{width:56px;height:56px;border-radius:6px;object-fit:cover;background:var(--d3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .pinfo{flex:1;min-width:0}
@@ -246,8 +204,6 @@ footer span{color:var(--g)}
 .s-ok{background:rgba(29,158,117,.15);color:var(--ok);border:1px solid rgba(29,158,117,.3)}
 .s-no{background:rgba(226,75,74,.15);color:var(--red);border:1px solid rgba(226,75,74,.3)}
 .rnote{font-size:11px;color:var(--red);margin-top:5px;padding:5px 8px;background:rgba(226,75,74,.08);border-radius:4px;border-left:2px solid var(--red)}
-
-/* ADMIN */
 .admwrap{max-width:980px;margin:0 auto;padding:20px}
 .admstats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
 .rcard{background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:14px;margin-bottom:10px}
@@ -267,6 +223,7 @@ footer span{color:var(--g)}
 .pf{background:var(--d3);border-radius:6px;padding:10px}
 .pf label{font-size:10px;color:var(--gr);display:block;margin-bottom:4px}
 .pf input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(201,168,76,.3);color:var(--w);padding:3px 0;font-size:13px;font-weight:700;outline:none}
+.pf .vnd{font-size:10px;color:var(--g);margin-top:3px}
 .rowcard{background:var(--d2);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .ri h3{font-size:13px;font-weight:600;margin-bottom:2px}
 .ri p{font-size:11px;color:var(--gr)}
@@ -278,8 +235,6 @@ footer span{color:var(--g)}
 .otbl{width:100%;border-collapse:collapse;font-size:12px}
 .otbl th{padding:9px 12px;text-align:left;color:var(--g);border-bottom:1px solid rgba(201,168,76,.2);font-size:11px}
 .otbl td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
-
-/* MODAL */
 .mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:3000;align-items:center;justify-content:center;padding:20px}
 .mov.on{display:flex}
 .mbox2{background:var(--d2);border:1px solid rgba(201,168,76,.4);border-radius:12px;padding:22px;width:100%;max-width:400px}
@@ -289,8 +244,6 @@ footer span{color:var(--g)}
 .macts{display:flex;gap:8px;margin-top:12px;justify-content:flex-end}
 .bcnl{background:transparent;border:1px solid var(--gr);color:var(--gr);padding:7px 14px;border-radius:4px;font-size:12px;cursor:pointer}
 .bcfm{background:var(--red);color:#fff;border:none;padding:7px 16px;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer}
-
-/* UTILS */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--d2);border:1px solid var(--g);color:var(--g);padding:10px 20px;border-radius:8px;font-size:12px;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1}
 .bbk{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gr);padding:6px 12px;border-radius:4px;font-size:11px;cursor:pointer;margin-bottom:14px}
@@ -334,83 +287,76 @@ footer span{color:var(--g)}
 </nav>
 
 <div class="toast" id="toast"></div>
-
-<!-- CART -->
 <div class="cov" id="cov" onclick="closeCart()"></div>
 <div class="csbar" id="csbar">
-  <div class="cshead">
-    <h3>🛒 <span data-vi="Gio Hang" data-en="Cart" data-zh="购物车">Gio Hang</span></h3>
-    <button class="csx" onclick="closeCart()">✕</button>
-  </div>
+  <div class="cshead"><h3>🛒 Cart</h3><button class="csx" onclick="closeCart()">x</button></div>
   <div class="csitems" id="csitems"></div>
   <div class="csfoot">
-    <div class="ctotal"><span data-vi="Tong Cong" data-en="Total" data-zh="合计">Tong Cong</span><span id="ctotal">$0.00</span></div>
-    <button class="btnf" onclick="goCheckout()">THANH TOAN · CHECKOUT · 结算</button>
+    <div class="ctotal"><span>Total</span><span id="ctotal">0d</span></div>
+    <button class="btnf" onclick="goCheckout()">THANH TOAN</button>
   </div>
 </div>
 
 <!-- HOME -->
 <div id="pg-home" class="pg on">
   <div class="hero">
-    <div class="hbg">
-      <div class="hbgt" id="hbgt">
-        <div class="hbgs"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"></div>
-        <div class="hbgs"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"></div>
-        <div class="hbgs"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"></div>
-      </div>
-    </div>
+    <div class="hbg"><div class="hbgt" id="hbgt">
+      <div class="hbgs"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"></div>
+      <div class="hbgs"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"></div>
+      <div class="hbgs"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"></div>
+    </div></div>
     <div class="hovl"></div>
     <div class="hc">
-      <div class="hbadge" data-vi="THUONG HIEU DANG KY CHINH THUC" data-en="OFFICIALLY REGISTERED BRAND" data-zh="正式注册品牌">THUONG HIEU DANG KY CHINH THUC</div>
+      <div class="hbadge" data-vi="THUONG HIEU DANG KY" data-en="OFFICIAL BRAND" data-zh="正式注册品牌">THUONG HIEU DANG KY</div>
       <h1>LAMBORGHINI<br><span>BLACK KONG</span></h1>
-      <p class="hsub" data-vi="Doi tac phan phoi hang dau Viet Nam · TNL Plaza TP.HCM" data-en="Vietnam's Premier Distribution Partner · TNL Plaza HCMC" data-zh="越南顶级分销伙伴 · 胡志明TNL Plaza展厅">Doi tac phan phoi hang dau Viet Nam · TNL Plaza TP.HCM</p>
+      <p class="hsub" data-vi="Doi tac phan phoi hang dau Viet Nam" data-en="Vietnam Premier Distribution Partner" data-zh="越南顶级分销伙伴">Doi tac phan phoi hang dau Viet Nam</p>
       <div class="hcta">
-        <button class="btn-p" onclick="document.getElementById('sec-prods').scrollIntoView({behavior:'smooth'})"><span data-vi="Mua Ngay" data-en="Shop Now" data-zh="立即购买">Mua Ngay</span></button>
-        <button class="btn-o" onclick="document.getElementById('sec-agent').scrollIntoView({behavior:'smooth'})"><span data-vi="Tro Thanh Dai Ly" data-en="Become Agent" data-zh="成为代理商">Tro Thanh Dai Ly</span></button>
+        <button class="btn-p" onclick="document.getElementById('sec-prods').scrollIntoView({behavior:'smooth'})">Mua Ngay</button>
+        <button class="btn-o" onclick="document.getElementById('sec-agent').scrollIntoView({behavior:'smooth'})">Tro Thanh Dai Ly</button>
       </div>
       <div class="hstats">
-        <div><div class="hsn">12+</div><div class="hsl" data-vi="Danh Muc" data-en="Categories" data-zh="商品品类">Danh Muc</div></div>
-        <div><div class="hsn">500+</div><div class="hsl" data-vi="Nha May" data-en="Factories" data-zh="工厂">Nha May</div></div>
-        <div><div class="hsn">TNL</div><div class="hsl">Plaza · TP.HCM</div></div>
+        <div><div class="hsn">12+</div><div class="hsl">Danh Muc</div></div>
+        <div><div class="hsn">500+</div><div class="hsl">Nha May</div></div>
+        <div><div class="hsn">TNL</div><div class="hsl">Plaza HCM</div></div>
       </div>
     </div>
   </div>
 
   <section>
-    <div class="stit"><h2 style="color:var(--g)" data-vi="DANH MUC SAN PHAM" data-en="PRODUCT CATEGORIES" data-zh="商品品类">DANH MUC SAN PHAM</h2><div class="gline"></div></div>
+    <div class="stit"><h2 style="color:var(--g)">DANH MUC SAN PHAM</h2><div class="gline"></div></div>
     <div class="cgrid">
-      <div class="ccard" onclick="filterCat('Thoi Trang')"><div class="cicon">👗</div><div class="cname" data-vi="Thoi Trang" data-en="Fashion" data-zh="服装鞋帽">Thoi Trang</div></div>
-      <div class="ccard" onclick="filterCat('Trang Suc')"><div class="cicon">💎</div><div class="cname" data-vi="Trang Suc" data-en="Jewelry" data-zh="珠宝手表">Trang Suc</div></div>
-      <div class="ccard" onclick="filterCat('My Pham')"><div class="cicon">💄</div><div class="cname" data-vi="My Pham" data-en="Beauty" data-zh="日化美妆">My Pham</div></div>
-      <div class="ccard" onclick="filterCat('Dien Tu')"><div class="cicon">📱</div><div class="cname" data-vi="Dien Tu 3C" data-en="Electronics" data-zh="3C电子">Dien Tu 3C</div></div>
-      <div class="ccard" onclick="filterCat('Dien Gia')"><div class="cicon">🏠</div><div class="cname" data-vi="Dien Gia Dung" data-en="Appliances" data-zh="家用电器">Dien Gia Dung</div></div>
-      <div class="ccard" onclick="filterCat('Det')"><div class="cicon">🛏</div><div class="cname" data-vi="Det May" data-en="Bedding" data-zh="床上用品">Det May</div></div>
-      <div class="ccard" onclick="filterCat('Ngoai')"><div class="cicon">⛺</div><div class="cname" data-vi="Ngoai Troi" data-en="Outdoor" data-zh="户外用品">Ngoai Troi</div></div>
-      <div class="ccard" onclick="filterCat('Xe May')"><div class="cicon">🏍</div><div class="cname" data-vi="Xe May" data-en="Motorcycle" data-zh="摩托车">Xe May</div></div>
-      <div class="ccard" onclick="filterCat('Xe Dap')"><div class="cicon">🚲</div><div class="cname" data-vi="Xe Dap" data-en="Bicycle" data-zh="自行车">Xe Dap</div></div>
-      <div class="ccard" onclick="filterCat('Tui')"><div class="cicon">👜</div><div class="cname" data-vi="Tui Xach" data-en="Bags" data-zh="箱包眼镜">Tui Xach</div></div>
-      <div class="ccard" onclick="filterCat('Noi That')"><div class="cicon">🛋</div><div class="cname" data-vi="Noi That" data-en="Furniture" data-zh="家具">Noi That</div></div>
-      <div class="ccard" onclick="filterCat('')"><div class="cicon">🔍</div><div class="cname" data-vi="Tat Ca" data-en="All" data-zh="全部">Tat Ca</div></div>
+      <div class="ccard" onclick="filterCat('Thoi Trang')"><div class="cicon">👗</div><div class="cname">Thoi Trang</div></div>
+      <div class="ccard" onclick="filterCat('Trang Suc')"><div class="cicon">💎</div><div class="cname">Trang Suc</div></div>
+      <div class="ccard" onclick="filterCat('My Pham')"><div class="cicon">💄</div><div class="cname">My Pham</div></div>
+      <div class="ccard" onclick="filterCat('Dien Tu')"><div class="cicon">📱</div><div class="cname">Dien Tu 3C</div></div>
+      <div class="ccard" onclick="filterCat('Dien Gia')"><div class="cicon">🏠</div><div class="cname">Dien Gia Dung</div></div>
+      <div class="ccard" onclick="filterCat('Det')"><div class="cicon">🛏</div><div class="cname">Det May</div></div>
+      <div class="ccard" onclick="filterCat('Ngoai')"><div class="cicon">⛺</div><div class="cname">Ngoai Troi</div></div>
+      <div class="ccard" onclick="filterCat('Xe May')"><div class="cicon">🏍</div><div class="cname">Xe May</div></div>
+      <div class="ccard" onclick="filterCat('Xe Dap')"><div class="cicon">🚲</div><div class="cname">Xe Dap</div></div>
+      <div class="ccard" onclick="filterCat('Tui')"><div class="cicon">👜</div><div class="cname">Tui Xach</div></div>
+      <div class="ccard" onclick="filterCat('Noi That')"><div class="cicon">🛋</div><div class="cname">Noi That</div></div>
+      <div class="ccard" onclick="filterCat('')"><div class="cicon">🔍</div><div class="cname">Tat Ca</div></div>
     </div>
   </section>
 
   <section id="sec-prods" style="background:var(--d2)">
-    <div class="stit"><h2 style="color:var(--g)" data-vi="SAN PHAM NOI BAT" data-en="FEATURED PRODUCTS" data-zh="热销产品">SAN PHAM NOI BAT</h2><div class="gline"></div><p id="flabel"></p></div>
+    <div class="stit"><h2 style="color:var(--g)">SAN PHAM NOI BAT</h2><div class="gline"></div><p id="flabel"></p></div>
     <div class="pgrid" id="pgrid"><div class="ld">Dang tai</div></div>
   </section>
 
   <section id="tnl" class="tnl-sec">
-    <div class="stit"><h2>TNL <span style="color:var(--g)">PLAZA</span></h2><div class="gline"></div><p data-vi="Showroom tai TP. Ho Chi Minh" data-en="Showroom in Ho Chi Minh City" data-zh="胡志明市实体展厅">Showroom tai TP. Ho Chi Minh</p></div>
+    <div class="stit"><h2>TNL <span style="color:var(--g)">PLAZA</span></h2><div class="gline"></div><p>Showroom tai TP. Ho Chi Minh</p></div>
     <div class="sshow">
       <div class="strack" id="strack">
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"><div class="scap">TNL Plaza · Mat tien ban ngay · 白天外观</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"><div class="scap">Ban dem · 夜景</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"><div class="scap">Noi that · 内部空间</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl4.jpg"><div class="scap">Khu am thuc · 餐饮区</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl5.jpg"><div class="scap">Loi vao · 主入口</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl6.jpg"><div class="scap">Le hoi · 节日活动</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl7.jpg"><div class="scap">Hanh lang · 走廊</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl8.jpg"><div class="scap">Quang truong · 广场</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"><div class="scap">TNL Plaza ban ngay</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"><div class="scap">Ban dem</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"><div class="scap">Noi that</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl4.jpg"><div class="scap">Khu am thuc</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl5.jpg"><div class="scap">Loi vao</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl6.jpg"><div class="scap">Le hoi</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl7.jpg"><div class="scap">Hanh lang</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl8.jpg"><div class="scap">Quang truong</div></div>
       </div>
       <button class="sbtn sprev" onclick="mvSlide(-1)">&#8249;</button>
       <button class="sbtn snext" onclick="mvSlide(1)">&#8250;</button>
@@ -418,42 +364,42 @@ footer span{color:var(--g)}
     </div>
     <div class="sdots" id="sdots"></div>
     <div class="tfeats">
-      <div class="tfeat"><div class="tfeat-t">🏬 12 Khu Vuc · 12大展区</div><div class="tfeat-d">Moi nganh hang co khu vuc rieng · 每个品类独立展区</div></div>
-      <div class="tfeat"><div class="tfeat-t">🏭 50+ Nha San Xuat · 50+联名商家</div><div class="tfeat-d">Nha san xuat uy tin · 优质工厂</div></div>
-      <div class="tfeat"><div class="tfeat-t">✅ Xem Hang That · 实物看货</div><div class="tfeat-d">Khong dat hang mu · 无需盲订</div></div>
-      <div class="tfeat"><div class="tfeat-t">💰 Chi Phi Toi Uu · 成本最优</div><div class="tfeat-d">Chi phi chia se · 多商家共担</div></div>
+      <div class="tfeat"><div class="tfeat-t">12 Khu Vuc</div><div class="tfeat-d">Moi nganh hang co khu vuc rieng</div></div>
+      <div class="tfeat"><div class="tfeat-t">50+ Nha San Xuat</div><div class="tfeat-d">Nha san xuat uy tin</div></div>
+      <div class="tfeat"><div class="tfeat-t">Xem Hang That</div><div class="tfeat-d">Khong dat hang mu</div></div>
+      <div class="tfeat"><div class="tfeat-t">Chi Phi Toi Uu</div><div class="tfeat-d">Chi phi chia se</div></div>
     </div>
   </section>
 
   <section id="sec-agent">
-    <div class="stit"><h2 style="color:var(--g)" data-vi="TRO THANH DAI LY" data-en="BECOME AN AGENT" data-zh="成为代理商">TRO THANH DAI LY</h2><div class="gline"></div></div>
+    <div class="stit"><h2 style="color:var(--g)">TRO THANH DAI LY</h2><div class="gline"></div></div>
     <div class="apromo">
-      <h3>🚀 Khoi Nghiep Nhe Voi Cua Hang Rieng</h3>
-      <p data-vi="Moi dai ly duoc cap cua hang online rieng. Chon san pham, chia se link, khach hang mua, ban huong chenh lech gia tu dong." data-en="Each agent gets their own online shop. Choose products, share link, customers buy, you earn price difference automatically." data-zh="每位代理商拥有独立在线小店。自选产品、分享链接、客户购买、自动赚取差价。">Moi dai ly duoc cap cua hang online rieng.</p>
+      <h3>Khoi Nghiep Nhe Voi Cua Hang Rieng</h3>
+      <p>Moi dai ly duoc cap cua hang online rieng. Chon san pham, chia se link, khach hang mua, ban huong chenh lech gia.</p>
       <div class="lvls">
-        <div class="lvl"><div class="lvl-i">🏪</div><div class="lvl-n" data-vi="Dai Ly Quan" data-en="District Agent" data-zh="区级代理">Dai Ly Quan</div><div class="lvl-d" data-vi="Chenh lech ~10%" data-en="~10% Margin" data-zh="约10%利润空间">Chenh lech ~10%</div><div class="lvl-b">Dang Mo</div></div>
-        <div class="lvl"><div class="lvl-i">🏙️</div><div class="lvl-n" data-vi="Dai Ly TP" data-en="City Agent" data-zh="市级代理">Dai Ly TP</div><div class="lvl-d" data-vi="Chenh lech ~15%" data-en="~15% Margin" data-zh="约15%利润空间">Chenh lech ~15%</div><div class="lvl-b">Dang Mo</div></div>
-        <div class="lvl"><div class="lvl-i">🌏</div><div class="lvl-n" data-vi="Dai Ly Tinh" data-en="Province Agent" data-zh="省级代理">Dai Ly Tinh</div><div class="lvl-d" data-vi="Chenh lech ~20%" data-en="~20% Margin" data-zh="约20%利润空间">Chenh lech ~20%</div><div class="lvl-b">Dang Mo</div></div>
+        <div class="lvl"><div class="lvl-i">🏪</div><div class="lvl-n">Dai Ly Quan</div><div class="lvl-d">~10% Loi Nhuan</div><div class="lvl-b">Dang Mo</div></div>
+        <div class="lvl"><div class="lvl-i">🏙️</div><div class="lvl-n">Dai Ly TP</div><div class="lvl-d">~15% Loi Nhuan</div><div class="lvl-b">Dang Mo</div></div>
+        <div class="lvl"><div class="lvl-i">🌏</div><div class="lvl-n">Dai Ly Tinh</div><div class="lvl-d">~20% Loi Nhuan</div><div class="lvl-b">Dang Mo</div></div>
       </div>
-      <button class="btn-p" onclick="showPage('agent-login')"><span data-vi="DANG KY DAI LY NGAY" data-en="REGISTER NOW" data-zh="立即注册代理商">DANG KY DAI LY NGAY</span></button>
+      <button class="btn-p" onclick="showPage('agent-login')">DANG KY DAI LY NGAY</button>
     </div>
   </section>
 
   <section id="contact" class="csec">
-    <div class="stit"><h2><span data-vi="DANG KY" data-en="REGISTER AS" data-zh="申请成为">DANG KY</span> <span style="color:var(--g)" data-vi="DAI LY" data-en="DISTRIBUTOR" data-zh="代理商">DAI LY</span></h2><div class="gline"></div><p data-vi="Dien thong tin, chung toi lien he trong 24 gio" data-en="Fill the form, we contact you within 24 hours" data-zh="填写信息，24小时内联系">Dien thong tin, chung toi lien he trong 24 gio</p></div>
+    <div class="stit"><h2>DANG KY <span style="color:var(--g)">DAI LY</span></h2><div class="gline"></div><p>Dien thong tin, chung toi lien he trong 24 gio</p></div>
     <div class="cform">
       <div class="grow">
-        <div class="fg"><label data-vi="Ho va Ten" data-en="Full Name" data-zh="姓名">Ho va Ten</label><input type="text" id="ln" placeholder="Nguyen Van A"></div>
-        <div class="fg"><label data-vi="Dien Thoai" data-en="Phone" data-zh="电话">Dien Thoai</label><input type="text" id="lp" placeholder="+84 xxx xxx xxx"></div>
+        <div class="fg"><label>Ho va Ten</label><input type="text" id="ln" placeholder="Nguyen Van A"></div>
+        <div class="fg"><label>Dien Thoai</label><input type="text" id="lp" placeholder="+84 xxx xxx xxx"></div>
       </div>
       <div class="grow">
-        <div class="fg"><label data-vi="Thanh Pho" data-en="City" data-zh="城市">Thanh Pho</label><input type="text" id="lc" placeholder="TP. Ho Chi Minh"></div>
-        <div class="fg"><label data-vi="Nganh Hang" data-en="Category" data-zh="品类">Nganh Hang</label>
-          <select id="lcat"><option value="">-- Chon --</option><option>Thoi Trang / Fashion</option><option>Trang Suc / Jewelry</option><option>My Pham / Beauty</option><option>Dien Tu 3C</option><option>Dien Gia Dung</option><option>Tat Ca / All</option></select>
+        <div class="fg"><label>Thanh Pho</label><input type="text" id="lc" placeholder="TP. Ho Chi Minh"></div>
+        <div class="fg"><label>Nganh Hang</label>
+          <select id="lcat"><option value="">-- Chon --</option><option>Thoi Trang</option><option>Trang Suc</option><option>My Pham</option><option>Dien Tu 3C</option><option>Dien Gia Dung</option><option>Tat Ca</option></select>
         </div>
       </div>
-      <div class="fg"><label data-vi="Kinh Nghiem" data-en="Experience" data-zh="经验">Kinh Nghiem</label><textarea id="le" placeholder="Mo ta kinh nghiem kinh doanh..."></textarea></div>
-      <button class="btnf" id="lbtn" onclick="submitLead()">GUI DANG KY · SUBMIT · 提交</button>
+      <div class="fg"><label>Kinh Nghiem</label><textarea id="le" placeholder="Mo ta kinh nghiem..."></textarea></div>
+      <button class="btnf" id="lbtn" onclick="submitLead()">GUI DANG KY</button>
     </div>
     <div class="channels">
       <div class="ch">Zalo: +84 0373306916</div>
@@ -461,37 +407,37 @@ footer span{color:var(--g)}
       <div class="ch">WeChat: wxid_p7gvsg6f7seu22</div>
     </div>
   </section>
-  <footer><p>2025 <span>LAMBORGHINI BLACK KONG</span> · 兰博基尼黑金刚</p><p style="margin-top:6px">TNL Plaza · TP. Ho Chi Minh, Viet Nam</p></footer>
+  <footer><p>2025 <span>LAMBORGHINI BLACK KONG</span></p><p style="margin-top:6px">TNL Plaza · TP. Ho Chi Minh</p></footer>
 </div>
 
 <!-- CHECKOUT -->
 <div id="pg-checkout" class="pg">
   <div class="cowrap">
-    <button class="bbk" onclick="showPage('home')">← <span data-vi="Tiep Tuc Mua" data-en="Continue Shopping" data-zh="继续购物">Tiep Tuc Mua</span></button>
-    <h2 style="color:var(--g);margin-bottom:18px;font-size:17px">Thanh Toan · Checkout · 结算</h2>
+    <button class="bbk" onclick="showPage('home')">Back</button>
+    <h2 style="color:var(--g);margin-bottom:18px;font-size:17px">Thanh Toan</h2>
     <div class="cogrid">
       <div>
         <div class="cobox">
-          <h3>Thong Tin Giao Hang · 收货信息</h3>
-          <div class="fg"><label>Ho Ten · Name · 姓名</label><input type="text" id="cn" placeholder="Nguyen Van A"></div>
+          <h3>Thong Tin Giao Hang</h3>
+          <div class="fg"><label>Ho Ten</label><input type="text" id="cn" placeholder="Nguyen Van A"></div>
           <div class="fg"><label>Phone</label><input type="text" id="cp" placeholder="+84 xxx xxx xxx"></div>
-          <div class="fg"><label>Dia Chi · Address · 地址</label><input type="text" id="ca" placeholder="So nha, duong, quan..."></div>
-          <div class="fg"><label>Ghi Chu · Note · 备注</label><textarea id="cno" placeholder="Ghi chu..."></textarea></div>
+          <div class="fg"><label>Dia Chi</label><input type="text" id="ca" placeholder="So nha, duong, quan..."></div>
+          <div class="fg"><label>Ghi Chu</label><textarea id="cno" placeholder="Ghi chu..."></textarea></div>
         </div>
         <div class="cobox" style="margin-top:14px">
           <h3>MoMo Payment</h3>
-          <div class="mbox"><div style="font-size:28px">💜</div><div style="font-size:13px;font-weight:700;color:#AE2070">MoMo Payment</div><div class="mamt" id="mamt">$0.00</div><p style="font-size:11px;color:var(--gr)">Sau khi dat hang se chuyen den MoMo · 下单后跳转MoMo</p></div>
+          <div class="mbox"><div style="font-size:28px">💜</div><div style="font-size:13px;font-weight:700;color:#AE2070">MoMo</div><div class="mamt" id="mamt">0d</div></div>
         </div>
       </div>
       <div class="cobox">
-        <h3>Don Hang · Order · 订单明细</h3>
+        <h3>Don Hang</h3>
         <div id="coitems"></div>
         <div style="margin-top:14px">
-          <div class="orow"><span>Tam Tinh · Subtotal · 小计</span><span id="cosub">$0.00</span></div>
-          <div class="orow"><span>Phi Ship · Shipping · 运费</span><span>Free</span></div>
-          <div class="orow"><span>Tong Cong · Total · 合计</span><span id="cototal">$0.00</span></div>
+          <div class="orow"><span>Subtotal</span><span id="cosub">0d</span></div>
+          <div class="orow"><span>Ship</span><span>Free</span></div>
+          <div class="orow"><span>Total</span><span id="cototal">0d</span></div>
         </div>
-        <button class="btnf" style="margin-top:18px" onclick="placeOrder()">DAT HANG &amp; THANH TOAN MOMO</button>
+        <button class="btnf" style="margin-top:18px" onclick="placeOrder()">DAT HANG MOMO</button>
       </div>
     </div>
   </div>
@@ -502,7 +448,7 @@ footer span{color:var(--g)}
   <div class="shhead">
     <div class="shlogo" id="shlogo">S</div>
     <div class="shname" id="shname">Shop LBK</div>
-    <div class="shbadge">Dai Ly Chinh Thuc Lamborghini Black Kong</div>
+    <div class="shbadge">Dai Ly Chinh Thuc LBK</div>
   </div>
   <div style="max-width:1000px;margin:0 auto;padding:20px 20px 0"><div id="sh-bcard"></div></div>
   <div class="shwrap"><div class="pgrid" id="shgrid"><div class="ld">Dang tai</div></div></div>
@@ -512,63 +458,62 @@ footer span{color:var(--g)}
 <div id="pg-supplier" class="pg">
   <div id="sup-auth">
     <div class="awrap">
-      <button class="bbk" onclick="showPage('home')">← 返回首页</button>
+      <button class="bbk" onclick="showPage('home')">Back</button>
       <div class="acard">
-        <div class="atit">🏭 供应商入口</div>
-        <div class="asub">登录管理您的产品</div>
+        <div class="atit">🏭 Supplier Portal</div>
+        <div class="asub">Login to manage your products</div>
         <div class="atabs">
-          <button class="atab on" id="stab-l" onclick="supTab('l')">登录</button>
-          <button class="atab" id="stab-r" onclick="supTab('r')">注册</button>
+          <button class="atab on" id="stab-l" onclick="supTab('l')">Login</button>
+          <button class="atab" id="stab-r" onclick="supTab('r')">Register</button>
         </div>
         <div id="sform-l" class="aform on">
-          <div class="fg"><label>邮箱</label><input type="email" id="se" placeholder="factory@email.com"></div>
-          <div class="fg"><label>密码</label><input type="password" id="sp" placeholder="........"></div>
-          <button class="btnf" id="slbtn" onclick="doSupLogin()">登录</button>
+          <div class="fg"><label>Email</label><input type="email" id="se" placeholder="factory@email.com"></div>
+          <div class="fg"><label>Password</label><input type="password" id="sp" placeholder="password"></div>
+          <button class="btnf" id="slbtn" onclick="doSupLogin()">LOGIN</button>
         </div>
         <div id="sform-r" class="aform">
-          <div class="fg"><label>公司名称</label><input type="text" id="sc" placeholder="工厂名称有限公司"></div>
-          <div class="fg"><label>邮箱</label><input type="email" id="sre" placeholder="factory@email.com"></div>
-          <div class="fg"><label>电话</label><input type="text" id="sph" placeholder="+86 xxx xxxx xxxx"></div>
-          <div class="fg"><label>主营品类</label><select id="scat"><option>服装鞋帽</option><option>珠宝手表</option><option>日化美妆</option><option>3C电子</option><option>家用电器</option><option>其他</option></select></div>
-          <div class="fg"><label>密码</label><input type="password" id="srp" placeholder="至少6位"></div>
-          <button class="btnf" id="srbtn" onclick="doSupReg()">提交注册</button>
-          <p style="font-size:11px;color:var(--gr);text-align:center;margin-top:10px">账户将在1-2个工作日内审核激活</p>
+          <div class="fg"><label>Company Name</label><input type="text" id="sc" placeholder="Factory Ltd"></div>
+          <div class="fg"><label>Email</label><input type="email" id="sre" placeholder="factory@email.com"></div>
+          <div class="fg"><label>Phone</label><input type="text" id="sph" placeholder="+86 xxx xxxx xxxx"></div>
+          <div class="fg"><label>Category</label><select id="scat"><option>Fashion</option><option>Jewelry</option><option>Beauty</option><option>Electronics</option><option>Appliances</option><option>Other</option></select></div>
+          <div class="fg"><label>Password</label><input type="password" id="srp" placeholder="min 6 chars"></div>
+          <button class="btnf" id="srbtn" onclick="doSupReg()">REGISTER</button>
         </div>
       </div>
     </div>
   </div>
   <div id="sup-dash" style="display:none">
     <div class="dwrap">
-      <div class="dhead"><div><h2 id="sw">🏭 供应商</h2><p id="sstat" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="supLogout()">← 退出</button></div>
+      <div class="dhead"><div><h2 id="sw">Supplier</h2><p id="sstat" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="supLogout()">Logout</button></div>
       <div class="dstats">
-        <div class="dstat"><div class="dsn" id="st">-</div><div class="dsl">总产品数</div></div>
-        <div class="dstat"><div class="dsn" id="sp2" style="color:var(--warn)">-</div><div class="dsl">待审核</div></div>
-        <div class="dstat"><div class="dsn" id="sa" style="color:var(--ok)">-</div><div class="dsl">已通过</div></div>
+        <div class="dstat"><div class="dsn" id="st">-</div><div class="dsl">Total</div></div>
+        <div class="dstat"><div class="dsn" id="sp2" style="color:var(--warn)">-</div><div class="dsl">Pending</div></div>
+        <div class="dstat"><div class="dsn" id="sa" style="color:var(--ok)">-</div><div class="dsl">Approved</div></div>
       </div>
       <div class="dtabs">
-        <button class="dtab on" id="sdt-list" onclick="supDT('list')">我的产品</button>
-        <button class="dtab" id="sdt-up" onclick="supDT('up')">+ 上传产品</button>
-        <button class="dtab" id="sdt-ord" onclick="supDT('ord')">订单与备货</button>
+        <button class="dtab on" id="sdt-list" onclick="supDT('list')">My Products</button>
+        <button class="dtab" id="sdt-up" onclick="supDT('up')">+ Upload</button>
+        <button class="dtab" id="sdt-ord" onclick="supDT('ord')">Orders</button>
       </div>
-      <div id="sp-list" class="dpanel on"><div id="splist"><div class="ld">加载中</div></div></div>
-      <div id="sp-ord" class="dpanel"><div id="spord"><div class="ld">Loading...</div></div></div>
+      <div id="sp-list" class="dpanel on"><div id="splist"><div class="ld">Loading</div></div></div>
+      <div id="sp-ord" class="dpanel"><div id="spord"><div class="ld">Loading</div></div></div>
       <div id="sp-up" class="dpanel">
         <div style="background:var(--d3);border:2px dashed rgba(201,168,76,.3);border-radius:8px;padding:26px;text-align:center;margin-bottom:14px;cursor:pointer" onclick="document.getElementById('imgf').click()">
           <div style="font-size:30px;margin-bottom:8px">📸</div>
-          <div style="font-size:13px;color:var(--gr)">点击上传产品图片 · JPG/PNG 最大5MB</div>
+          <div style="font-size:13px;color:var(--gr)">Click to upload image</div>
           <input type="file" id="imgf" accept="image/*" style="display:none" onchange="prevImg(this)">
         </div>
         <div id="imgprev" style="display:none;text-align:center;margin-bottom:12px"><img id="previmg" style="max-width:160px;max-height:130px;border-radius:8px;border:1px solid rgba(201,168,76,.4)"></div>
         <div style="background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:16px">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="fg"><label>产品名称</label><input type="text" id="pn" placeholder="兰博基尼黑金刚男士Polo衫"></div>
-            <div class="fg"><label>品类</label><select id="pcat"><option>服装鞋帽</option><option>珠宝手表</option><option>日化美妆</option><option>3C电子</option><option>家用电器</option><option>床上用品</option><option>户外用品</option><option>摩托车</option><option>自行车</option><option>箱包眼镜</option><option>家具窗帘</option></select></div>
-            <div class="fg"><label>建议价格(USD)</label><input type="number" id="pp" placeholder="0.00" step="0.01"></div>
-            <div class="fg"><label>库存数量</label><input type="number" id="pst" placeholder="0"></div>
-            <div class="fg"><label>最小起订量MOQ</label><input type="number" id="pm" placeholder="100"></div>
+            <div class="fg"><label>Product Name</label><input type="text" id="pn" placeholder="LBK Product"></div>
+            <div class="fg"><label>Category</label><select id="pcat"><option>Fashion</option><option>Jewelry</option><option>Beauty</option><option>Electronics</option><option>Appliances</option><option>Bedding</option><option>Outdoor</option><option>Motorcycle</option><option>Bicycle</option><option>Bags</option><option>Furniture</option></select></div>
+            <div class="fg"><label>Price (USD)</label><input type="number" id="pp" placeholder="0.00" step="0.01"></div>
+            <div class="fg"><label>Stock</label><input type="number" id="pst" placeholder="0"></div>
+            <div class="fg"><label>MOQ</label><input type="number" id="pm" placeholder="100"></div>
           </div>
-          <div class="fg"><label>产品描述</label><textarea id="pd" placeholder="材质、尺寸、颜色等..."></textarea></div>
-          <button class="btnf" id="psbtn" onclick="submitProd()">提交审核</button>
+          <div class="fg"><label>Description</label><textarea id="pd" placeholder="Material, size, color..."></textarea></div>
+          <button class="btnf" id="psbtn" onclick="submitProd()">SUBMIT FOR REVIEW</button>
         </div>
       </div>
     </div>
@@ -579,81 +524,75 @@ footer span{color:var(--g)}
 <div id="pg-agent-login" class="pg">
   <div id="ag-auth">
     <div class="awrap">
-      <button class="bbk" onclick="showPage('home')">← Trang Chu</button>
+      <button class="bbk" onclick="showPage('home')">Back</button>
       <div class="acard">
-        <div class="atit">🏪 Cong Dai Ly</div>
-        <div class="asub">Dang nhap de quan ly cua hang and doanh thu</div>
+        <div class="atit">🏪 Agent Portal</div>
+        <div class="asub">Login to manage your shop</div>
         <div class="atabs">
-          <button class="atab on" id="agtab-l" onclick="agTab('l')">Dang Nhap</button>
-          <button class="atab" id="agtab-a" onclick="agTab('a')">Dang Ky Dai Ly</button>
+          <button class="atab on" id="agtab-l" onclick="agTab('l')">Login</button>
+          <button class="atab" id="agtab-a" onclick="agTab('a')">Apply</button>
         </div>
         <div id="agform-l" class="aform on">
-          <div class="fg"><label>Ma Dai Ly (Agent Code)</label><input type="text" id="agc" placeholder="LBK-D001"></div>
-          <div class="fg"><label>So Dien Thoai</label><input type="text" id="agph" placeholder="+84 xxx xxx xxx"></div>
-          <button class="btnf" id="aglbtn" onclick="doAgLogin()">DANG NHAP</button>
+          <div class="fg"><label>Agent Code</label><input type="text" id="agc" placeholder="LBK-D001"></div>
+          <div class="fg"><label>Phone</label><input type="text" id="agph" placeholder="+84 xxx xxx xxx"></div>
+          <button class="btnf" id="aglbtn" onclick="doAgLogin()">LOGIN</button>
         </div>
         <div id="agform-a" class="aform">
-          <div class="fg"><label>Ho va Ten</label><input type="text" id="agn" placeholder="Nguyen Van A"></div>
-          <div class="fg"><label>Dien Thoai / Zalo</label><input type="text" id="agap" placeholder="+84 xxx xxx xxx"></div>
-          <div class="fg"><label>Tinh / Thanh Pho</label><input type="text" id="agct" placeholder="TP. Ho Chi Minh"></div>
-          <div class="fg"><label>Ten Cua Hang</label><input type="text" id="agsh" placeholder="Shop LBK Quan 1"></div>
-          <div class="fg"><label>Nganh Hang</label><select id="agcat"><option>Thoi Trang / Fashion</option><option>Trang Suc / Jewelry</option><option>My Pham / Beauty</option><option>Dien Tu 3C</option><option>Tat Ca / All</option></select></div>
-          <button class="btnf" id="agabtn" onclick="applyAgent()">GUI DON DANG KY</button>
-          <p style="font-size:11px;color:var(--gr);text-align:center;margin-top:10px">Admin se cap ma dai ly trong 1-2 ngay lam viec</p>
+          <div class="fg"><label>Full Name</label><input type="text" id="agn" placeholder="Nguyen Van A"></div>
+          <div class="fg"><label>Phone</label><input type="text" id="agap" placeholder="+84 xxx xxx xxx"></div>
+          <div class="fg"><label>City</label><input type="text" id="agct" placeholder="Ho Chi Minh"></div>
+          <div class="fg"><label>Shop Name</label><input type="text" id="agsh" placeholder="Shop LBK Q1"></div>
+          <div class="fg"><label>Category</label><select id="agcat"><option>Fashion</option><option>Jewelry</option><option>Beauty</option><option>Electronics</option><option>All</option></select></div>
+          <button class="btnf" id="agabtn" onclick="applyAgent()">APPLY</button>
         </div>
       </div>
     </div>
   </div>
   <div id="ag-dash" style="display:none">
     <div class="dwrap">
-      <div class="dhead"><div><h2 id="agt">🏪 Cua Hang</h2><p id="agsub" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="agLogout()">← Dang Xuat</button></div>
+      <div class="dhead"><div><h2 id="agt">My Shop</h2><p id="agsub" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="agLogout()">Logout</button></div>
       <div class="dstats">
-        <div class="dstat"><div class="dsn" id="agoc">-</div><div class="dsl">Tong Don Hang</div></div>
-        <div class="dstat"><div class="dsn" id="agpr" style="color:var(--ok)">-</div><div class="dsl">Loi Nhuan Tich Luy</div></div>
-        <div class="dstat"><div class="dsn" id="agpp" style="color:var(--warn)">-</div><div class="dsl">Cho Thanh Toan</div></div>
+        <div class="dstat"><div class="dsn" id="agoc">-</div><div class="dsl">Orders</div></div>
+        <div class="dstat"><div class="dsn" id="agpr" style="color:var(--ok)">-</div><div class="dsl">Profit</div></div>
+        <div class="dstat"><div class="dsn" id="agpp" style="color:var(--warn)">-</div><div class="dsl">Pending</div></div>
       </div>
       <div class="ainfo">
-        <div class="ainf-item"><div class="ainf-l">Cap Dai Ly · 代理级别</div><div class="ainf-v" id="agld"></div></div>
-        <div class="ainf-item"><div class="ainf-l">Ma Dai Ly · 代理编码</div><div class="ainf-v" style="color:var(--g)" id="agcd"></div></div>
-        <div class="ainf-item"><div class="ainf-l">San Pham Da Chon · 已选产品</div><div class="ainf-v" style="color:var(--g)" id="agpc">-</div></div>
+        <div class="ainf-item"><div class="ainf-l">Level</div><div class="ainf-v" id="agld"></div></div>
+        <div class="ainf-item"><div class="ainf-l">Code</div><div class="ainf-v" style="color:var(--g)" id="agcd"></div></div>
+        <div class="ainf-item"><div class="ainf-l">Products</div><div class="ainf-v" style="color:var(--g)" id="agpc">-</div></div>
       </div>
       <div class="sbox">
-        <h4>🔗 Link Cua Hang Cua Ban · 我的小店链接</h4>
-        <div class="surl"><input type="text" id="agurl" readonly><button onclick="copyShopUrl()">📋 Copy</button></div>
-        <p style="font-size:11px;color:var(--gr);margin-top:8px">Khach hang chi thay san pham ban da chon voi gia ban le · 客户只看到您选的产品（零售价）。利润=零售价-代理进货价</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
-          <button class="sbt sbt-fb" onclick="shareFB()">📘 Facebook</button>
-          <button class="sbt sbt-wa" onclick="shareWA()">📱 WhatsApp</button>
-          <button class="sbt sbt-cp" onclick="copyShopUrl()">🔗 Copy Link</button>
-          <button class="sbt sbt-cp" onclick="shareZalo()">💬 Zalo</button>
+        <h4>🔗 Shop Link</h4>
+        <div class="surl"><input type="text" id="agurl" readonly><button onclick="copyShopUrl()">Copy</button></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          <button class="sbt sbt-fb" onclick="shareFB()">Facebook</button>
+          <button class="sbt sbt-wa" onclick="shareWA()">WhatsApp</button>
+          <button class="sbt sbt-cp" onclick="shareZalo()">Zalo</button>
+          <button class="sbt sbt-cp" onclick="copyShopUrl()">Copy Link</button>
         </div>
       </div>
       <div id="ag-bcard"></div>
       <div style="background:var(--d2);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px;margin-bottom:14px">
-        <p style="font-size:12px;color:var(--g);margin-bottom:10px">补充联系信息（显示在名片上）</p>
+        <p style="font-size:12px;color:var(--g);margin-bottom:10px">Contact Info (shown on business card)</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div class="fg"><label>Email</label><input type="email" id="agei" placeholder="your@email.com"></div>
           <div class="fg"><label>Zalo</label><input type="text" id="agzi" placeholder="+84 xxx xxx xxx"></div>
         </div>
-        <button class="btnf" onclick="saveAgContact()">💾 保存联系信息</button>
+        <button class="btnf" onclick="saveAgContact()">Save Contact</button>
       </div>
       <div class="dtabs">
-        <button class="dtab on" id="agdt-o" onclick="agDT('o')">Don Hang</button>
-        <button class="dtab" id="agdt-p" onclick="agDT('p')">Loi Nhuan</button>
-        <button class="dtab" id="agdt-s" onclick="agDT('s')">Chon San Pham</button>
-        <button class="dtab" id="agdt-v" onclick="agDT('v')">Xem Cua Hang</button>
+        <button class="dtab on" id="agdt-o" onclick="agDT('o')">Orders</button>
+        <button class="dtab" id="agdt-p" onclick="agDT('p')">Profit</button>
+        <button class="dtab" id="agdt-s" onclick="agDT('s')">Select Products</button>
+        <button class="dtab" id="agdt-v" onclick="agDT('v')">Preview Shop</button>
       </div>
-      <div id="agp-o" class="dpanel on"><div id="agol"><div class="ld">Dang tai</div></div></div>
-      <div id="agp-p" class="dpanel">
-        <div style="background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:14px;margin-bottom:14px"><p style="font-size:12px;color:var(--gr);line-height:1.8">Loi nhuan = Gia ban le - Gia dai ly · 利润=零售价-代理进货价</p></div>
-        <div id="agpl"><div class="ld">Dang tai</div></div>
-      </div>
-      <div id="agp-s" class="dpanel"><div id="agsl"><div class="ld">Dang tai</div></div></div>
+      <div id="agp-o" class="dpanel on"><div id="agol"><div class="ld">Loading</div></div></div>
+      <div id="agp-p" class="dpanel"><div id="agpl"><div class="ld">Loading</div></div></div>
+      <div id="agp-s" class="dpanel"><div id="agsl"><div class="ld">Loading</div></div></div>
       <div id="agp-v" class="dpanel">
-        <div style="background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:18px;text-align:center;margin-bottom:14px">
+        <div style="background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:18px;text-align:center">
           <div style="font-size:28px;margin-bottom:10px">🏪</div>
-          <p style="font-size:13px;color:var(--gr);margin-bottom:14px">Nhan de xem cua hang nhu khach hang se thay · 预览客户看到的小店</p>
-          <button class="btn-p" onclick="prevMyShop()">Xem Cua Hang · 预览小店</button>
+          <button class="btn-p" onclick="prevMyShop()">Preview My Shop</button>
         </div>
       </div>
     </div>
@@ -663,14 +602,14 @@ footer span{color:var(--g)}
 <!-- ADMIN LOGIN -->
 <div id="pg-admin-login" class="pg">
   <div class="awrap">
-    <button class="bbk" onclick="showPage('home')">← 返回首页</button>
+    <button class="bbk" onclick="showPage('home')">Back</button>
     <div class="acard">
-      <div class="atit">👑 管理员登录</div>
-      <div class="asub">兰博基尼黑金刚 · 后台管理系统</div>
+      <div class="atit">👑 Admin Login</div>
+      <div class="asub">Management System</div>
       <div style="margin-top:16px">
-        <div class="fg"><label>用户名</label><input type="text" id="admu" placeholder="admin"></div>
-        <div class="fg"><label>密码</label><input type="password" id="admp" placeholder="........"></div>
-        <button class="btnf" id="admlbtn" onclick="doAdmLogin()">登录管理后台</button>
+        <div class="fg"><label>Username</label><input type="text" id="admu" placeholder="admin"></div>
+        <div class="fg"><label>Password</label><input type="password" id="admp" placeholder="password"></div>
+        <button class="btnf" id="admlbtn" onclick="doAdmLogin()">LOGIN</button>
       </div>
     </div>
   </div>
@@ -679,48 +618,48 @@ footer span{color:var(--g)}
 <!-- ADMIN DASHBOARD -->
 <div id="pg-admin" class="pg">
   <div class="admwrap">
-    <div class="dhead"><div><h2>👑 管理控制台</h2><p style="font-size:11px;color:var(--gr)">兰博基尼黑金刚</p></div><button class="bbk" onclick="showPage('home')">← 返回首页</button></div>
+    <div class="dhead"><div><h2>👑 Admin Dashboard</h2><p style="font-size:11px;color:var(--gr)">Lamborghini Black Kong</p></div><button class="bbk" onclick="showPage('home')">Back</button></div>
     <div class="admstats">
-      <div class="dstat"><div class="dsn" id="adms">-</div><div class="dsl">供应商数</div></div>
-      <div class="dstat"><div class="dsn" id="admp2" style="color:var(--warn)">-</div><div class="dsl">待审核产品</div></div>
-      <div class="dstat"><div class="dsn" id="adma">-</div><div class="dsl">活跃代理商</div></div>
-      <div class="dstat"><div class="dsn" id="admo">-</div><div class="dsl">总订单数</div></div>
+      <div class="dstat"><div class="dsn" id="adms">-</div><div class="dsl">Suppliers</div></div>
+      <div class="dstat"><div class="dsn" id="admp2" style="color:var(--warn)">-</div><div class="dsl">Pending</div></div>
+      <div class="dstat"><div class="dsn" id="adma">-</div><div class="dsl">Agents</div></div>
+      <div class="dstat"><div class="dsn" id="admo">-</div><div class="dsl">Orders</div></div>
     </div>
     <div class="dtabs">
-      <button class="dtab on" id="adt-rv" onclick="admDT('rv')">审核产品 <span id="pbadge" style="background:var(--warn);color:var(--b);border-radius:10px;padding:1px 7px;font-size:10px;margin-left:4px">0</span></button>
-      <button class="dtab" id="adt-pr" onclick="admDT('pr')">六档价格</button>
-      <button class="dtab" id="adt-ag" onclick="admDT('ag')">代理商管理</button>
-      <button class="dtab" id="adt-su" onclick="admDT('su')">供应商管理</button>
-      <button class="dtab" id="adt-or" onclick="admDT('or')">订单管理</button>
-      <button class="dtab" id="adt-ld" onclick="admDT('ld')">代理商申请</button>
+      <button class="dtab on" id="adt-rv" onclick="admDT('rv')">Review <span id="pbadge" style="background:var(--warn);color:var(--b);border-radius:10px;padding:1px 7px;font-size:10px;margin-left:4px">0</span></button>
+      <button class="dtab" id="adt-pr" onclick="admDT('pr')">Prices</button>
+      <button class="dtab" id="adt-ag" onclick="admDT('ag')">Agents</button>
+      <button class="dtab" id="adt-su" onclick="admDT('su')">Suppliers</button>
+      <button class="dtab" id="adt-or" onclick="admDT('or')">Orders</button>
+      <button class="dtab" id="adt-ld" onclick="admDT('ld')">Leads</button>
     </div>
-    <div id="adp-rv" class="dpanel on"><div id="rvlist"><div class="ld">加载中</div></div></div>
-    <div id="adp-pr" class="dpanel"><div id="prlist"><div class="ld">加载中</div></div></div>
-    <div id="adp-ag" class="dpanel"><div id="aglist"><div class="ld">加载中</div></div></div>
-    <div id="adp-su" class="dpanel"><div id="sulist"><div class="ld">加载中</div></div></div>
-    <div id="adp-or" class="dpanel"><div id="orlist"><div class="ld">加载中</div></div></div>
-    <div id="adp-ld" class="dpanel"><div id="ldlist"><div class="ld">加载中</div></div></div>
+    <div id="adp-rv" class="dpanel on"><div id="rvlist"><div class="ld">Loading</div></div></div>
+    <div id="adp-pr" class="dpanel"><div id="prlist"><div class="ld">Loading</div></div></div>
+    <div id="adp-ag" class="dpanel"><div id="aglist"><div class="ld">Loading</div></div></div>
+    <div id="adp-su" class="dpanel"><div id="sulist"><div class="ld">Loading</div></div></div>
+    <div id="adp-or" class="dpanel"><div id="orlist"><div class="ld">Loading</div></div></div>
+    <div id="adp-ld" class="dpanel"><div id="ldlist"><div class="ld">Loading</div></div></div>
   </div>
 </div>
 
 <!-- MODALS -->
 <div class="mov" id="m-reject">
   <div class="mbox2">
-    <h3>退回产品</h3>
-    <p>请注明退回原因，供应商修改后可重新提交</p>
-    <textarea id="rr" placeholder="例：图片不清晰..."></textarea>
-    <div class="macts"><button class="bcnl" onclick="closeMod()">取消</button><button class="bcfm" onclick="confReject()">确认退回</button></div>
+    <h3>Reject Product</h3>
+    <p>Please provide reason for rejection</p>
+    <textarea id="rr" placeholder="Reason..."></textarea>
+    <div class="macts"><button class="bcnl" onclick="closeMod()">Cancel</button><button class="bcfm" onclick="confReject()">Confirm</button></div>
   </div>
 </div>
 <div class="mov" id="m-agent">
   <div class="mbox2">
-    <h3>激活代理商</h3>
-    <p>分配代理编码并设置小店信息</p>
-    <div class="fg"><label>代理商编码</label><input type="text" id="mac" placeholder="LBK-D003"></div>
-    <div class="fg"><label>小店名称</label><input type="text" id="masn" placeholder="黑金刚时装店"></div>
-    <div class="fg"><label>小店链接标识（英文+横线）</label><input type="text" id="masl" placeholder="shop-q3"></div>
-    <div class="fg"><label>代理级别</label><select id="malv"><option value="district">区级 District</option><option value="city">市级 City</option><option value="province">省级 Province</option></select></div>
-    <div class="macts"><button class="bcnl" onclick="closeMod()">取消</button><button class="bcfm" style="background:var(--ok)" onclick="confActivate()">确认激活</button></div>
+    <h3>Activate Agent</h3>
+    <p>Set agent code and shop info</p>
+    <div class="fg"><label>Agent Code</label><input type="text" id="mac" placeholder="LBK-D003"></div>
+    <div class="fg"><label>Shop Name</label><input type="text" id="masn" placeholder="Shop LBK Q3"></div>
+    <div class="fg"><label>Shop Slug (no spaces)</label><input type="text" id="masl" placeholder="shop-q3"></div>
+    <div class="fg"><label>Level</label><select id="malv"><option value="district">District</option><option value="city">City</option><option value="province">Province</option></select></div>
+    <div class="macts"><button class="bcnl" onclick="closeMod()">Cancel</button><button class="bcfm" style="background:var(--ok)" onclick="confActivate()">Activate</button></div>
   </div>
 </div>
 <div class="mov" id="m-prod">
@@ -730,12 +669,18 @@ footer span{color:var(--g)}
 <script>
 var SB='https://leauestkrtvwyanfbghs.supabase.co';
 var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxlYXVlc3RrcnR2d3lhbmZiZ2hzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNDk4MTcsImV4cCI6MjA5NDcyNTgxN30._OA7hE0FRt_bdMFsBzLtz58VQHO4YwOYbj6rgMtet5A';
+var RATE=26300;
+
+function vnd(usd){
+  var n=Math.round(parseFloat(usd||0)*RATE);
+  return n.toLocaleString('vi-VN')+'d';
+}
 
 function sbFetch(path,opts){
   var h={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=representation'};
-  if(opts&&opts.headers){for(var k in opts.headers)h[k]=opts.headers[k];}
+  if(opts&&opts.headers){for(var k in opts.headers){h[k]=opts.headers[k];}}
   return fetch(SB+'/rest/v1/'+path,Object.assign({},opts,{headers:h})).then(function(r){
-    return r.text().then(function(t){if(!r.ok)throw new Error(t);return t?JSON.parse(t):[];});
+    return r.text().then(function(t){if(!r.ok){throw new Error(t);}return t?JSON.parse(t):[];});
   });
 }
 function GET(p){return sbFetch(p,{method:'GET'});}
@@ -758,19 +703,20 @@ function setLang(l){
   lang=l;
   document.querySelectorAll('.lbtn').forEach(function(b){b.classList.remove('on');});
   document.querySelectorAll('.lbtn').forEach(function(b){
-    if(b.getAttribute('onclick')==="setLang('"+l+"')")b.classList.add('on');
+    if(b.getAttribute('onclick')==="setLang('"+l+"')"){b.classList.add('on');}
   });
   document.querySelectorAll('[data-'+l+']').forEach(function(el){el.textContent=el.getAttribute('data-'+l);});
 }
 
 function showPage(p){
   document.querySelectorAll('.pg').forEach(function(x){x.classList.remove('on');});
-  var el=document.getElementById('pg-'+p)||document.getElementById('pg-home');
+  var el=document.getElementById('pg-'+p);
+  if(!el){el=document.getElementById('pg-home');}
   el.classList.add('on');
   fixNav();
   window.scrollTo(0,0);
-  if(p==='admin'&&admIn)loadAdmData();
-  if(p==='home'&&!allP.length)loadProds();
+  if(p==='admin'&&admIn){loadAdmData();}
+  if(p==='home'&&!allP.length){loadProds();}
 }
 
 function toast(msg,d){
@@ -780,9 +726,9 @@ function toast(msg,d){
 }
 function setBtn(id,ld,txt){
   var b=document.getElementById(id);
-  if(!b)return;
+  if(!b){return;}
   b.disabled=ld;
-  b.textContent=ld?'...':(txt||b.textContent);
+  if(ld){b.textContent='...';}else if(txt){b.textContent=txt;}
 }
 
 function supTab(t){
@@ -802,17 +748,17 @@ function supDT(t){
     document.getElementById('sdt-'+x).classList.toggle('on',x===t);
     document.getElementById('sp-'+x).classList.toggle('on',x===t);
   });
-  if(t==='list')loadSupProds();
-  if(t==='ord')loadSupOrders();
+  if(t==='list'){loadSupProds();}
+  if(t==='ord'){loadSupOrders();}
 }
 function agDT(t){
   ['o','p','s','v'].forEach(function(x){
     document.getElementById('agdt-'+x).classList.toggle('on',x===t);
     document.getElementById('agp-'+x).classList.toggle('on',x===t);
   });
-  if(t==='o')loadAgOrders();
-  if(t==='p')loadAgProfit();
-  if(t==='s')loadAgSelProds();
+  if(t==='o'){loadAgOrders();}
+  if(t==='p'){loadAgProfit();}
+  if(t==='s'){loadAgSelProds();}
 }
 function admDT(t){
   ['rv','pr','ag','su','or','ld'].forEach(function(x){
@@ -823,63 +769,74 @@ function admDT(t){
 
 function retP(p){return parseFloat(p.price_retail||p.price||0);}
 function agCP(p){
-  if(!logAg)return retP(p);
+  if(!logAg){return retP(p);}
   var lv=logAg.agent_level||'district';
-  if(lv==='province')return parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);
-  if(lv==='city')return parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);
+  if(lv==='province'){return parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);}
+  if(lv==='city'){return parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);}
   return parseFloat(p.price_district||p.price_retail||p.price||0);
 }
 function agProf(p){return retP(p)-agCP(p);}
 
 function loadProds(){
   var el=document.getElementById('pgrid');
-  el.innerHTML='<div class="ld">Dang tai san pham</div>';
-  GET('products?status=eq.approved&order=created_at.desc').then(function(r){
+  el.innerHTML='<div class="ld">Loading</div>';
+  GET('products?status=eq.approved&is_active=neq.false&order=created_at.desc').then(function(r){
     allP=r;renderProds(r,'',el);
   }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
 }
 
 function renderProds(rows,cat,el){
   var f=cat?rows.filter(function(p){return p.category&&p.category.toLowerCase().indexOf(cat.toLowerCase())>-1;}):rows;
-  if(!f.length){el.innerHTML='<div class="empty"><div>📦</div><p>Chua co san pham</p></div>';return;}
+  if(!f.length){el.innerHTML='<div class="empty"><div>📦</div><p>No products</p></div>';return;}
   var h='';
   f.forEach(function(p){
     var pr=retP(p),cp=agCP(p),pf=agProf(p);
-    h+='<div class="pcard" onclick="openPMod(\''+p.id+'\')"><div class="pimg">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover">':'📦')+'</div><div class="pbody"><div class="pcat">'+(p.category||'')+'</div><div class="pname">'+p.name+'</div><div class="pprice">$'+pr.toFixed(2)+'</div>'+(logAg&&pf>0?'<div class="ptag">GH $'+cp.toFixed(2)+' · LN +$'+pf.toFixed(2)+'</div>':'')+'<div class="pacts"><button class="bcart" onclick="event.stopPropagation();addCart(\''+p.id+'\')">+ Them</button><button class="bbuy" onclick="event.stopPropagation();buyNow(\''+p.id+'\')">Mua Ngay</button></div></div></div>';
+    var img=p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover">':'📦';
+    h+='<div class="pcard" onclick="openPMod(\''+p.id+'\')"><div class="pimg">'+img+'</div>';
+    h+='<div class="pbody"><div class="pcat">'+(p.category||'')+'</div>';
+    h+='<div class="pname">'+p.name+'</div>';
+    h+='<div class="pprice">'+vnd(pr)+'</div>';
+    if(logAg&&pf>0){h+='<div class="ptag">Buy: '+vnd(cp)+' Profit: +'+vnd(pf)+'</div>';}
+    h+='<div class="pacts"><button class="bcart" onclick="event.stopPropagation();addCart(\''+p.id+'\')">+ Add</button>';
+    h+='<button class="bbuy" onclick="event.stopPropagation();buyNow(\''+p.id+'\')">Buy</button></div></div></div>';
   });
   el.innerHTML=h;
 }
 
 function filterCat(c){
   document.getElementById('sec-prods').scrollIntoView({behavior:'smooth'});
-  document.getElementById('flabel').textContent=c?'Danh muc: '+c:'Tat ca san pham';
+  document.getElementById('flabel').textContent=c?'Category: '+c:'All products';
   renderProds(allP,c,document.getElementById('pgrid'));
 }
 
 function openPMod(pid){
   var p=allP.find(function(x){return x.id===pid;});
-  if(!p)return;
+  if(!p){return;}
   var pr=retP(p),cp=agCP(p),pf=agProf(p);
   var h='';
-  h+=p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:14px">':'<div style="width:100%;height:180px;background:var(--d3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:14px">📦</div>';
+  if(p.image_url){h+='<img src="'+p.image_url+'" style="width:100%;height:220px;object-fit:cover;border-radius:8px;margin-bottom:14px">';}
+  else{h+='<div style="width:100%;height:180px;background:var(--d3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:56px;margin-bottom:14px">📦</div>';}
   h+='<div style="font-size:11px;color:var(--g);margin-bottom:4px">'+(p.category||'')+'</div>';
   h+='<h3 style="font-size:16px;font-weight:700;margin-bottom:8px">'+p.name+'</h3>';
   h+='<p style="font-size:12px;color:var(--gr);margin-bottom:12px">'+(p.description||'')+'</p>';
-  h+='<div style="font-size:12px;color:var(--gr);margin-bottom:8px">Kho: '+p.stock+' · MOQ: '+p.moq+'</div>';
-  h+='<div style="font-size:22px;font-weight:900;color:var(--g);margin-bottom:'+(logAg&&pf>0?6:14)+'px">$'+pr.toFixed(2)+'</div>';
-  if(logAg&&pf>0)h+='<div class="ptag" style="margin-bottom:14px">Gia hang $'+cp.toFixed(2)+' · Loi nhuan +$'+pf.toFixed(2)+'</div>';
-  h+='<div style="display:flex;gap:10px"><button class="bcart" style="flex:1;padding:11px" onclick="addCart(\''+p.id+'\');closeMod()">+ Them Vao Gio</button><button class="bbuy" style="flex:1;padding:11px" onclick="buyNow(\''+p.id+'\');closeMod()">Mua Ngay</button></div>';
-  h+='<div class="macts"><button class="bcnl" onclick="closeMod()">Dong</button></div>';
+  h+='<div style="font-size:12px;color:var(--gr);margin-bottom:8px">Stock: '+p.stock+' MOQ: '+p.moq+'</div>';
+  h+='<div style="font-size:22px;font-weight:900;color:var(--g);margin-bottom:14px">'+vnd(pr)+'</div>';
+  if(logAg&&pf>0){h+='<div class="ptag" style="margin-bottom:14px">Buy: '+vnd(cp)+' Profit: +'+vnd(pf)+'</div>';}
+  h+='<div style="display:flex;gap:10px">';
+  h+='<button class="bcart" style="flex:1;padding:11px" onclick="addCart(\''+p.id+'\');closeMod()">+ Add to Cart</button>';
+  h+='<button class="bbuy" style="flex:1;padding:11px" onclick="buyNow(\''+p.id+'\');closeMod()">Buy Now</button>';
+  h+='</div><div class="macts"><button class="bcnl" onclick="closeMod()">Close</button></div>';
   document.getElementById('m-prod-inner').innerHTML=h;
   document.getElementById('m-prod').classList.add('on');
 }
 
 function addCart(pid){
   var p=allP.find(function(x){return x.id===pid;});
-  if(!p)return;
+  if(!p){return;}
   var ex=cart.find(function(i){return i.id===pid;});
-  if(ex){ex.qty++;}else{var obj=JSON.parse(JSON.stringify(p));obj.qty=1;obj.dp=retP(p);cart.push(obj);}
-  updCart();toast('Da them vao gio hang!');
+  if(ex){ex.qty++;}
+  else{var o=JSON.parse(JSON.stringify(p));o.qty=1;o.dp=retP(p);cart.push(o);}
+  updCart();toast('Added to cart!');
 }
 function buyNow(pid){addCart(pid);openCart();}
 function openCart(){document.getElementById('cov').classList.add('on');document.getElementById('csbar').classList.add('on');renderCart();}
@@ -887,135 +844,185 @@ function closeCart(){document.getElementById('cov').classList.remove('on');docum
 function updCart(){
   var n=cart.reduce(function(s,i){return s+i.qty;},0);
   document.getElementById('ccount').textContent=n;
-  var b=document.getElementById('cbadge');b.style.display=n>0?'flex':'none';b.textContent=n;
+  var b=document.getElementById('cbadge');
+  b.style.display=n>0?'flex':'none';
+  b.textContent=n;
 }
 function renderCart(){
   var el=document.getElementById('csitems');
-  if(!cart.length){el.innerHTML='<div class="empty"><div>🛒</div><p>Gio hang trong</p></div>';document.getElementById('ctotal').textContent='$0.00';return;}
+  if(!cart.length){el.innerHTML='<div class="empty"><div>🛒</div><p>Empty cart</p></div>';document.getElementById('ctotal').textContent='0d';return;}
   var tot=cart.reduce(function(s,i){return s+i.dp*i.qty;},0);
-  document.getElementById('ctotal').textContent='$'+tot.toFixed(2);
+  document.getElementById('ctotal').textContent=vnd(tot);
   var h='';
   cart.forEach(function(i){
-    h+='<div class="csi"><div class="csi-img">'+(i.image_url?'<img src="'+i.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦')+'</div><div class="csi-info"><div class="csi-name">'+i.name+'</div><div class="csi-price">$'+(i.dp*i.qty).toFixed(2)+'</div><div class="csi-qty"><button class="qbtn" onclick="chgQty(\''+i.id+'\',-1)">-</button><span>'+i.qty+'</span><button class="qbtn" onclick="chgQty(\''+i.id+'\',1)">+</button><button class="csi-del" onclick="rmCart(\''+i.id+'\')">x</button></div></div></div>';
+    var img=i.image_url?'<img src="'+i.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦';
+    h+='<div class="csi"><div class="csi-img">'+img+'</div>';
+    h+='<div class="csi-info"><div class="csi-name">'+i.name+'</div>';
+    h+='<div class="csi-price">'+vnd(i.dp*i.qty)+'</div>';
+    h+='<div class="csi-qty"><button class="qbtn" onclick="chgQty(\''+i.id+'\',-1)">-</button>';
+    h+='<span>'+i.qty+'</span>';
+    h+='<button class="qbtn" onclick="chgQty(\''+i.id+'\',1)">+</button>';
+    h+='<button class="csi-del" onclick="rmCart(\''+i.id+'\')">x</button></div></div></div>';
   });
   el.innerHTML=h;
 }
 function chgQty(id,d){
   var it=cart.find(function(i){return i.id===id;});
-  if(!it)return;it.qty+=d;
-  if(it.qty<=0)cart=cart.filter(function(i){return i.id!==id;});
+  if(!it){return;}
+  it.qty+=d;
+  if(it.qty<=0){cart=cart.filter(function(i){return i.id!==id;});}
   updCart();renderCart();
 }
 function rmCart(id){cart=cart.filter(function(i){return i.id!==id;});updCart();renderCart();}
 
 function goCheckout(){
-  if(!cart.length){toast('Gio hang trong!');return;}
+  if(!cart.length){toast('Cart is empty!');return;}
   closeCart();
   var sub=cart.reduce(function(s,i){return s+i.dp*i.qty;},0);
-  document.getElementById('cosub').textContent='$'+sub.toFixed(2);
-  document.getElementById('cototal').textContent='$'+sub.toFixed(2);
-  document.getElementById('mamt').textContent='$'+sub.toFixed(2);
-  var h='';cart.forEach(function(i){h+='<div class="orow"><span>'+i.name+' x'+i.qty+'</span><span>$'+(i.dp*i.qty).toFixed(2)+'</span></div>';});
+  document.getElementById('cosub').textContent=vnd(sub);
+  document.getElementById('cototal').textContent=vnd(sub);
+  document.getElementById('mamt').textContent=vnd(sub);
+  var h='';
+  cart.forEach(function(i){h+='<div class="orow"><span>'+i.name+' x'+i.qty+'</span><span>'+vnd(i.dp*i.qty)+'</span></div>';});
   document.getElementById('coitems').innerHTML=h;
   showPage('checkout');
 }
 function placeOrder(){
-  var nm=document.getElementById('cn').value.trim(),ph=document.getElementById('cp').value.trim();
-  if(!nm||!ph){toast('Vui long nhap ho ten va so dien thoai');return;}
+  var nm=document.getElementById('cn').value.trim();
+  var ph=document.getElementById('cp').value.trim();
+  if(!nm||!ph){toast('Please enter name and phone');return;}
   var sub=cart.reduce(function(s,i){return s+i.dp*i.qty;},0);
   var comm=0;
-  if(logAg){cart.forEach(function(i){var p=allP.find(function(x){return x.id===i.id;});if(p)comm+=agProf(p)*i.qty;});}
+  if(logAg){
+    cart.forEach(function(i){
+      var p=allP.find(function(x){return x.id===i.id;});
+      if(p){comm+=agProf(p)*i.qty;}
+    });
+  }
   var ono='LBK-'+Date.now();
   POST('orders',{order_no:ono,agent_id:logAg?logAg.id:null,customer_name:nm,customer_phone:ph,customer_address:document.getElementById('ca').value,items:cart,subtotal:sub,shipping_fee:0,total:sub,agent_commission:comm,payment_method:'momo',payment_status:'pending',order_status:'new',note:document.getElementById('cno').value})
   .then(function(r){
-    if(logAg&&comm>0)POST('commissions',{agent_id:logAg.id,order_id:r[0].id,amount:comm,status:'pending'});
-    cart=[];updCart();toast('Dat hang thanh cong! Ma: '+ono);
-    setTimeout(function(){alert('MoMo Payment\nMa don: '+ono+'\nSo tien: $'+sub.toFixed(2));showPage('home');},800);
-  }).catch(function(e){toast('Loi: '+e.message);});
+    if(logAg&&comm>0){POST('commissions',{agent_id:logAg.id,order_id:r[0].id,amount:comm,status:'pending'});}
+    cart=[];updCart();
+    toast('Order placed! Code: '+ono);
+    setTimeout(function(){alert('MoMo: '+ono+' Amount: '+vnd(sub));showPage('home');},800);
+  }).catch(function(e){toast('Error: '+e.message);});
 }
 
 function doSupLogin(){
-  var em=document.getElementById('se').value.trim(),pw=document.getElementById('sp').value.trim();
-  if(!em||!pw){toast('Nhap email va mat khau');return;}
+  var em=document.getElementById('se').value.trim();
+  var pw=document.getElementById('sp').value.trim();
+  if(!em||!pw){toast('Enter email and password');return;}
   setBtn('slbtn',true);
   GET('suppliers?email=eq.'+encodeURIComponent(em)+'&password_hash=eq.'+encodeURIComponent(pw)+'&select=*')
   .then(function(r){
-    if(!r.length){toast('Thong tin khong dung');setBtn('slbtn',false,'登录');return;}
+    if(!r.length){toast('Wrong credentials');setBtn('slbtn',false,'LOGIN');return;}
     logSup=r[0];
     document.getElementById('sup-auth').style.display='none';
     document.getElementById('sup-dash').style.display='block';
-    document.getElementById('sw').textContent='🏭 '+logSup.company_name;
-    if(logSup.status==='pending')document.getElementById('sstat').textContent='Zhang hao cho duyet';
-    loadSupProds();setBtn('slbtn',false,'登录');
-  }).catch(function(e){toast(e.message);setBtn('slbtn',false,'登录');});
+    document.getElementById('sw').textContent=logSup.company_name;
+    if(logSup.status==='pending'){document.getElementById('sstat').textContent='Pending approval';}
+    loadSupProds();
+    setBtn('slbtn',false,'LOGIN');
+  }).catch(function(e){toast(e.message);setBtn('slbtn',false,'LOGIN');});
 }
 function doSupReg(){
-  var co=document.getElementById('sc').value.trim(),em=document.getElementById('sre').value.trim(),pw=document.getElementById('srp').value.trim();
-  if(!co||!em||!pw||pw.length<6){toast('Dien day du thong tin, mat khau toi thieu 6 ky tu');return;}
+  var co=document.getElementById('sc').value.trim();
+  var em=document.getElementById('sre').value.trim();
+  var pw=document.getElementById('srp').value.trim();
+  if(!co||!em||!pw||pw.length<6){toast('Fill all fields, min 6 char password');return;}
   setBtn('srbtn',true);
   POST('suppliers',{company_name:co,email:em,phone:document.getElementById('sph').value,category:document.getElementById('scat').value,password_hash:pw,status:'pending'})
-  .then(function(){toast('Dang ky thanh cong! Cho admin duyet.');setBtn('srbtn',false,'提交注册');})
-  .catch(function(e){toast(e.message.indexOf('unique')>-1?'Email da ton tai':e.message);setBtn('srbtn',false,'提交注册');});
+  .then(function(){toast('Registered! Awaiting approval.');setBtn('srbtn',false,'REGISTER');})
+  .catch(function(e){toast(e.message.indexOf('unique')>-1?'Email exists':e.message);setBtn('srbtn',false,'REGISTER');});
 }
 function supLogout(){logSup=null;document.getElementById('sup-auth').style.display='block';document.getElementById('sup-dash').style.display='none';showPage('home');}
 
 function loadSupProds(){
   var el=document.getElementById('splist');
-  el.innerHTML='<div class="ld">加载中</div>';
+  el.innerHTML='<div class="ld">Loading</div>';
   GET('products?supplier_id=eq.'+logSup.id+'&order=created_at.desc')
   .then(function(r){
     document.getElementById('st').textContent=r.length;
     document.getElementById('sp2').textContent=r.filter(function(p){return p.status==='pending';}).length;
     document.getElementById('sa').textContent=r.filter(function(p){return p.status==='approved';}).length;
-    if(!r.length){el.innerHTML='<div class="empty"><div>📦</div><p>Chua co san pham</p></div>';return;}
+    if(!r.length){el.innerHTML='<div class="empty"><div>📦</div><p>No products</p></div>';return;}
     var h='';
     r.forEach(function(p){
       var sc=p.status==='approved'?'s-ok':p.status==='rejected'?'s-no':'s-p';
-      var sl=p.status==='approved'?'Da Duyet':p.status==='rejected'?'Bi Tu Choi':'Cho Duyet';
-      h+='<div class="pitem"><div class="pthumb">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦')+'</div><div class="pinfo"><div class="pinf-n">'+p.name+'</div><div class="pinf-m">'+p.category+' · '+p.stock+' · MOQ:'+p.moq+'</div><div class="pinf-p">$'+parseFloat(p.price||0).toFixed(2)+' <span class="sb '+sc+'">'+sl+'</span></div>'+(p.status==='rejected'&&p.reject_reason?'<div class="rnote">'+p.reject_reason+'</div>':'')+'</div></div>';
+      var sl=p.status==='approved'?'Approved':p.status==='rejected'?'Rejected':'Pending';
+      var img=p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦';
+      h+='<div class="pitem"><div class="pthumb">'+img+'</div>';
+      h+='<div class="pinfo"><div class="pinf-n">'+p.name+'</div>';
+      h+='<div class="pinf-m">'+p.category+' Stock:'+p.stock+' MOQ:'+p.moq+'</div>';
+      h+='<div class="pinf-p">'+vnd(p.price||0)+' <span class="sb '+sc+'">'+sl+'</span></div>';
+      if(p.status==='rejected'&&p.reject_reason){h+='<div class="rnote">'+p.reject_reason+'</div>';}
+      h+='</div></div>';
     });
     el.innerHTML=h;
   }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
 }
 
 function loadSupOrders(){
-if(!logSup)return;
-var el=document.getElementById('spord');
-el.innerHTML='<div class="ld">Loading</div>';
-GET('products?supplier_id=eq.'+logSup.id+'&status=eq.approved&select=id,name,category,stock').then(function(prods){
-if(!prods.length){el.innerHTML='<div class="empty"><div>X</div><p>No products</p></div>';return;}
-var stats={};
-prods.forEach(function(p){stats[p.id]={orders:0,qty:0,pending:0};});
-GET('orders?select=order_no,items,order_status').then(function(orders){
-orders.forEach(function(o){
-if(!o.items)return;
-var its=typeof o.items==='string'?JSON.parse(o.items):o.items;
-if(!Array.isArray(its))return;
-its.forEach(function(it){
-if(it.id&&stats[it.id]){stats[it.id].orders++;stats[it.id].qty+=(it.qty||1);if(o.order_status==='new'||o.order_status==='confirmed')stats[it.id].pending+=(it.qty||1);}
-});
-});
-GET('agent_products?select=product_id').then(function(ap){
-var ac={};ap.forEach(function(x){ac[x.product_id]=(ac[x.product_id]||0)+1;});
-var to=0,tq=0,tp=0;
-prods.forEach(function(p){to+=stats[p.id].orders;tq+=stats[p.id].qty;tp+=stats[p.id].pending;});
-var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">';
-h+='<div class="dstat"><div class="dsn">'+to+'</div><div class="dsl">Total Orders</div></div>';
-h+='<div class="dstat"><div class="dsn" style="color:var(--warn)">'+tp+'</div><div class="dsl">Pending Stock</div></div>';
-h+='<div class="dstat"><div class="dsn" style="color:var(--ok)">'+tq+'</div><div class="dsl">Total Sold</div></div></div>';
-h+='<table class="otbl"><thead><tr><th>Product</th><th>Category</th><th>Stock</th><th>Agents</th><th>Orders</th><th>Pending</th><th>Sold</th></tr></thead><tbody>';
-prods.forEach(function(p){var s=stats[p.id];var ag=ac[p.id]||0;h+='<tr><td>'+p.name+'</td><td>'+p.category+'</td><td>'+p.stock+'</td><td>'+ag+'</td><td>'+s.orders+'</td><td>'+s.pending+'</td><td>'+s.qty+'</td></tr>';});
-h+='</tbody></table>';
-el.innerHTML=h;
-}).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
-}).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
-}).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
+  if(!logSup){return;}
+  var el=document.getElementById('spord');
+  el.innerHTML='<div class="ld">Loading</div>';
+  GET('products?supplier_id=eq.'+logSup.id+'&status=eq.approved&select=id,name,category,stock')
+  .then(function(prods){
+    if(!prods.length){el.innerHTML='<div class="empty"><div>📦</div><p>No approved products</p></div>';return;}
+    var stats={};
+    prods.forEach(function(p){stats[p.id]={orders:0,qty:0,pending:0};});
+    GET('orders?select=items,order_status')
+    .then(function(orders){
+      orders.forEach(function(o){
+        if(!o.items){return;}
+        var its=typeof o.items==='string'?JSON.parse(o.items):o.items;
+        if(!Array.isArray(its)){return;}
+        its.forEach(function(it){
+          if(it.id&&stats[it.id]){
+            stats[it.id].orders++;
+            stats[it.id].qty+=(it.qty||1);
+            if(o.order_status==='new'||o.order_status==='confirmed'){stats[it.id].pending+=(it.qty||1);}
+          }
+        });
+      });
+      GET('agent_products?select=product_id')
+      .then(function(ap){
+        var ac={};
+        ap.forEach(function(x){ac[x.product_id]=(ac[x.product_id]||0)+1;});
+        var to=0,tq=0,tp=0;
+        prods.forEach(function(p){to+=stats[p.id].orders;tq+=stats[p.id].qty;tp+=stats[p.id].pending;});
+        var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">';
+        h+='<div class="dstat"><div class="dsn">'+to+'</div><div class="dsl">Total Orders</div></div>';
+        h+='<div class="dstat"><div class="dsn" style="color:var(--warn)">'+tp+'</div><div class="dsl">Pending Stock</div></div>';
+        h+='<div class="dstat"><div class="dsn" style="color:var(--ok)">'+tq+'</div><div class="dsl">Total Sold</div></div></div>';
+        h+='<table class="otbl"><thead><tr><th>Product</th><th>Stock</th><th>Agents</th><th>Orders</th><th>Pending</th><th>Sold</th></tr></thead><tbody>';
+        prods.forEach(function(p){
+          var s=stats[p.id];
+          var ag=ac[p.id]||0;
+          h+='<tr><td>'+p.name+'</td><td>'+p.stock+'</td><td>'+ag+'</td><td>'+s.orders+'</td><td>'+s.pending+'</td><td>'+s.qty+'</td></tr>';
+        });
+        h+='</tbody></table>';
+        el.innerHTML=h;
+      }).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
+    }).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
+  }).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
+}
+
+function prevImg(inp){
+  if(inp.files&&inp.files[0]){
+    var r=new FileReader();
+    r.onload=function(e){document.getElementById('previmg').src=e.target.result;document.getElementById('imgprev').style.display='block';};
+    r.readAsDataURL(inp.files[0]);
+  }
 }
 function submitProd(){
-  if(!logSup){toast('Vui long dang nhap');return;}
-  if(logSup.status!=='active'){toast('Tai khoan chua duoc kich hoat');return;}
-  var nm=document.getElementById('pn').value.trim(),pr=document.getElementById('pp').value,st=document.getElementById('pst').value;
-  if(!nm||!pr||!st){toast('Dien ten, gia va ton kho');return;}
+  if(!logSup){toast('Please login');return;}
+  if(logSup.status!=='active'){toast('Account not activated');return;}
+  var nm=document.getElementById('pn').value.trim();
+  var pr=document.getElementById('pp').value;
+  var st=document.getElementById('pst').value;
+  if(!nm||!pr||!st){toast('Fill name, price and stock');return;}
   setBtn('psbtn',true);
   var f=document.getElementById('imgf').files[0];
   var up;
@@ -1025,139 +1032,178 @@ function submitProd(){
     .then(function(r){return r.ok?SB+'/storage/v1/object/public/product-images/'+fn:null;});
   }else{up=Promise.resolve(null);}
   up.then(function(iu){
-    return POST('products',{supplier_id:logSup.id,name:nm,category:document.getElementById('pcat').value,price:parseFloat(pr),stock:parseInt(st),moq:parseInt(document.getElementById('pm').value)||1,description:document.getElementById('pd').value,image_url:iu,status:'pending'});
+    return POST('products',{supplier_id:logSup.id,name:nm,category:document.getElementById('pcat').value,price:parseFloat(pr),stock:parseInt(st),moq:parseInt(document.getElementById('pm').value)||1,description:document.getElementById('pd').value,image_url:iu,status:'pending',is_active:true});
   }).then(function(){
-    toast('San pham da gui de duyet!');
+    toast('Submitted for review!');
     ['pn','pp','pst','pm','pd'].forEach(function(id){document.getElementById(id).value='';});
-    document.getElementById('imgf').value='';document.getElementById('imgprev').style.display='none';
-    supDT('list');setBtn('psbtn',false,'提交审核');
-  }).catch(function(e){toast(e.message);setBtn('psbtn',false,'提交审核');});
+    document.getElementById('imgf').value='';
+    document.getElementById('imgprev').style.display='none';
+    supDT('list');
+    setBtn('psbtn',false,'SUBMIT FOR REVIEW');
+  }).catch(function(e){toast(e.message);setBtn('psbtn',false,'SUBMIT FOR REVIEW');});
 }
 
 function doAgLogin(){
-  var cd=document.getElementById('agc').value.trim().toUpperCase(),ph=document.getElementById('agph').value.trim();
-  if(!cd||!ph){toast('Nhap ma dai ly va so dien thoai');return;}
+  var cd=document.getElementById('agc').value.trim().toUpperCase();
+  var ph=document.getElementById('agph').value.trim();
+  if(!cd||!ph){toast('Enter agent code and phone');return;}
   setBtn('aglbtn',true);
   GET('distributor_leads?agent_code=eq.'+encodeURIComponent(cd)+'&is_active=eq.true&select=*')
   .then(function(r){
-    if(!r.length){toast('Ma dai ly khong dung hoac chua kich hoat');setBtn('aglbtn',false,'DANG NHAP');return;}
+    if(!r.length){toast('Invalid code or not activated');setBtn('aglbtn',false,'LOGIN');return;}
     logAg=r[0];
     document.getElementById('ag-auth').style.display='none';
     document.getElementById('ag-dash').style.display='block';
-    document.getElementById('agt').textContent='🏪 '+(logAg.shop_name||'My Shop');
-    document.getElementById('agsub').textContent=(logAg.city||'')+' · '+new Date().toLocaleDateString();
+    document.getElementById('agt').textContent=logAg.shop_name||'My Shop';
+    document.getElementById('agsub').textContent=(logAg.city||'')+' '+new Date().toLocaleDateString();
     document.getElementById('agcd').textContent=logAg.agent_code;
-    var lm={district:'🏪 Quan · 区级',city:'🏙 TP · 市级',province:'🌏 Tinh · 省级'};
+    var lm={district:'District',city:'City',province:'Province'};
     var lc={district:'var(--ok)',city:'var(--warn)',province:'var(--g)'};
     var lv=logAg.agent_level||'district';
     document.getElementById('agld').innerHTML='<span style="color:'+lc[lv]+'">'+(lm[lv]||lv)+'</span>';
     var su=window.location.origin+window.location.pathname+'?shop='+(logAg.shop_slug||'');
     document.getElementById('agurl').value=su;
     GET('agent_products?agent_id=eq.'+logAg.id+'&select=product_id').then(function(s){
-      document.getElementById('agpc').textContent=s.length>0?s.length+' sp':'Chua chon';
+      document.getElementById('agpc').textContent=s.length>0?s.length+' products':'None';
     });
-    if(logAg.email)document.getElementById('agei').value=logAg.email;
-    if(logAg.zalo)document.getElementById('agzi').value=logAg.zalo;
+    if(logAg.email){document.getElementById('agei').value=logAg.email;}
+    if(logAg.zalo){document.getElementById('agzi').value=logAg.zalo;}
     renderBCard();
     loadAgOrders();
-    setBtn('aglbtn',false,'DANG NHAP');
-  }).catch(function(e){toast(e.message);setBtn('aglbtn',false,'DANG NHAP');});
+    setBtn('aglbtn',false,'LOGIN');
+  }).catch(function(e){toast(e.message);setBtn('aglbtn',false,'LOGIN');});
 }
 function applyAgent(){
-  var nm=document.getElementById('agn').value.trim(),ph=document.getElementById('agap').value.trim(),sh=document.getElementById('agsh').value.trim();
-  if(!nm||!ph||!sh){toast('Dien day du thong tin');return;}
+  var nm=document.getElementById('agn').value.trim();
+  var ph=document.getElementById('agap').value.trim();
+  var sh=document.getElementById('agsh').value.trim();
+  if(!nm||!ph||!sh){toast('Fill all fields');return;}
   setBtn('agabtn',true);
   POST('distributor_leads',{full_name:nm,phone:ph,city:document.getElementById('agct').value.trim(),category_interest:document.getElementById('agcat').value,shop_name:sh,status:'new',agent_level:'district',is_active:false,commission_rate:10})
-  .then(function(){toast('Da gui don! Admin se cap ma trong 1-2 ngay.');setBtn('agabtn',false,'GUI DON DANG KY');})
-  .catch(function(e){toast(e.message);setBtn('agabtn',false,'GUI DON DANG KY');});
+  .then(function(){toast('Applied! Admin will contact you.');setBtn('agabtn',false,'APPLY');})
+  .catch(function(e){toast(e.message);setBtn('agabtn',false,'APPLY');});
 }
 function agLogout(){logAg=null;document.getElementById('ag-auth').style.display='block';document.getElementById('ag-dash').style.display='none';showPage('home');}
 
 function renderBCard(){
-  if(!logAg)return;
-  var lm={district:'Dai Ly Quan · 区级代理商',city:'Dai Ly Thanh Pho · 市级代理商',province:'Dai Ly Tinh · 省级代理商'};
+  if(!logAg){return;}
+  var lm={district:'District Agent',city:'City Agent',province:'Province Agent'};
   var lv=logAg.agent_level||'district';
   var ini=(logAg.full_name||logAg.shop_name||'A')[0].toUpperCase();
   var su=document.getElementById('agurl').value;
-  var h='<div class="bcard"><div class="bctop"><div class="bcav">'+ini+'</div><div><div class="bcname">'+(logAg.full_name||logAg.shop_name||'')+'</div><div class="bctitle">LAMBORGHINI BLACK KONG<br>'+(lm[lv]||lv)+'</div><div class="bcbrand">Thuong hieu dang ky chinh thuc · 官方授权</div></div></div><div class="bcdiv"></div><div class="bccts">';
-  if(logAg.phone)h+='<div class="bcct"><div class="bcct-i">📞</div><a href="tel:'+logAg.phone+'">'+logAg.phone+'</a></div>';
-  if(logAg.zalo)h+='<div class="bcct"><div class="bcct-i">💬</div><span>Zalo: '+logAg.zalo+'</span></div>';
-  if(logAg.email)h+='<div class="bcct"><div class="bcct-i">✉</div><a href="mailto:'+logAg.email+'">'+logAg.email+'</a></div>';
-  if(logAg.city)h+='<div class="bcct"><div class="bcct-i">📍</div><span>'+logAg.city+'</span></div>';
+  var h='<div class="bcard"><div class="bctop"><div class="bcav">'+ini+'</div>';
+  h+='<div><div class="bcname">'+(logAg.full_name||logAg.shop_name||'')+'</div>';
+  h+='<div class="bctitle">LAMBORGHINI BLACK KONG '+(lm[lv]||lv)+'</div>';
+  h+='<div class="bcbrand">Official Agent</div></div></div>';
+  h+='<div class="bcdiv"></div><div class="bccts">';
+  if(logAg.phone){h+='<div class="bcct"><div class="bcct-i">📞</div><a href="tel:'+logAg.phone+'">'+logAg.phone+'</a></div>';}
+  if(logAg.zalo){h+='<div class="bcct"><div class="bcct-i">💬</div><span>Zalo: '+logAg.zalo+'</span></div>';}
+  if(logAg.email){h+='<div class="bcct"><div class="bcct-i">@</div><a href="mailto:'+logAg.email+'">'+logAg.email+'</a></div>';}
+  if(logAg.city){h+='<div class="bcct"><div class="bcct-i">📍</div><span>'+logAg.city+'</span></div>';}
   h+='</div>';
-  if(su)h+='<div class="bcshop"><span>🛍 '+(logAg.shop_name||'My Shop')+'</span><a href="'+su+'" target="_blank">'+su.replace('https://','')+'</a></div>';
+  if(su){h+='<div class="bcshop"><span>Shop: '+(logAg.shop_name||'My Shop')+'</span><a href="'+su+'" target="_blank">'+su.replace('https://','')+'</a></div>';}
   h+='</div>';
   var el=document.getElementById('ag-bcard');
-  if(el)el.innerHTML=h;
+  if(el){el.innerHTML=h;}
 }
 
 function saveAgContact(){
-  if(!logAg)return;
-  var em=document.getElementById('agei').value.trim(),zl=document.getElementById('agzi').value.trim();
+  if(!logAg){return;}
+  var em=document.getElementById('agei').value.trim();
+  var zl=document.getElementById('agzi').value.trim();
   PATCH('distributor_leads?id=eq.'+logAg.id,{email:em,zalo:zl})
-  .then(function(){logAg.email=em;logAg.zalo=zl;renderBCard();toast('Luu thanh cong!');})
+  .then(function(){logAg.email=em;logAg.zalo=zl;renderBCard();toast('Saved!');})
   .catch(function(e){toast(e.message);});
 }
 
 function copyShopUrl(){
   var u=document.getElementById('agurl').value;
-  navigator.clipboard.writeText(u).then(function(){toast('Da copy link cua hang!');});
+  navigator.clipboard.writeText(u).then(function(){toast('Copied!');});
 }
 function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(document.getElementById('agurl').value),'_blank');}
 function shareWA(){
   var u=document.getElementById('agurl').value;
-  window.open('https://wa.me/?text='+encodeURIComponent('Shop '+(logAg?logAg.shop_name||'LBK':'LBK')+' - Lamborghini Black Kong\n'+u),'_blank');
+  var n=logAg?logAg.shop_name||'LBK':'LBK';
+  window.open('https://wa.me/?text='+encodeURIComponent('Shop '+n+' - LBK\n'+u),'_blank');
 }
 function shareZalo(){
   var u=document.getElementById('agurl').value;
-  var t='Shop '+(logAg?logAg.shop_name||'LBK':'LBK')+' - Lamborghini Black Kong\n'+u;
-  if(navigator.share){navigator.share({title:'Shop LBK',text:t,url:u}).catch(function(){navigator.clipboard.writeText(t).then(function(){toast('Da copy! Mo Zalo va dan.');});});}
-  else{navigator.clipboard.writeText(t).then(function(){toast('Da copy! Mo Zalo va dan.');});}
+  var t='Shop '+(logAg?logAg.shop_name||'LBK':'LBK')+' - LBK\n'+u;
+  if(navigator.share){navigator.share({title:'LBK',text:t,url:u}).catch(function(){navigator.clipboard.writeText(t).then(function(){toast('Copied! Paste in Zalo.');});});}
+  else{navigator.clipboard.writeText(t).then(function(){toast('Copied! Paste in Zalo.');});}
 }
 
 function loadAgOrders(){
-  if(!logAg)return;
+  if(!logAg){return;}
   var el=document.getElementById('agol');
-  el.innerHTML='<div class="ld">Dang tai</div>';
-  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc').then(function(r){
+  el.innerHTML='<div class="ld">Loading</div>';
+  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc')
+  .then(function(r){
     document.getElementById('agoc').textContent=r.length;
     var tot=r.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
     var pend=r.filter(function(o){return o.payment_status!=='paid';}).reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
-    document.getElementById('agpr').textContent='$'+tot.toFixed(2);
-    document.getElementById('agpp').textContent='$'+pend.toFixed(2);
-    if(!r.length){el.innerHTML='<div class="empty"><div>📋</div><p>Chua co don hang</p></div>';return;}
-    var h='<table class="otbl"><thead><tr><th>Ma DH</th><th>Khach</th><th>KH Tra</th><th>Loi Nhuan</th><th>TT</th></tr></thead><tbody>';
-    r.forEach(function(o){h+='<tr><td style="color:var(--g);font-weight:600">'+o.order_no+'</td><td>'+o.customer_name+'</td><td>$'+parseFloat(o.total).toFixed(2)+'</td><td style="color:var(--ok);font-weight:700">+$'+parseFloat(o.agent_commission||0).toFixed(2)+'</td><td><span class="sb '+(o.payment_status==='paid'?'s-ok':'s-p')+'">'+(o.payment_status==='paid'?'Da TT':'Cho TT')+'</span></td></tr>';});
-    h+='</tbody></table>';el.innerHTML=h;
+    document.getElementById('agpr').textContent=vnd(tot);
+    document.getElementById('agpp').textContent=vnd(pend);
+    if(!r.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
+    var h='<table class="otbl"><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Profit</th><th>Status</th></tr></thead><tbody>';
+    r.forEach(function(o){
+      h+='<tr><td style="color:var(--g)">'+o.order_no+'</td><td>'+o.customer_name+'</td>';
+      h+='<td>'+vnd(o.total)+'</td><td style="color:var(--ok)">+'+vnd(o.agent_commission||0)+'</td>';
+      h+='<td><span class="sb '+(o.payment_status==='paid'?'s-ok':'s-p')+'">'+(o.payment_status==='paid'?'Paid':'Pending')+'</span></td></tr>';
+    });
+    h+='</tbody></table>';
+    el.innerHTML=h;
   }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
 }
 function loadAgProfit(){
-  if(!logAg)return;
+  if(!logAg){return;}
   var el=document.getElementById('agpl');
-  el.innerHTML='<div class="ld">Dang tai</div>';
-  GET('commissions?agent_id=eq.'+logAg.id+'&order=created_at.desc').then(function(r){
-    if(!r.length){el.innerHTML='<div class="empty"><div>💰</div><p>Chua co loi nhuan</p></div>';return;}
-    var h='<table class="otbl"><thead><tr><th>Ngay</th><th>Loi Nhuan</th><th>TT</th></tr></thead><tbody>';
-    r.forEach(function(c){h+='<tr><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td style="color:var(--ok);font-weight:700">+$'+parseFloat(c.amount).toFixed(2)+'</td><td><span class="sb '+(c.status==='settled'?'s-ok':'s-p')+'">'+(c.status==='settled'?'Da TT':'Cho TT')+'</span></td></tr>';});
-    h+='</tbody></table>';el.innerHTML=h;
+  el.innerHTML='<div class="ld">Loading</div>';
+  GET('commissions?agent_id=eq.'+logAg.id+'&order=created_at.desc')
+  .then(function(r){
+    if(!r.length){el.innerHTML='<div class="empty"><div>💰</div><p>No profit records</p></div>';return;}
+    var h='<table class="otbl"><thead><tr><th>Date</th><th>Profit</th><th>Status</th></tr></thead><tbody>';
+    r.forEach(function(c){
+      h+='<tr><td>'+new Date(c.created_at).toLocaleDateString()+'</td>';
+      h+='<td style="color:var(--ok)">+'+vnd(c.amount)+'</td>';
+      h+='<td><span class="sb '+(c.status==='settled'?'s-ok':'s-p')+'">'+(c.status==='settled'?'Settled':'Pending')+'</span></td></tr>';
+    });
+    h+='</tbody></table>';
+    el.innerHTML=h;
   }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
 }
 function loadAgSelProds(){
-  if(!logAg)return;
+  if(!logAg){return;}
   var el=document.getElementById('agsl');
-  el.innerHTML='<div class="ld">Dang tai</div>';
-  Promise.all([GET('products?status=eq.approved&order=created_at.desc'),GET('agent_products?agent_id=eq.'+logAg.id+'&select=product_id')])
+  el.innerHTML='<div class="ld">Loading</div>';
+  Promise.all([GET('products?status=eq.approved&is_active=neq.false&order=created_at.desc'),GET('agent_products?agent_id=eq.'+logAg.id+'&select=product_id')])
   .then(function(res){
     var prods=res[0],sel=res[1];
     agSelP=sel.map(function(s){return s.product_id;});
-    if(!prods.length){el.innerHTML='<div class="empty"><div>📦</div><p>Chua co san pham</p></div>';return;}
-    var h='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px"><p style="font-size:13px;color:var(--gr)">Chon san pham muon ban trong cua hang</p><div style="display:flex;gap:8px"><button class="bsm bsm-g" onclick="selAll()">Chon Tat Ca</button><button class="bsm bsm-no" onclick="deselAll()">Bo Het</button></div></div><div class="selgrid">';
+    if(!prods.length){el.innerHTML='<div class="empty"><div>📦</div><p>No products</p></div>';return;}
+    var h='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">';
+    h+='<p style="font-size:13px;color:var(--gr)">Select products for your shop</p>';
+    h+='<div style="display:flex;gap:8px"><button class="bsm bsm-g" onclick="selAll()">Select All</button><button class="bsm bsm-no" onclick="deselAll()">Clear All</button></div></div>';
+    h+='<div class="selgrid">';
     prods.forEach(function(p){
       var isSel=agSelP.indexOf(p.id)>-1;
       var cp=agCP(p),pf=agProf(p);
-      h+='<div class="selcard'+(isSel?' on':'')+'" id="sc-'+p.id+'" onclick="toggleSel(\''+p.id+'\')"><div class="selchk">'+(isSel?'✓':'')+'</div><div class="selimg">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦')+'</div><div style="font-size:10px;color:var(--g);margin-bottom:3px">'+(p.category||'')+'</div><div style="font-size:12px;font-weight:700;margin-bottom:5px;line-height:1.3">'+p.name+'</div><div style="font-size:11px;color:var(--gr)">Zero le: <b style="color:var(--w)">$'+retP(p).toFixed(2)+'</b></div><div style="font-size:11px;color:var(--gr)">Gia hang: <b style="color:var(--g)">$'+cp.toFixed(2)+'</b></div>'+(pf>0?'<div style="font-size:11px;color:var(--ok);font-weight:700;margin-top:3px">LN: +$'+pf.toFixed(2)+'</div>':'')+'</div>';
+      var img=p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦';
+      h+='<div class="selcard'+(isSel?' on':'')+'" id="sc-'+p.id+'" onclick="toggleSel(\''+p.id+'\')">';
+      h+='<div class="selchk">'+(isSel?'v':'')+'</div>';
+      h+='<div class="selimg">'+img+'</div>';
+      h+='<div style="font-size:10px;color:var(--g);margin-bottom:3px">'+(p.category||'')+'</div>';
+      h+='<div style="font-size:12px;font-weight:700;margin-bottom:5px;line-height:1.3">'+p.name+'</div>';
+      h+='<div style="font-size:11px;color:var(--gr)">Retail: '+vnd(retP(p))+'</div>';
+      h+='<div style="font-size:11px;color:var(--gr)">Buy: '+vnd(cp)+'</div>';
+      if(pf>0){h+='<div style="font-size:11px;color:var(--ok);font-weight:700">Profit: +'+vnd(pf)+'</div>';}
+      h+='</div>';
     });
-    h+='</div><div style="margin-top:18px;text-align:center"><button class="btn-p" onclick="saveSelProds()">Luu Chon Pham</button><p style="font-size:11px;color:var(--gr);margin-top:8px">Da chon <span id="scnt" style="color:var(--g);font-weight:700">'+agSelP.length+'</span> san pham</p></div>';
+    h+='</div>';
+    h+='<div style="margin-top:18px;text-align:center">';
+    h+='<button class="btn-p" onclick="saveSelProds()">Save Selection</button>';
+    h+='<p style="font-size:11px;color:var(--gr);margin-top:8px">Selected: <span id="scnt" style="color:var(--g);font-weight:700">'+agSelP.length+'</span></p>';
+    h+='</div>';
     el.innerHTML=h;
   }).catch(function(e){el.innerHTML='<div class="empty"><div>!</div><p>'+e.message+'</p></div>';});
 }
@@ -1165,74 +1211,87 @@ function toggleSel(pid){
   var cd=document.getElementById('sc-'+pid);
   var idx=agSelP.indexOf(pid);
   if(idx>-1){agSelP.splice(idx,1);cd.classList.remove('on');cd.querySelector('.selchk').textContent='';}
-  else{agSelP.push(pid);cd.classList.add('on');cd.querySelector('.selchk').textContent='✓';}
-  var c=document.getElementById('scnt');if(c)c.textContent=agSelP.length;
+  else{agSelP.push(pid);cd.classList.add('on');cd.querySelector('.selchk').textContent='v';}
+  var c=document.getElementById('scnt');if(c){c.textContent=agSelP.length;}
 }
 function selAll(){
   document.querySelectorAll('[id^="sc-"]').forEach(function(c){
     var pid=c.id.replace('sc-','');
-    if(agSelP.indexOf(pid)<0){agSelP.push(pid);c.classList.add('on');c.querySelector('.selchk').textContent='✓';}
+    if(agSelP.indexOf(pid)<0){agSelP.push(pid);c.classList.add('on');c.querySelector('.selchk').textContent='v';}
   });
-  var c=document.getElementById('scnt');if(c)c.textContent=agSelP.length;
+  var c=document.getElementById('scnt');if(c){c.textContent=agSelP.length;}
 }
 function deselAll(){
   agSelP=[];
   document.querySelectorAll('[id^="sc-"]').forEach(function(c){c.classList.remove('on');c.querySelector('.selchk').textContent='';});
-  var c=document.getElementById('scnt');if(c)c.textContent=0;
+  var c=document.getElementById('scnt');if(c){c.textContent=0;}
 }
 function saveSelProds(){
-  if(!logAg)return;
+  if(!logAg){return;}
   fetch(SB+'/rest/v1/agent_products?agent_id=eq.'+logAg.id,{method:'DELETE',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}})
   .then(function(){
-    if(agSelP.length===0)return Promise.resolve();
+    if(agSelP.length===0){return Promise.resolve();}
     return POST('agent_products',agSelP.map(function(pid){return{agent_id:logAg.id,product_id:pid};}));
   }).then(function(){
-    toast('Da luu '+agSelP.length+' san pham!');
-    document.getElementById('agpc').textContent=agSelP.length>0?agSelP.length+' sp':'Chua chon';
+    toast('Saved '+agSelP.length+' products!');
+    document.getElementById('agpc').textContent=agSelP.length>0?agSelP.length+' products':'None';
   }).catch(function(e){toast(e.message);});
 }
-function prevMyShop(){if(logAg&&logAg.shop_slug)loadShopPage(logAg.shop_slug);}
+function prevMyShop(){if(logAg&&logAg.shop_slug){loadShopPage(logAg.shop_slug);}}
 
 function loadShopPage(slug){
   showPage('shop');
   var el=document.getElementById('shgrid');
-  el.innerHTML='<div class="ld">Dang tai</div>';
+  el.innerHTML='<div class="ld">Loading</div>';
   GET('distributor_leads?shop_slug=eq.'+encodeURIComponent(slug)+'&select=*')
   .then(function(r){
-    if(!r.length){el.innerHTML='<div class="empty"><div>🏪</div><p>Cua hang khong ton tai</p></div>';return;}
+    if(!r.length){el.innerHTML='<div class="empty"><div>🏪</div><p>Shop not found</p></div>';return;}
     var ag=r[0];
     document.getElementById('shname').textContent=ag.shop_name||'Shop LBK';
     document.getElementById('shlogo').textContent=(ag.shop_name||'S')[0];
     var su=window.location.href.split('?')[0]+'?shop='+slug;
-    var lm={district:'Dai Ly Quan · 区级代理商',city:'Dai Ly Thanh Pho · 市级代理商',province:'Dai Ly Tinh · 省级代理商'};
+    var lm={district:'District Agent',city:'City Agent',province:'Province Agent'};
     var lv=ag.agent_level||'district';
     var ini=(ag.full_name||ag.shop_name||'S')[0].toUpperCase();
-    var bh='<div class="bcard"><div class="bctop"><div class="bcav">'+ini+'</div><div><div class="bcname">'+(ag.full_name||ag.shop_name||'')+'</div><div class="bctitle">LAMBORGHINI BLACK KONG<br>'+(lm[lv]||lv)+'</div><div class="bcbrand">Thuong hieu dang ky chinh thuc · 官方授权</div></div></div><div class="bcdiv"></div><div class="bccts">';
-    if(ag.phone)bh+='<div class="bcct"><div class="bcct-i">📞</div><a href="tel:'+ag.phone+'">'+ag.phone+'</a></div>';
-    if(ag.zalo)bh+='<div class="bcct"><div class="bcct-i">💬</div><span>Zalo: '+ag.zalo+'</span></div>';
-    if(ag.email)bh+='<div class="bcct"><div class="bcct-i">✉</div><a href="mailto:'+ag.email+'">'+ag.email+'</a></div>';
-    if(ag.city)bh+='<div class="bcct"><div class="bcct-i">📍</div><span>'+ag.city+'</span></div>';
+    var bh='<div class="bcard"><div class="bctop"><div class="bcav">'+ini+'</div>';
+    bh+='<div><div class="bcname">'+(ag.full_name||ag.shop_name||'')+'</div>';
+    bh+='<div class="bctitle">LAMBORGHINI BLACK KONG '+(lm[lv]||lv)+'</div>';
+    bh+='<div class="bcbrand">Official Agent</div></div></div>';
+    bh+='<div class="bcdiv"></div><div class="bccts">';
+    if(ag.phone){bh+='<div class="bcct"><div class="bcct-i">📞</div><a href="tel:'+ag.phone+'">'+ag.phone+'</a></div>';}
+    if(ag.zalo){bh+='<div class="bcct"><div class="bcct-i">💬</div><span>Zalo: '+ag.zalo+'</span></div>';}
+    if(ag.email){bh+='<div class="bcct"><div class="bcct-i">@</div><a href="mailto:'+ag.email+'">'+ag.email+'</a></div>';}
+    if(ag.city){bh+='<div class="bcct"><div class="bcct-i">📍</div><span>'+ag.city+'</span></div>';}
     bh+='</div>';
-    bh+='<div class="bcshop"><span>🛍 '+(ag.shop_name||'My Shop')+'</span><a href="'+su+'" target="_blank">'+su.replace('https://','')+'</a></div>';
-    var wt=encodeURIComponent('Shop '+(ag.shop_name||'LBK')+' - Lamborghini Black Kong\n'+su);
-    bh+='<div class="shbts"><a class="sbt sbt-fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(su)+'" target="_blank">📘 Facebook</a><a class="sbt sbt-wa" href="https://wa.me/?text='+wt+'" target="_blank">📱 WhatsApp</a></div>';
-    bh+='</div>';
-    var bce=document.getElementById('sh-bcard');if(bce)bce.innerHTML=bh;
-    return Promise.all([GET('products?status=eq.approved&order=created_at.desc'),GET('agent_products?agent_id=eq.'+ag.id+'&select=product_id')])
+    bh+='<div class="bcshop"><span>'+( ag.shop_name||'Shop')+'</span><a href="'+su+'" target="_blank">'+su.replace('https://','')+'</a></div>';
+    var wt=encodeURIComponent('Shop '+(ag.shop_name||'LBK')+' - LBK\n'+su);
+    bh+='<div class="shbts">';
+    bh+='<a class="sbt sbt-fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(su)+'" target="_blank">Facebook</a>';
+    bh+='<a class="sbt sbt-wa" href="https://wa.me/?text='+wt+'" target="_blank">WhatsApp</a>';
+    bh+='</div></div>';
+    var bce=document.getElementById('sh-bcard');if(bce){bce.innerHTML=bh;}
+    return Promise.all([GET('products?status=eq.approved&is_active=neq.false&order=created_at.desc'),GET('agent_products?agent_id=eq.'+ag.id+'&select=product_id')])
     .then(function(res){
-      var prods=res[0],sel=res[1];allP=prods;
+      var prods=res[0],sel=res[1];
+      allP=prods;
       var sids=sel.map(function(s){return s.product_id;});
       var disp=sids.length>0?prods.filter(function(p){return sids.indexOf(p.id)>-1;}):prods;
-      if(!disp.length){el.innerHTML='<div class="empty"><div>📦</div><p>Chua co san pham</p></div>';return;}
+      if(!disp.length){el.innerHTML='<div class="empty"><div>📦</div><p>No products</p></div>';return;}
       var h='';
       disp.forEach(function(p){
         var lv2=ag.agent_level||'district';
         var cp;
-        if(lv2==='province')cp=parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);
-        else if(lv2==='city')cp=parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);
-        else cp=parseFloat(p.price_district||p.price_retail||p.price||0);
+        if(lv2==='province'){cp=parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);}
+        else if(lv2==='city'){cp=parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);}
+        else{cp=parseFloat(p.price_district||p.price_retail||p.price||0);}
         var pr=retP(p);
-        h+='<div class="pcard" onclick="openPMod(\''+p.id+'\')"><div class="pimg">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover">':'📦')+'</div><div class="pbody"><div class="pcat">'+(p.category||'')+'</div><div class="pname">'+p.name+'</div><div class="pprice">$'+pr.toFixed(2)+'</div><div class="pacts"><button class="bcart" onclick="event.stopPropagation();addCart(\''+p.id+'\')">+ Them</button><button class="bbuy" onclick="event.stopPropagation();buyNow(\''+p.id+'\')">Mua Ngay</button></div></div></div>';
+        var img=p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover">':'📦';
+        h+='<div class="pcard" onclick="openPMod(\''+p.id+'\')"><div class="pimg">'+img+'</div>';
+        h+='<div class="pbody"><div class="pcat">'+(p.category||'')+'</div>';
+        h+='<div class="pname">'+p.name+'</div>';
+        h+='<div class="pprice">'+vnd(pr)+'</div>';
+        h+='<div class="pacts"><button class="bcart" onclick="event.stopPropagation();addCart(\''+p.id+'\')">+ Add</button>';
+        h+='<button class="bbuy" onclick="event.stopPropagation();buyNow(\''+p.id+'\')">Buy</button></div></div></div>';
       });
       el.innerHTML=h;
     });
@@ -1240,13 +1299,14 @@ function loadShopPage(slug){
 }
 
 function doAdmLogin(){
-  var u=document.getElementById('admu').value.trim(),p=document.getElementById('admp').value.trim();
+  var u=document.getElementById('admu').value.trim();
+  var p=document.getElementById('admp').value.trim();
   setBtn('admlbtn',true);
   GET('admins?username=eq.'+encodeURIComponent(u)+'&password_hash=eq.'+encodeURIComponent(p)+'&select=id')
   .then(function(r){
-    if(!r.length){toast('Sai thong tin dang nhap');setBtn('admlbtn',false,'登录管理后台');return;}
-    admIn=true;showPage('admin');setBtn('admlbtn',false,'登录管理后台');
-  }).catch(function(e){toast(e.message);setBtn('admlbtn',false,'登录管理后台');});
+    if(!r.length){toast('Wrong credentials');setBtn('admlbtn',false,'LOGIN');return;}
+    admIn=true;showPage('admin');setBtn('admlbtn',false,'LOGIN');
+  }).catch(function(e){toast(e.message);setBtn('admlbtn',false,'LOGIN');});
 }
 function loadAdmData(){
   Promise.all([GET('suppliers?select=*&order=created_at.desc'),GET('products?select=*,suppliers(company_name)&order=created_at.desc'),GET('distributor_leads?select=*&order=created_at.desc'),GET('orders?select=*&order=created_at.desc')])
@@ -1264,74 +1324,138 @@ function loadAdmData(){
 }
 function renderRv(pend,su){
   var el=document.getElementById('rvlist');
-  if(!pend.length){el.innerHTML='<div class="empty"><div>✅</div><p>Khong co san pham cho duyet!</p></div>';return;}
+  if(!pend.length){el.innerHTML='<div class="empty"><div>v</div><p>No pending products!</p></div>';return;}
   var h='';
   pend.forEach(function(p){
     var sn=(p.suppliers||{company_name:'Unknown'}).company_name;
-    h+='<div class="rcard"><div class="rhead"><div class="rsup">NCC: <span>'+sn+'</span> · '+new Date(p.created_at).toLocaleDateString()+'</div><span class="sb s-p">Cho Duyet</span></div><div class="rbody"><div class="rimg">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦')+'</div><div class="rdet"><h3>'+p.name+'</h3><p>'+p.category+' · $'+parseFloat(p.price||0).toFixed(2)+' · Kho:'+p.stock+' · MOQ:'+p.moq+'</p><p>'+(p.description||'')+'</p></div></div><div class="racts"><button class="bapp" onclick="appProd(\''+p.id+'\')">Duyet</button><button class="brej" onclick="openRej(\''+p.id+'\')">Tu Choi</button></div></div>';
+    h+='<div class="rcard"><div class="rhead"><div class="rsup">Supplier: <span>'+sn+'</span></div><span class="sb s-p">Pending</span></div>';
+    h+='<div class="rbody"><div class="rimg">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦')+'</div>';
+    h+='<div class="rdet"><h3>'+p.name+'</h3><p>'+p.category+' '+vnd(p.price||0)+' Stock:'+p.stock+' MOQ:'+p.moq+'</p><p>'+(p.description||'')+'</p></div></div>';
+    h+='<div class="racts"><button class="bapp" onclick="appProd(\''+p.id+'\')">Approve</button><button class="brej" onclick="openRej(\''+p.id+'\')">Reject</button></div></div>';
   });
   el.innerHTML=h;
 }
 function renderPr(appr){
   var el=document.getElementById('prlist');
-  if(!appr.length){el.innerHTML='<div class="empty"><div>💰</div><p>Chua co san pham duoc duyet</p></div>';return;}
-  var h='<p style="font-size:12px;color:var(--gr);margin-bottom:14px">Dat 6 muc gia cho moi san pham</p>';
+  if(!appr.length){el.innerHTML='<div class="empty"><div>💰</div><p>No approved products</p></div>';return;}
+  var h='<p style="font-size:12px;color:var(--gr);margin-bottom:14px">Set 6 price tiers (USD input, VND shown)</p>';
+  h+='<div style="display:flex;gap:8px;margin-bottom:16px">';
+  h+='<button class="bsm bsm-no" onclick="unpubAll()">Unpublish All</button>';
+  h+='<button class="bsm bsm-ok" onclick="pubAll()">Publish All</button>';
+  h+='</div>';
   appr.forEach(function(p){
-    h+='<div class="rcard"><div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:12px"><div style="width:50px;height:50px;border-radius:6px;background:var(--d3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">'+(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦')+'</div><div><div style="font-size:13px;font-weight:700">'+p.name+'</div><div style="font-size:11px;color:var(--gr)">'+p.category+'</div></div></div><div class="pgrid2"><div class="pf"><label style="color:var(--red)">结算价(供应商)</label><input type="number" step="0.01" id="ps_'+p.id+'" value="'+(p.price_settlement||0)+'"></div><div class="pf"><label>零售价(消费者)</label><input type="number" step="0.01" id="pr_'+p.id+'" value="'+(p.price_retail||p.price||0)+'"></div><div class="pf"><label style="color:#3B9EE8">会员价</label><input type="number" step="0.01" id="pm_'+p.id+'" value="'+(p.price_member||0)+'"></div><div class="pf"><label style="color:var(--ok)">区级代理价</label><input type="number" step="0.01" id="pd_'+p.id+'" value="'+(p.price_district||0)+'"></div><div class="pf"><label style="color:var(--warn)">市级代理价</label><input type="number" step="0.01" id="pc_'+p.id+'" value="'+(p.price_city||0)+'"></div><div class="pf"><label style="color:var(--g)">省级代理价</label><input type="number" step="0.01" id="pp_'+p.id+'" value="'+(p.price_province||0)+'"></div></div><button class="bsm bsm-g" style="margin-top:10px;padding:8px 16px" onclick="savePr(\''+p.id+'\')">保存价格</button></div>';
+    var isOn=p.is_active!==false;
+    h+='<div class="rcard" style="'+(isOn?'':'opacity:0.5')+'">';
+    h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">';
+    h+='<div style="display:flex;gap:10px;align-items:center">';
+    h+='<div style="width:50px;height:50px;border-radius:6px;background:var(--d3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">';
+    h+=(p.image_url?'<img src="'+p.image_url+'" style="width:100%;height:100%;object-fit:cover;border-radius:6px">':'📦');
+    h+='</div><div><div style="font-size:13px;font-weight:700">'+p.name+'</div><div style="font-size:11px;color:var(--gr)">'+p.category+'</div></div></div>';
+    h+='<div style="display:flex;gap:6px;align-items:center">';
+    h+='<span class="sb '+(isOn?'s-ok':'s-no')+'">'+(isOn?'Published':'Unpublished')+'</span>';
+    if(isOn){h+='<button class="bsm bsm-no" onclick="togProd(\''+p.id+'\',false)">Unpublish</button>';}
+    else{h+='<button class="bsm bsm-ok" onclick="togProd(\''+p.id+'\',true)">Publish</button>';}
+    h+='</div></div>';
+    h+='<div class="pgrid2">';
+    h+='<div class="pf"><label style="color:var(--red)">Settlement (USD)</label><input type="number" step="0.01" id="ps_'+p.id+'" value="'+(p.price_settlement||0)+'"></div>';
+    h+='<div class="pf"><label>Retail (USD)</label><input type="number" step="0.01" id="pr_'+p.id+'" value="'+(p.price_retail||p.price||0)+'" oninput="updVnd(\'pr_'+p.id+'\',\'vr_'+p.id+'\')"><div class="vnd" id="vr_'+p.id+'">'+vnd(p.price_retail||p.price||0)+'</div></div>';
+    h+='<div class="pf"><label style="color:#3B9EE8">Member (USD)</label><input type="number" step="0.01" id="pm_'+p.id+'" value="'+(p.price_member||0)+'"></div>';
+    h+='<div class="pf"><label style="color:var(--ok)">District (USD)</label><input type="number" step="0.01" id="pd_'+p.id+'" value="'+(p.price_district||0)+'" oninput="updVnd(\'pd_'+p.id+'\',\'vd_'+p.id+'\')"><div class="vnd" id="vd_'+p.id+'">'+vnd(p.price_district||0)+'</div></div>';
+    h+='<div class="pf"><label style="color:var(--warn)">City (USD)</label><input type="number" step="0.01" id="pc_'+p.id+'" value="'+(p.price_city||0)+'"></div>';
+    h+='<div class="pf"><label style="color:var(--g)">Province (USD)</label><input type="number" step="0.01" id="pp_'+p.id+'" value="'+(p.price_province||0)+'"></div>';
+    h+='</div>';
+    h+='<button class="bsm bsm-g" style="margin-top:10px;padding:8px 16px" onclick="savePr(\''+p.id+'\')">Save Prices</button>';
+    h+='</div>';
   });
   el.innerHTML=h;
 }
+function updVnd(inpId,lblId){
+  var v=parseFloat(document.getElementById(inpId).value)||0;
+  var lbl=document.getElementById(lblId);
+  if(lbl){lbl.textContent=vnd(v);}
+}
 function savePr(pid){
   PATCH('products?id=eq.'+pid,{price_settlement:parseFloat(document.getElementById('ps_'+pid).value)||0,price_retail:parseFloat(document.getElementById('pr_'+pid).value)||0,price_member:parseFloat(document.getElementById('pm_'+pid).value)||0,price_district:parseFloat(document.getElementById('pd_'+pid).value)||0,price_city:parseFloat(document.getElementById('pc_'+pid).value)||0,price_province:parseFloat(document.getElementById('pp_'+pid).value)||0,updated_at:new Date().toISOString()})
-  .then(function(){toast('Gia da luu!');}).catch(function(e){toast(e.message);});
+  .then(function(){toast('Prices saved!');}).catch(function(e){toast(e.message);});
+}
+function togProd(pid,state){
+  PATCH('products?id=eq.'+pid,{is_active:state})
+  .then(function(){toast(state?'Published!':'Unpublished!');loadAdmData();}).catch(function(e){toast(e.message);});
+}
+function unpubAll(){
+  GET('products?status=eq.approved&select=id').then(function(r){
+    var p=r.map(function(x){return PATCH('products?id=eq.'+x.id,{is_active:false});});
+    Promise.all(p).then(function(){toast('All unpublished!');loadAdmData();});
+  });
+}
+function pubAll(){
+  GET('products?status=eq.approved&select=id').then(function(r){
+    var p=r.map(function(x){return PATCH('products?id=eq.'+x.id,{is_active:true});});
+    Promise.all(p).then(function(){toast('All published!');loadAdmData();});
+  });
 }
 function renderAg(ag){
   var el=document.getElementById('aglist');
-  if(!ag.length){el.innerHTML='<div class="empty"><div>🏪</div><p>Chua co dai ly</p></div>';return;}
-  var lm={district:'Quan',city:'TP',province:'Tinh'};
+  if(!ag.length){el.innerHTML='<div class="empty"><div>🏪</div><p>No agents</p></div>';return;}
   var h='';
   ag.forEach(function(a){
-    h+='<div class="rowcard"><div class="ri"><h3>'+(a.shop_name||a.full_name)+' <span class="sb '+(a.is_active?'s-ok':'s-p')+'" style="margin-left:6px">'+(a.is_active?'Hoat Dong':'Cho Duyet')+'</span> <span class="sb s-p" style="margin-left:4px;background:rgba(201,168,76,.15);color:var(--g);border-color:rgba(201,168,76,.3)">'+(lm[a.agent_level||'district']||a.agent_level)+'</span></h3><p>'+a.full_name+' · '+a.phone+' · '+(a.city||'')+' · Ma: '+(a.agent_code||'-')+(a.shop_slug?' · ?shop='+a.shop_slug:'')+'</p></div><div class="ras">'+(!a.is_active?'<button class="bsm bsm-ok" onclick="openAgAct(\''+a.id+'\',\''+a.full_name+'\')">Kich Hoat</button>':'')+(a.is_active?'<button class="bsm bsm-no" onclick="deActAg(\''+a.id+'\')">Dung</button>':'')+'</div></div>';
+    h+='<div class="rowcard"><div class="ri"><h3>'+(a.shop_name||a.full_name)+' <span class="sb '+(a.is_active?'s-ok':'s-p')+'"> '+(a.is_active?'Active':'Pending')+'</span> <span class="sb s-p" style="background:rgba(201,168,76,.15);color:var(--g);border-color:rgba(201,168,76,.3)">'+(a.agent_level||'district')+'</span></h3>';
+    h+='<p>'+a.full_name+' '+a.phone+' '+(a.city||'')+' Code:'+(a.agent_code||'-')+'</p></div>';
+    h+='<div class="ras">'+(!a.is_active?'<button class="bsm bsm-ok" onclick="openAgAct(\''+a.id+'\',\''+a.full_name+'\')">Activate</button>':'');
+    h+=(a.is_active?'<button class="bsm bsm-no" onclick="deActAg(\''+a.id+'\')">Deactivate</button>':'');
+    h+='</div></div>';
   });
   el.innerHTML=h;
 }
 function renderSu(su){
   var el=document.getElementById('sulist');
-  if(!su.length){el.innerHTML='<div class="empty"><div>🏭</div><p>Chua co nha cung cap</p></div>';return;}
+  if(!su.length){el.innerHTML='<div class="empty"><div>🏭</div><p>No suppliers</p></div>';return;}
   var h='';
   su.forEach(function(s){
-    h+='<div class="rowcard"><div class="ri"><h3>'+s.company_name+' <span class="sb '+(s.status==='active'?'s-ok':'s-p')+'" style="margin-left:6px">'+(s.status==='active'?'Da Kich Hoat':'Cho Duyet')+'</span></h3><p>'+s.email+' · '+(s.category||'')+'</p></div><div class="ras">'+(s.status==='pending'?'<button class="bsm bsm-ok" onclick="updSu(\''+s.id+'\',\'active\')">Kich Hoat</button>':'')+(s.status==='active'?'<button class="bsm bsm-no" onclick="updSu(\''+s.id+'\',\'suspended\')">Dung</button>':'')+'</div></div>';
+    h+='<div class="rowcard"><div class="ri"><h3>'+s.company_name+' <span class="sb '+(s.status==='active'?'s-ok':'s-p')+'"> '+(s.status==='active'?'Active':'Pending')+'</span></h3>';
+    h+='<p>'+s.email+' '+(s.category||'')+'</p></div>';
+    h+='<div class="ras">'+(s.status==='pending'?'<button class="bsm bsm-ok" onclick="updSu(\''+s.id+'\',\'active\')">Activate</button>':'');
+    h+=(s.status==='active'?'<button class="bsm bsm-no" onclick="updSu(\''+s.id+'\',\'suspended\')">Suspend</button>':'');
+    h+='</div></div>';
   });
   el.innerHTML=h;
 }
 function renderOr(or){
   var el=document.getElementById('orlist');
-  if(!or.length){el.innerHTML='<div class="empty"><div>📋</div><p>Chua co don hang</p></div>';return;}
-  var sm={new:'Moi',confirmed:'Da XN',shipping:'Dang Giao',delivered:'Da Giao',cancelled:'Huy'};
-  var h='<table class="otbl"><thead><tr><th>Ma DH</th><th>Khach</th><th>Tong</th><th>TT</th><th>Trang Thai</th><th>LN Dai Ly</th></tr></thead><tbody>';
-  or.forEach(function(o){h+='<tr><td style="color:var(--g);font-weight:600">'+o.order_no+'</td><td>'+o.customer_name+'</td><td>$'+parseFloat(o.total).toFixed(2)+'</td><td><span class="sb '+(o.payment_status==='paid'?'s-ok':'s-p')+'">'+(o.payment_status==='paid'?'Da TT':'Cho TT')+'</span></td><td><span class="sb s-p">'+(sm[o.order_status]||o.order_status)+'</span></td><td style="color:var(--ok)">+$'+parseFloat(o.agent_commission||0).toFixed(2)+'</td></tr>';});
-  h+='</tbody></table>';el.innerHTML=h;
+  if(!or.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
+  var h='<table class="otbl"><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Payment</th><th>Status</th><th>Commission</th></tr></thead><tbody>';
+  or.forEach(function(o){
+    h+='<tr><td style="color:var(--g)">'+o.order_no+'</td><td>'+o.customer_name+'</td>';
+    h+='<td>'+vnd(o.total)+'</td>';
+    h+='<td><span class="sb '+(o.payment_status==='paid'?'s-ok':'s-p')+'">'+(o.payment_status==='paid'?'Paid':'Pending')+'</span></td>';
+    h+='<td><span class="sb s-p">'+o.order_status+'</span></td>';
+    h+='<td style="color:var(--ok)">+'+vnd(o.agent_commission||0)+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  el.innerHTML=h;
 }
 function renderLd(ld){
   var el=document.getElementById('ldlist');
-  if(!ld.length){el.innerHTML='<div class="empty"><div>📝</div><p>Khong co don dang ky moi</p></div>';return;}
+  if(!ld.length){el.innerHTML='<div class="empty"><div>📝</div><p>No new applications</p></div>';return;}
   var h='';
   ld.forEach(function(l){
-    h+='<div class="rowcard"><div class="ri"><h3>'+l.full_name+' <span class="sb s-p" style="margin-left:6px;background:rgba(59,158,232,.15);color:#3B9EE8;border-color:rgba(59,158,232,.3)">Moi</span></h3><p>'+l.phone+' · '+(l.city||'')+' · '+(l.shop_name||'-')+' · '+new Date(l.created_at).toLocaleDateString()+'</p></div><div class="ras"><button class="bsm bsm-ok" onclick="openAgAct(\''+l.id+'\',\''+l.full_name+'\')">Duyet & Kich Hoat</button></div></div>';
+    h+='<div class="rowcard"><div class="ri"><h3>'+l.full_name+' <span class="sb s-p" style="background:rgba(59,158,232,.15);color:#3B9EE8;border-color:rgba(59,158,232,.3)">New</span></h3>';
+    h+='<p>'+l.phone+' '+(l.city||'')+' Shop:'+(l.shop_name||'-')+'</p></div>';
+    h+='<div class="ras"><button class="bsm bsm-ok" onclick="openAgAct(\''+l.id+'\',\''+l.full_name+'\')">Approve</button></div></div>';
   });
   el.innerHTML=h;
 }
 
 function appProd(id){
-  PATCH('products?id=eq.'+id,{status:'approved',reject_reason:null,updated_at:new Date().toISOString()})
-  .then(function(){toast('Da duyet!');loadAdmData();}).catch(function(e){toast(e.message);});
+  PATCH('products?id=eq.'+id,{status:'approved',reject_reason:null,is_active:true,updated_at:new Date().toISOString()})
+  .then(function(){toast('Approved!');loadAdmData();}).catch(function(e){toast(e.message);});
 }
 function openRej(id){curRejId=id;document.getElementById('rr').value='';document.getElementById('m-reject').classList.add('on');}
 function confReject(){
   var r=document.getElementById('rr').value.trim();
-  if(!r){toast('Nhap ly do tu choi');return;}
+  if(!r){toast('Enter reason');return;}
   PATCH('products?id=eq.'+curRejId,{status:'rejected',reject_reason:r,updated_at:new Date().toISOString()})
-  .then(function(){toast('Da tu choi');closeMod();loadAdmData();}).catch(function(e){toast(e.message);});
+  .then(function(){toast('Rejected');closeMod();loadAdmData();}).catch(function(e){toast(e.message);});
 }
 function openAgAct(id,nm){
   curAgActId=id;
@@ -1341,49 +1465,53 @@ function openAgAct(id,nm){
   document.getElementById('m-agent').classList.add('on');
 }
 function confActivate(){
-  var cd=document.getElementById('mac').value.trim(),sn=document.getElementById('masn').value.trim(),sl=document.getElementById('masl').value.trim().toLowerCase().replace(/\s+/g,'-');
+  var cd=document.getElementById('mac').value.trim();
+  var sn=document.getElementById('masn').value.trim();
+  var sl=document.getElementById('masl').value.trim().toLowerCase().replace(/\s+/g,'-');
   var lv=document.getElementById('malv').value;
   var cm={district:10,city:15,province:20};
-  if(!cd||!sn||!sl){toast('Dien day du thong tin');return;}
+  if(!cd||!sn||!sl){toast('Fill all fields');return;}
   PATCH('distributor_leads?id=eq.'+curAgActId,{agent_code:cd,shop_name:sn,shop_slug:sl,agent_level:lv,commission_rate:cm[lv]||10,is_active:true,status:'converted'})
-  .then(function(){toast('Da kich hoat! Ma: '+cd);closeMod();loadAdmData();}).catch(function(e){toast(e.message);});
+  .then(function(){toast('Activated! Code: '+cd);closeMod();loadAdmData();}).catch(function(e){toast(e.message);});
 }
-function deActAg(id){PATCH('distributor_leads?id=eq.'+id,{is_active:false}).then(function(){toast('Da dung');loadAdmData();}).catch(function(e){toast(e.message);});}
-function updSu(id,st){PATCH('suppliers?id=eq.'+id,{status:st}).then(function(){toast(st==='active'?'Da kich hoat':'Da dung');loadAdmData();}).catch(function(e){toast(e.message);});}
+function deActAg(id){PATCH('distributor_leads?id=eq.'+id,{is_active:false}).then(function(){toast('Deactivated');loadAdmData();}).catch(function(e){toast(e.message);});}
+function updSu(id,st){PATCH('suppliers?id=eq.'+id,{status:st}).then(function(){toast(st==='active'?'Activated':'Suspended');loadAdmData();}).catch(function(e){toast(e.message);});}
 function closeMod(){document.querySelectorAll('.mov').forEach(function(m){m.classList.remove('on');});curRejId=null;curAgActId=null;}
 
 function submitLead(){
-  var nm=document.getElementById('ln').value.trim(),ph=document.getElementById('lp').value.trim();
-  if(!nm||!ph){toast('Nhap ho ten va so dien thoai');return;}
+  var nm=document.getElementById('ln').value.trim();
+  var ph=document.getElementById('lp').value.trim();
+  if(!nm||!ph){toast('Enter name and phone');return;}
   setBtn('lbtn',true);
   POST('distributor_leads',{full_name:nm,phone:ph,city:document.getElementById('lc').value.trim(),category_interest:document.getElementById('lcat').value,experience:document.getElementById('le').value.trim(),status:'new',agent_level:'district',is_active:false,commission_rate:10})
   .then(function(){
-    toast('Dang ky thanh cong! Chung toi se lien he trong 24 gio.');
+    toast('Applied! We will contact you in 24h.');
     ['ln','lp','lc','le'].forEach(function(id){document.getElementById(id).value='';});
     document.getElementById('lcat').selectedIndex=0;
-    setBtn('lbtn',false,'GUI DANG KY · SUBMIT · 提交');
-  }).catch(function(e){toast(e.message);setBtn('lbtn',false,'GUI DANG KY · SUBMIT · 提交');});
+    setBtn('lbtn',false,'GUI DANG KY');
+  }).catch(function(e){toast(e.message);setBtn('lbtn',false,'GUI DANG KY');});
 }
 
 function initDots(){
-  var el=document.getElementById('sdots');if(!el)return;
+  var el=document.getElementById('sdots');if(!el){return;}
   el.innerHTML='';
   for(var i=0;i<sTotal;i++){
-    var d=document.createElement('div');d.className='dot'+(i===0?' on':'');
+    var d=document.createElement('div');
+    d.className='dot'+(i===0?' on':'');
     (function(n){d.onclick=function(){goSlide(n);};})(i);
     el.appendChild(d);
   }
 }
 function goSlide(n){
   sIdx=n;
-  var t=document.getElementById('strack');if(t)t.style.transform='translateX(-'+n*100+'%)';
-  var c=document.getElementById('sctr');if(c)c.textContent=(n+1)+' / '+sTotal;
+  var t=document.getElementById('strack');if(t){t.style.transform='translateX(-'+n*100+'%)';}
+  var c=document.getElementById('sctr');if(c){c.textContent=(n+1)+' / '+sTotal;}
   document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===n);});
 }
 function mvSlide(d){goSlide((sIdx+d+sTotal)%sTotal);}
 setInterval(function(){mvSlide(1);},4000);
 initDots();
-setInterval(function(){hIdx=(hIdx+1)%3;var t=document.getElementById('hbgt');if(t)t.style.transform='translateX(-'+hIdx*100+'%)';},5000);
+setInterval(function(){hIdx=(hIdx+1)%3;var t=document.getElementById('hbgt');if(t){t.style.transform='translateX(-'+hIdx*100+'%)';}},5000);
 
 var urlP=new URLSearchParams(window.location.search);
 var shopSlug=urlP.get('shop');
