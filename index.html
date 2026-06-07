@@ -458,62 +458,63 @@ footer span{color:var(--g)}
 <div id="pg-supplier" class="pg">
   <div id="sup-auth">
     <div class="awrap">
-      <button class="bbk" onclick="showPage('home')">Back</button>
+      <button class="bbk" onclick="showPage('home')">← 返回首页</button>
       <div class="acard">
-        <div class="atit">🏭 Supplier Portal</div>
-        <div class="asub">Login to manage your products</div>
+        <div class="atit">🏭 供应商入口</div>
+        <div class="asub">登录管理您的产品</div>
         <div class="atabs">
-          <button class="atab on" id="stab-l" onclick="supTab('l')">Login</button>
-          <button class="atab" id="stab-r" onclick="supTab('r')">Register</button>
+          <button class="atab on" id="stab-l" onclick="supTab('l')">登录</button>
+          <button class="atab" id="stab-r" onclick="supTab('r')">注册</button>
         </div>
         <div id="sform-l" class="aform on">
-          <div class="fg"><label>Email</label><input type="email" id="se" placeholder="factory@email.com"></div>
-          <div class="fg"><label>Password</label><input type="password" id="sp" placeholder="password"></div>
-          <button class="btnf" id="slbtn" onclick="doSupLogin()">LOGIN</button>
+          <div class="fg"><label>邮箱</label><input type="email" id="se" placeholder="factory@email.com"></div>
+          <div class="fg"><label>密码</label><input type="password" id="sp" placeholder="密码"></div>
+          <button class="btnf" id="slbtn" onclick="doSupLogin()">登录</button>
         </div>
         <div id="sform-r" class="aform">
-          <div class="fg"><label>Company Name</label><input type="text" id="sc" placeholder="Factory Ltd"></div>
-          <div class="fg"><label>Email</label><input type="email" id="sre" placeholder="factory@email.com"></div>
-          <div class="fg"><label>Phone</label><input type="text" id="sph" placeholder="+86 xxx xxxx xxxx"></div>
-          <div class="fg"><label>Category</label><select id="scat"><option>Fashion</option><option>Jewelry</option><option>Beauty</option><option>Electronics</option><option>Appliances</option><option>Other</option></select></div>
-          <div class="fg"><label>Password</label><input type="password" id="srp" placeholder="min 6 chars"></div>
-          <button class="btnf" id="srbtn" onclick="doSupReg()">REGISTER</button>
+          <div class="fg"><label>公司名称</label><input type="text" id="sc" placeholder="工厂名称有限公司"></div>
+          <div class="fg"><label>邮箱</label><input type="email" id="sre" placeholder="factory@email.com"></div>
+          <div class="fg"><label>电话</label><input type="text" id="sph" placeholder="+86 xxx xxxx xxxx"></div>
+          <div class="fg"><label>主营品类</label><select id="scat"><option>服装鞋帽</option><option>珠宝手表</option><option>日化美妆</option><option>3C电子</option><option>家用电器</option><option>其他</option></select></div>
+          <div class="fg"><label>密码</label><input type="password" id="srp" placeholder="至少6位"></div>
+          <button class="btnf" id="srbtn" onclick="doSupReg()">提交注册</button>
+          <p style="font-size:11px;color:var(--gr);text-align:center;margin-top:10px">账户将在1-2个工作日内审核激活</p>
         </div>
       </div>
     </div>
   </div>
   <div id="sup-dash" style="display:none">
     <div class="dwrap">
-      <div class="dhead"><div><h2 id="sw">Supplier</h2><p id="sstat" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="supLogout()">Logout</button></div>
+      <div class="dhead"><div><h2 id="sw">供应商</h2><p id="sstat" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="supLogout()">← 退出登录</button></div>
       <div class="dstats">
-        <div class="dstat"><div class="dsn" id="st">-</div><div class="dsl">Total</div></div>
-        <div class="dstat"><div class="dsn" id="sp2" style="color:var(--warn)">-</div><div class="dsl">Pending</div></div>
-        <div class="dstat"><div class="dsn" id="sa" style="color:var(--ok)">-</div><div class="dsl">Approved</div></div>
+        <div class="dstat"><div class="dsn" id="st">-</div><div class="dsl">总产品数</div></div>
+        <div class="dstat"><div class="dsn" id="sp2" style="color:var(--warn)">-</div><div class="dsl">待审核</div></div>
+        <div class="dstat"><div class="dsn" id="sa" style="color:var(--ok)">-</div><div class="dsl">已通过</div></div>
       </div>
       <div class="dtabs">
-        <button class="dtab on" id="sdt-list" onclick="supDT('list')">My Products</button>
-        <button class="dtab" id="sdt-up" onclick="supDT('up')">+ Upload</button>
-        <button class="dtab" id="sdt-ord" onclick="supDT('ord')">Orders</button>
+        <button class="dtab on" id="sdt-list" onclick="supDT('list')">我的产品</button>
+        <button class="dtab" id="sdt-up" onclick="supDT('up')">+ 上传产品</button>
+        <button class="dtab" id="sdt-ord" onclick="supDT('ord')">订单与备货</button>
       </div>
-      <div id="sp-list" class="dpanel on"><div id="splist"><div class="ld">Loading</div></div></div>
-      <div id="sp-ord" class="dpanel"><div id="spord"><div class="ld">Loading</div></div></div>
+      <div id="sp-list" class="dpanel on"><div id="splist"><div class="ld">加载中</div></div></div>
+      <div id="sp-ord" class="dpanel"><div id="spord"><div class="ld">加载中</div></div></div>
       <div id="sp-up" class="dpanel">
         <div style="background:var(--d3);border:2px dashed rgba(201,168,76,.3);border-radius:8px;padding:26px;text-align:center;margin-bottom:14px;cursor:pointer" onclick="document.getElementById('imgf').click()">
           <div style="font-size:30px;margin-bottom:8px">📸</div>
-          <div style="font-size:13px;color:var(--gr)">Click to upload image</div>
+          <div style="font-size:13px;color:var(--gr)">点击上传产品图片 · JPG/PNG 最大5MB</div>
           <input type="file" id="imgf" accept="image/*" style="display:none" onchange="prevImg(this)">
         </div>
         <div id="imgprev" style="display:none;text-align:center;margin-bottom:12px"><img id="previmg" style="max-width:160px;max-height:130px;border-radius:8px;border:1px solid rgba(201,168,76,.4)"></div>
         <div style="background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:16px">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="fg"><label>Product Name</label><input type="text" id="pn" placeholder="LBK Product"></div>
-            <div class="fg"><label>Category</label><select id="pcat"><option>Fashion</option><option>Jewelry</option><option>Beauty</option><option>Electronics</option><option>Appliances</option><option>Bedding</option><option>Outdoor</option><option>Motorcycle</option><option>Bicycle</option><option>Bags</option><option>Furniture</option></select></div>
-            <div class="fg"><label>Price (USD)</label><input type="number" id="pp" placeholder="0.00" step="0.01"></div>
-            <div class="fg"><label>Stock</label><input type="number" id="pst" placeholder="0"></div>
-            <div class="fg"><label>MOQ</label><input type="number" id="pm" placeholder="100"></div>
+            <div class="fg"><label>产品名称</label><input type="text" id="pn" placeholder="兰博基尼黑金刚产品"></div>
+            <div class="fg"><label>品类</label><select id="pcat"><option>服装鞋帽</option><option>珠宝手表</option><option>日化美妆</option><option>3C电子</option><option>家用电器</option><option>床上用品</option><option>户外用品</option><option>摩托车</option><option>自行车</option><option>箱包眼镜</option><option>家具窗帘</option></select></div>
+            <div class="fg"><label>建议价格 (USD)</label><input type="number" id="pp" placeholder="0.00" step="0.01"></div>
+            <div class="fg"><label>库存数量</label><input type="number" id="pst" placeholder="0"></div>
+            <div class="fg"><label>最小起订量 MOQ</label><input type="number" id="pm" placeholder="100"></div>
           </div>
-          <div class="fg"><label>Description</label><textarea id="pd" placeholder="Material, size, color..."></textarea></div>
-          <button class="btnf" id="psbtn" onclick="submitProd()">SUBMIT FOR REVIEW</button>
+          <div class="fg"><label>产品描述</label><textarea id="pd" placeholder="材质、尺寸、颜色等详细信息..."></textarea></div>
+          <button class="btnf" id="psbtn" onclick="submitProd()">提交审核</button>
         </div>
       </div>
     </div>
