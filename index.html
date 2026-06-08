@@ -377,9 +377,9 @@ footer span{color:var(--g)}
       <h3>Khoi Nghiep Nhe Voi Cua Hang Rieng</h3>
       <p>Moi dai ly duoc cap cua hang online rieng. Chon san pham, chia se link, khach hang mua, ban huong chenh lech gia.</p>
       <div class="lvls">
-        <div class="lvl"><div class="lvl-i">🏪</div><div class="lvl-n">Dai Ly Quan</div><div class="lvl-d">~10% Loi Nhuan</div><div class="lvl-b">Dang Mo</div></div>
-        <div class="lvl"><div class="lvl-i">🏙️</div><div class="lvl-n">Dai Ly TP</div><div class="lvl-d">~15% Loi Nhuan</div><div class="lvl-b">Dang Mo</div></div>
-        <div class="lvl"><div class="lvl-i">🌏</div><div class="lvl-n">Dai Ly Tinh</div><div class="lvl-d">~20% Loi Nhuan</div><div class="lvl-b">Dang Mo</div></div>
+        <div class="lvl"><div class="lvl-i">🏪</div><div class="lvl-n" data-vi="Dai Ly Quan" data-en="District Agent" data-zh="区级代理">Dai Ly Quan</div><div class="lvl-d" data-vi="Huong chenh lech gia ban le" data-en="Earn retail price spread" data-zh="赚取零售差价">Huong chenh lech gia ban le</div><div class="lvl-b" data-vi="Dang Mo" data-en="Open" data-zh="招募中">Dang Mo</div></div>
+        <div class="lvl"><div class="lvl-i">🏙️</div><div class="lvl-n" data-vi="Dai Ly TP" data-en="City Agent" data-zh="市级代理">Dai Ly TP</div><div class="lvl-d" data-vi="Chenh lech gia tot hon" data-en="Better price spread" data-zh="更优差价利润">Chenh lech gia tot hon</div><div class="lvl-b" data-vi="Dang Mo" data-en="Open" data-zh="招募中">Dang Mo</div></div>
+        <div class="lvl"><div class="lvl-i">🌏</div><div class="lvl-n" data-vi="Dai Ly Tinh" data-en="Province Agent" data-zh="省级代理">Dai Ly Tinh</div><div class="lvl-d" data-vi="Chenh lech gia cao nhat" data-en="Highest price spread" data-zh="最高差价利润">Chenh lech gia cao nhat</div><div class="lvl-b" data-vi="Dang Mo" data-en="Open" data-zh="招募中">Dang Mo</div></div>
       </div>
       <button class="btn-p" onclick="showPage('agent-login')">DANG KY DAI LY NGAY</button>
     </div>
@@ -672,6 +672,9 @@ var SB='https://leauestkrtvwyanfbghs.supabase.co';
 var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxlYXVlc3RrcnR2d3lhbmZiZ2hzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNDk4MTcsImV4cCI6MjA5NDcyNTgxN30._OA7hE0FRt_bdMFsBzLtz58VQHO4YwOYbj6rgMtet5A';
 var RATE=26300;
 
+/* ── 修复3：定时器变量，防止叠加 ── */
+var slideTimer=null,heroTimer=null;
+
 function vnd(usd){
   var n=Math.round(parseFloat(usd||0)*RATE);
   return n.toLocaleString('vi-VN')+'d';
@@ -831,12 +834,13 @@ function openPMod(pid){
   document.getElementById('m-prod').classList.add('on');
 }
 
+/* ── 修复1：addCart 使用 agCP(p) 代理商采购价 ── */
 function addCart(pid){
   var p=allP.find(function(x){return x.id===pid;});
   if(!p){return;}
   var ex=cart.find(function(i){return i.id===pid;});
   if(ex){ex.qty++;}
-  else{var o=JSON.parse(JSON.stringify(p));o.qty=1;o.dp=retP(p);cart.push(o);}
+  else{var o=JSON.parse(JSON.stringify(p));o.qty=1;o.dp=agCP(p);cart.push(o);}
   updCart();toast('Added to cart!');
 }
 function buyNow(pid){addCart(pid);openCart();}
@@ -888,6 +892,8 @@ function goCheckout(){
   document.getElementById('coitems').innerHTML=h;
   showPage('checkout');
 }
+
+/* ── 修复2：placeOrder 加入 allP 空值保护 ── */
 function placeOrder(){
   var nm=document.getElementById('cn').value.trim();
   var ph=document.getElementById('cp').value.trim();
@@ -895,6 +901,7 @@ function placeOrder(){
   var sub=cart.reduce(function(s,i){return s+i.dp*i.qty;},0);
   var comm=0;
   if(logAg){
+    if(!allP.length){toast('Product data not loaded, please refresh and try again');return;}
     cart.forEach(function(i){
       var p=allP.find(function(x){return x.id===i.id;});
       if(p){comm+=agProf(p)*i.qty;}
@@ -1264,7 +1271,7 @@ function loadShopPage(slug){
     if(ag.email){bh+='<div class="bcct"><div class="bcct-i">@</div><a href="mailto:'+ag.email+'">'+ag.email+'</a></div>';}
     if(ag.city){bh+='<div class="bcct"><div class="bcct-i">📍</div><span>'+ag.city+'</span></div>';}
     bh+='</div>';
-    bh+='<div class="bcshop"><span>'+( ag.shop_name||'Shop')+'</span><a href="'+su+'" target="_blank">'+su.replace('https://','')+'</a></div>';
+    bh+='<div class="bcshop"><span>'+(ag.shop_name||'Shop')+'</span><a href="'+su+'" target="_blank">'+su.replace('https://','')+'</a></div>';
     var wt=encodeURIComponent('Shop '+(ag.shop_name||'LBK')+' - LBK\n'+su);
     bh+='<div class="shbts">';
     bh+='<a class="sbt sbt-fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(su)+'" target="_blank">Facebook</a>';
@@ -1510,9 +1517,19 @@ function goSlide(n){
   document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===n);});
 }
 function mvSlide(d){goSlide((sIdx+d+sTotal)%sTotal);}
-setInterval(function(){mvSlide(1);},4000);
+
+/* ── 修复3：定时器用变量管理，防止叠加 ── */
+if(slideTimer){clearInterval(slideTimer);}
+slideTimer=setInterval(function(){mvSlide(1);},4000);
+
+if(heroTimer){clearInterval(heroTimer);}
+heroTimer=setInterval(function(){
+  hIdx=(hIdx+1)%3;
+  var t=document.getElementById('hbgt');
+  if(t){t.style.transform='translateX(-'+hIdx*100+'%)';}
+},5000);
+
 initDots();
-setInterval(function(){hIdx=(hIdx+1)%3;var t=document.getElementById('hbgt');if(t){t.style.transform='translateX(-'+hIdx*100+'%)';}},5000);
 
 var urlP=new URLSearchParams(window.location.search);
 var shopSlug=urlP.get('shop');
