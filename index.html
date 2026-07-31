@@ -425,8 +425,36 @@ footer span{color:var(--g)}
           <div class="fg"><label>Ghi Chu</label><textarea id="cno" placeholder="Ghi chu..."></textarea></div>
         </div>
         <div class="cobox" style="margin-top:14px">
-          <h3>MoMo Payment</h3>
-          <div class="mbox"><div style="font-size:28px">💜</div><div style="font-size:13px;font-weight:700;color:#AE2070">MoMo</div><div class="mamt" id="mamt">0d</div></div>
+          <h3>Chuyen Khoan Ngan Hang</h3>
+          <div style="background:var(--d3);border-radius:8px;padding:14px;text-align:center">
+            <img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/payment-qr.jpg"
+              style="width:180px;height:180px;object-fit:contain;border-radius:8px;background:#fff;padding:6px;display:block;margin:0 auto 12px">
+            <div style="font-size:11px;color:var(--gr);line-height:2;text-align:left;border-top:1px solid rgba(201,168,76,.15);padding-top:10px">
+              <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:4px">
+                <span style="color:var(--gr)">Ngan hang</span>
+                <span style="color:var(--w);font-weight:700;text-align:right">VietinBank</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:4px">
+                <span style="color:var(--gr)">Chi nhanh</span>
+                <span style="color:var(--w);font-weight:700;text-align:right">CN 4 - TP HCM</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:4px">
+                <span style="color:var(--gr)">Ten TK</span>
+                <span style="color:var(--w);font-weight:700;text-align:right;font-size:10px">CT TNHH THUONG MAI BACH HOA TUNG HAI HOI</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:8px;align-items:center">
+                <span style="color:var(--gr)">So TK</span>
+                <span style="color:var(--g);font-weight:900;font-size:15px;letter-spacing:1px">117003068202</span>
+              </div>
+            </div>
+            <div style="margin-top:10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:8px">
+              <div style="font-size:11px;color:var(--gr);margin-bottom:4px">So tien can chuyen</div>
+              <div class="mamt" id="mamt" style="color:var(--g);font-size:20px;font-weight:900;margin:0">0d</div>
+            </div>
+            <div style="margin-top:8px;font-size:10px;color:var(--gr);line-height:1.6">
+              Noi dung CK: <span style="color:var(--warn)" id="ck-note">LBK + [So dien thoai]</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="cobox">
@@ -437,7 +465,7 @@ footer span{color:var(--g)}
           <div class="orow"><span>Ship</span><span>Free</span></div>
           <div class="orow"><span>Total</span><span id="cototal">0d</span></div>
         </div>
-        <button class="btnf" style="margin-top:18px" onclick="placeOrder()">DAT HANG MOMO</button>
+        <button class="btnf" style="margin-top:18px" onclick="placeOrder()">XAC NHAN DAT HANG</button>
       </div>
     </div>
   </div>
@@ -892,6 +920,14 @@ function goCheckout(){
   document.getElementById('coitems').innerHTML=h;
   showPage('checkout');
 }
+// 客户填手机号时自动更新转账备注
+document.addEventListener('input',function(e){
+  if(e.target&&e.target.id==='cp'){
+    var ph=e.target.value.trim()||'SDT';
+    var note=document.getElementById('ck-note');
+    if(note){note.textContent='LBK '+ph;}
+  }
+});
 
 /* ── 修复2：placeOrder 加入 allP 空值保护 ── */
 function placeOrder(){
