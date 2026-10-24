@@ -1258,31 +1258,40 @@ function loadAgProfit(){
   var el=document.getElementById('agpl');
   el.innerHTML='<div class="ld">Loading</div>';
   // 从 orders 表直接统计佣金，commissions 表可能为空
-  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc&select=order_no,created_at,total,agent_commission,payment_status,order_status')
+  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc&select=order_no,created_at,total,agent_commission,payment_status,commission_status,order_status')
   .then(function(r){
     if(!r.length){el.innerHTML='<div class="empty"><div>💰</div><p>暂无佣金记录</p></div>';return;}
-    var paid=r.filter(function(o){return o.payment_status==='paid';});
-    var pending=r.filter(function(o){return o.payment_status!=='paid';});
-    var totPaid=paid.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
-    var totPend=pending.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
-    var totAll=r.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    // 只有已付款订单才计入佣金
+    var paidOrds=r.filter(function(o){return o.payment_status==='paid';});
+    // 已结算：管理员标记 commission_status=settled
+    var settled=paidOrds.filter(function(o){return o.commission_status==='settled';});
+    // 待结算：已付款但管理员尚未结算
+    var unsettled=paidOrds.filter(function(o){return o.commission_status!=='settled';});
+    var totSettled=settled.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    var totUnsettled=unsettled.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    var totAll=paidOrds.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
     var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">';
-    h+='<div class="dstat"><div class="dsn" style="color:#f5c842;font-size:20px;font-weight:900">'+vnd(totAll)+'</div><div class="dsl">总佣金</div></div>';
-    h+='<div class="dstat"><div class="dsn" style="color:#4caf50;font-size:18px;font-weight:900">'+vnd(totPaid)+'</div><div class="dsl">已结算</div></div>';
-    h+='<div class="dstat"><div class="dsn" style="color:#ff9f40;font-size:18px;font-weight:800">'+vnd(totPend)+'</div><div class="dsl">待结算</div></div></div>';
+    h+='<div class="dstat"><div class="dsn" style="color:#f5c842;font-size:20px;font-weight:900">'+vnd(totAll)+'</div><div class="dsl">总佣金<br><span style="font-size:9px;color:var(--gr)">（仅已付款订单）</span></div></div>';
+    h+='<div class="dstat" style="border-color:rgba(76,175,80,.4)"><div class="dsn" style="color:#4caf50;font-size:18px;font-weight:900">'+vnd(totSettled)+'</div><div class="dsl">✅ 已结算<br><span style="font-size:9px;color:var(--gr)">管理员已打款</span></div></div>';
+    h+='<div class="dstat" style="border-color:rgba(255,159,64,.4)"><div class="dsn" style="color:#ff9f40;font-size:18px;font-weight:800">'+vnd(totUnsettled)+'</div><div class="dsl">⏳ 待结算<br><span style="font-size:9px;color:var(--gr)">等待管理员打款</span></div></div></div>';
     h+='<table class="otbl" style="font-size:12px"><thead><tr>';
-    h+='<th>订单号</th><th>时间</th><th>订单金额</th><th style="color:#f5c842">佣金</th><th>状态</th>';
+    h+='<th>订单号</th><th>时间</th><th>订单金额</th><th style="color:#f5c842">佣金</th><th>结算状态</th>';
     h+='</tr></thead><tbody>';
     r.forEach(function(o){
       var dt=new Date(o.created_at).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
       var comm=parseFloat(o.agent_commission||0);
       var isPaid=o.payment_status==='paid';
+      var isSettled=o.commission_status==='settled';
       h+='<tr>';
       h+='<td style="color:var(--g);font-size:11px;font-weight:600">'+o.order_no+'</td>';
       h+='<td style="font-size:10px">'+dt+'</td>';
       h+='<td style="font-size:11px">'+vnd(o.total)+'</td>';
-      h+='<td style="color:'+(isPaid?'#4caf50':'#f5c842')+';font-weight:900;font-size:14px">+'+vnd(comm)+'</td>';
-      h+='<td><span class="sb '+(isPaid?'s-ok':'s-p')+'">'+(isPaid?'已结算':'待结算')+'</span></td>';
+      // 只有已付款才显示佣金金额
+      h+='<td style="color:'+(isPaid?(isSettled?'#4caf50':'#f5c842'):'var(--gr)')+';font-weight:900;font-size:14px">'+(isPaid?'+'+vnd(comm):'—')+'</td>';
+      // 结算状态：未付款→等待付款；已付款未结算→待结算；已付款已结算→已结算
+      var stLabel=!isPaid?'<span class="sb" style="color:var(--gr);border-color:rgba(255,255,255,.15)">等待付款</span>'
+        :(isSettled?'<span class="sb s-ok">✅ 已结算</span>':'<span class="sb s-p">⏳ 待结算</span>');
+      h+='<td>'+stLabel+'</td>';
       h+='</tr>';
     });
     h+='</tbody></table>';
@@ -1428,7 +1437,7 @@ function doAdmLogin(){
   }).catch(function(e){toast(e.message);setBtn('admlbtn',false,'LOGIN');});
 }
 function loadAdmData(){
-  Promise.all([GET('suppliers?select=*&order=created_at.desc'),GET('products?select=*,suppliers(company_name)&order=created_at.desc'),GET('distributor_leads?select=*&order=created_at.desc'),GET('orders?select=id,order_no,created_at,updated_at,customer_name,customer_phone,customer_address,items,subtotal,total,agent_id,agent_commission,payment_method,payment_status,order_status,note&order=created_at.desc')])
+  Promise.all([GET('suppliers?select=*&order=created_at.desc'),GET('products?select=*,suppliers(company_name)&order=created_at.desc'),GET('distributor_leads?select=*&order=created_at.desc'),GET('orders?select=id,order_no,created_at,updated_at,customer_name,customer_phone,customer_address,items,subtotal,total,agent_id,agent_commission,commission_status,payment_method,payment_status,order_status,note&order=created_at.desc')])
   .then(function(res){
     var su=res[0],pr=res[1],ag=res[2],or=res[3];
     // 构建 product_id → price_settlement 映射，供 renderOr 计算结算金额
@@ -1588,14 +1597,20 @@ function renderOr(or){
   var paidAmt=paidOrd.reduce(function(s,o){return s+parseFloat(o.total||0);},0);
   var totalComm=paidOrd.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
   var totalSettle=paidOrd.reduce(function(s,o){return s+calcSettle(o);},0);
-  // 已付款消耗量：product_id → sold qty（用于计算剩余库存）
+  // 已付款消耗量：product_id → sold qty（跨所有已付款订单累加）
   var soldMap={};
   paidOrd.forEach(function(o){
-    var its=[];try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
-    its.forEach(function(it){soldMap[it.id]=(soldMap[it.id]||0)+(it.qty||1);});
+    var its=[];
+    try{its=typeof o.items==='string'?JSON.parse(o.items):(Array.isArray(o.items)?o.items:[]);}catch(e){its=[];}
+    its.forEach(function(it){
+      if(!it||!it.id)return;
+      var q=parseInt(it.qty,10);
+      if(isNaN(q)||q<1)q=1;
+      soldMap[it.id]=(soldMap[it.id]||0)+q;
+    });
   });
   function getRemainStock(pid){
-    var orig=sm[pid];if(orig===undefined)return null;
+    var orig=sm[pid];if(orig===undefined||orig===null)return null;
     return Math.max(0,orig-(soldMap[pid]||0));
   }
 
@@ -1661,7 +1676,8 @@ function renderOr(or){
     h+='<td style="font-size:10px">'+prodStr+'</td>';
     h+='<td style="text-align:center;font-size:11px;color:'+(stockParts.some(function(s){return parseInt(s,10)<5;})?'#f44336':'#4caf50')+'">'+stockStr+'</td>';
     h+='<td style="font-weight:700">'+vnd(o.total)+'</td>';
-    // 佣金列：无代理商→自来客；未付款→—；已付款→显示金额
+    // 佣金列：无代理商→自来客；未付款→—；已付款→显示金额+结算状态下拉
+    var csettled=o.commission_status==='settled';
     h+='<td>';
     if(!o.agent_id){
       // 没有推荐代理商
@@ -1681,6 +1697,11 @@ function renderOr(or){
       h+='<div style="color:#ff9f40;font-weight:700">'+(agInfo?(agInfo.shop_name||agInfo.full_name||'代理商'):'代理 '+o.agent_id)+'</div>';
       if(agInfo){h+='<div style="color:var(--gr)">代码: '+agInfo.agent_code+'&nbsp;&nbsp;级别: '+agInfo.agent_level+'</div>';}
       h+='</div>';
+      // 结算状态下拉（仅已付款有佣金时显示）
+      h+='<select onchange="updCommStatus(\''+o.id+'\',this.value)" style="margin-top:5px;width:100%;background:'+(csettled?'rgba(76,175,80,.15)':'rgba(255,159,64,.12)')+';color:'+(csettled?'#4caf50':'#ff9f40')+';border:1px solid '+(csettled?'rgba(76,175,80,.4)':'rgba(255,159,64,.4)')+';border-radius:5px;padding:3px 4px;font-size:10px;font-weight:700;cursor:pointer">';
+      h+='<option value="pending"'+(csettled?'':' selected')+'>⏳ 待结算</option>';
+      h+='<option value="settled"'+(csettled?' selected':'')+'>✅ 已结算</option>';
+      h+='</select>';
     } else {
       h+='<span style="color:var(--gr);font-size:10px">—</span>';
     }
@@ -1726,6 +1747,11 @@ function fixComm(oid,amount){
   PATCH('orders?id=eq.'+oid,{agent_commission:amount})
   .then(function(){toast('佣金已补录: +'+vnd(amount)+' ✓');loadAdmData();})
   .catch(function(e){toast('补录失败: '+e.message);});
+}
+function updCommStatus(oid,val){
+  PATCH('orders?id=eq.'+oid,{commission_status:val})
+  .then(function(){toast(val==='settled'?'✅ 已标记为已结算':'⏳ 已标记为待结算');loadAdmData();})
+  .catch(function(e){toast('更新失败: '+e.message);});
 }
 function updOrdStatus(oid,field,val,curPayStatus){
   // 订单状态联锁：未付款不能改成发货/完成
