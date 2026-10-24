@@ -1431,10 +1431,12 @@ function loadAdmData(){
     var su=res[0],pr=res[1],ag=res[2],or=res[3];
     // 构建 product_id → price_settlement 映射，供 renderOr 计算结算金额
     window._admPriceMap={};
-    window._admStockMap={};  // product_id → stock (原始库存)
+    window._admStockMap={};
+    window._admProductMap={};  // product_id → full product (all price tiers)
     pr.forEach(function(p){
       window._admPriceMap[p.id]=parseFloat(p.price_settlement||0);
       window._admStockMap[p.id]=parseInt(p.stock||0,10);
+      window._admProductMap[p.id]=p;
     });
     // 代理商映射：agent_id → {shop_name, full_name, agent_code, agent_level}
     window._admAgMap={};
@@ -1550,9 +1552,28 @@ function renderSu(su){
 function renderOr(or){
   var el=document.getElementById('orlist');
   if(!or.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
-  var pm=window._admPriceMap||{};   // product_id → price_settlement
-  var sm=window._admStockMap||{};   // product_id → 原始库存
-  var am=window._admAgMap||{};      // agent_id → agent info
+  var pm=window._admPriceMap||{};      // product_id → price_settlement
+  var sm=window._admStockMap||{};      // product_id → 原始库存
+  var am=window._admAgMap||{};         // agent_id → agent info
+  var pmap=window._admProductMap||{};  // product_id → full product
+  // 按代理商级别算单笔佣金：(零售价 - 代理价) × qty
+  function calcCommByLevel(o){
+    if(!o.agent_id)return 0;
+    var agInfo=am[o.agent_id];
+    var lv=agInfo?agInfo.agent_level:'district';
+    var its=[];
+    try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
+    return its.reduce(function(s,it){
+      var p=pmap[it.id];
+      if(!p)return s;
+      var retail=parseFloat(p.price_retail||p.price||0);
+      var agPrice;
+      if(lv==='province') agPrice=parseFloat(p.price_province||p.price_city||p.price_district||p.price_retail||p.price||0);
+      else if(lv==='city') agPrice=parseFloat(p.price_city||p.price_district||p.price_retail||p.price||0);
+      else agPrice=parseFloat(p.price_district||p.price_retail||p.price||0);
+      return s+(retail-agPrice)*(it.qty||1);
+    },0);
+  }
   function calcSettle(o){
     var its=[];
     try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
@@ -1613,7 +1634,11 @@ function renderOr(or){
     var isPaid=o.payment_status==='paid';
     var isRefunded=o.payment_status==='refunded';
     var isCancelled=o.payment_status==='cancelled';
-    var comm=isPaid?parseFloat(o.agent_commission||0):0;  // 未付款佣金不参与结算
+    var commRaw=parseFloat(o.agent_commission||0);
+    // 如果有代理商但佣金为0，自动按公式重算
+    var commCalc=(commRaw===0&&o.agent_id)?calcCommByLevel(o):commRaw;
+    var commNeedsfix=(commRaw===0&&o.agent_id&&commCalc>0);
+    var comm=isPaid?commCalc:0;  // 未付款不计入结算汇总
     var toSupplier=isPaid?calcSettle(o):0;
     var its=[];
     try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
@@ -1634,16 +1659,21 @@ function renderOr(or){
     h+='<td style="font-size:10px">'+prodStr+'</td>';
     h+='<td style="text-align:center;font-size:11px;color:'+(stockParts.some(function(s){return parseInt(s,10)<5;})?'#f44336':'#4caf50')+'">'+stockStr+'</td>';
     h+='<td style="font-weight:700">'+vnd(o.total)+'</td>';
-    // 佣金列：点击展开代理商详情
+    // 佣金列：点击展开代理商详情；佣金为0时显示重算金额+补录按钮
     h+='<td>';
-    if(isPaid&&comm>0){
-      h+='<span style="color:#ff9f40;font-weight:900;cursor:pointer;user-select:none" onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\'">+'+vnd(comm)+' ▾</span>';
+    if(commNeedsfix){
+      // 有代理商但佣金漏算了：显示重算值+补录按钮
+      h+='<div style="color:#f5c842;font-size:10px;font-weight:700">+'+vnd(commCalc)+'</div>';
+      h+='<div style="font-size:9px;color:#f44336">⚠ 原记录为0</div>';
+      h+='<button onclick="fixComm(\''+o.id+'\','+commCalc+')" style="margin-top:3px;background:#f5c842;color:#000;border:none;border-radius:4px;padding:2px 6px;font-size:9px;font-weight:700;cursor:pointer">补录佣金</button>';
+    } else if(commCalc>0){
+      h+='<span style="color:#ff9f40;font-weight:900;cursor:pointer;user-select:none" onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\'">'+(isPaid?'+':'')+vnd(commCalc)+' ▾</span>';
       h+='<div style="display:none;margin-top:4px;background:rgba(255,159,64,.1);border:1px solid rgba(255,159,64,.3);border-radius:6px;padding:5px 8px;font-size:10px;white-space:nowrap">';
       h+='<div style="color:#ff9f40;font-weight:700">'+(agInfo?(agInfo.shop_name||agInfo.full_name||'代理商'):'代理 '+o.agent_id)+'</div>';
       if(agInfo){h+='<div style="color:var(--gr)">代码: '+agInfo.agent_code+'&nbsp;&nbsp;级别: '+agInfo.agent_level+'</div>';}
       h+='</div>';
     } else {
-      h+='<span style="color:var(--gr);font-size:10px">'+(isPaid?'+'+vnd(comm):'待付款')+'</span>';
+      h+='<span style="color:var(--gr);font-size:10px">'+(o.agent_id?'无差价':'—')+'</span>';
     }
     h+='</td>';
     h+='<td style="color:'+(isPaid?'#f5c842':'var(--gr)')+';font-weight:'+(isPaid?'900':'400')+'">'+(isPaid?vnd(toSupplier):'—')+'</td>';
@@ -1682,6 +1712,11 @@ function renderOr(or){
   h+='<div><div style="font-size:11px;color:var(--gr)">应付供应商总额</div><div style="font-size:22px;font-weight:900;color:#f5c842">'+vnd(totalSettle)+'</div></div>';
   h+='</div></div>';
   el.innerHTML=h;
+}
+function fixComm(oid,amount){
+  PATCH('orders?id=eq.'+oid,{agent_commission:amount})
+  .then(function(){toast('佣金已补录: +'+vnd(amount)+' ✓');loadAdmData();})
+  .catch(function(e){toast('补录失败: '+e.message);});
 }
 function updOrdStatus(oid,field,val,curPayStatus){
   // 订单状态联锁：未付款不能改成发货/完成
