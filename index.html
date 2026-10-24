@@ -581,9 +581,9 @@ footer span{color:var(--g)}
     <div class="dwrap">
       <div class="dhead"><div><h2 id="agt">My Shop</h2><p id="agsub" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="agLogout()" data-vi="Dang Xuat" data-en="Logout" data-zh="退出登录">Logout</button></div>
       <div class="dstats">
-        <div class="dstat"><div class="dsn" id="agoc">-</div><div class="dsl" data-vi="Don Hang" data-en="Orders" data-zh="订单">Orders</div></div>
-        <div class="dstat"><div class="dsn" id="agpr" style="color:var(--ok)">-</div><div class="dsl" data-vi="Loi Nhuan" data-en="Profit" data-zh="利润">Profit</div></div>
-        <div class="dstat"><div class="dsn" id="agpp" style="color:var(--warn)">-</div><div class="dsl">Pending</div></div>
+        <div class="dstat"><div class="dsn" id="agoc" style="color:var(--g);font-size:32px;font-weight:900">-</div><div class="dsl" data-vi="Don Hang" data-en="Orders" data-zh="订单">Orders</div></div>
+        <div class="dstat"><div class="dsn" id="agpr" style="color:#f5c842;font-size:22px;font-weight:900">-</div><div class="dsl" data-vi="Loi Nhuan" data-en="Profit" data-zh="利润">Profit</div></div>
+        <div class="dstat"><div class="dsn" id="agpp" style="color:#ff9f40;font-size:18px;font-weight:700">-</div><div class="dsl">Pending</div></div>
       </div>
       <div class="ainfo">
         <div class="ainf-item"><div class="ainf-l" data-vi="Cap Do" data-en="Level" data-zh="代理级别">Level</div><div class="ainf-v" id="agld"></div></div>
@@ -1025,42 +1025,62 @@ function loadSupOrders(){
   el.innerHTML='<div class="ld">Loading</div>';
   GET('products?supplier_id=eq.'+logSup.id+'&status=eq.approved&select=id,name,category,stock')
   .then(function(prods){
-    if(!prods.length){el.innerHTML='<div class="empty"><div>📦</div><p>No approved products</p></div>';return;}
-    var stats={};
-    prods.forEach(function(p){stats[p.id]={orders:0,qty:0,pending:0};});
-    GET('orders?select=items,order_status')
+    if(!prods.length){el.innerHTML='<div class="empty"><div>📦</div><p>暂无上架产品</p></div>';return;}
+    var pidSet={};
+    prods.forEach(function(p){pidSet[p.id]=p.name;});
+    GET('orders?order=created_at.desc&select=id,order_no,created_at,customer_name,customer_phone,customer_address,items,subtotal,total,order_status,payment_status,note')
     .then(function(orders){
+      // 筛选包含本供应商产品的订单
+      var myOrders=[];
       orders.forEach(function(o){
         if(!o.items){return;}
         var its=typeof o.items==='string'?JSON.parse(o.items):o.items;
         if(!Array.isArray(its)){return;}
-        its.forEach(function(it){
-          if(it.id&&stats[it.id]){
-            stats[it.id].orders++;
-            stats[it.id].qty+=(it.qty||1);
-            if(o.order_status==='new'||o.order_status==='confirmed'){stats[it.id].pending+=(it.qty||1);}
-          }
-        });
+        var myItems=its.filter(function(it){return it.id&&pidSet[it.id];});
+        if(myItems.length){
+          o._myItems=myItems;
+          myOrders.push(o);
+        }
       });
-      GET('agent_products?select=product_id')
-      .then(function(ap){
-        var ac={};
-        ap.forEach(function(x){ac[x.product_id]=(ac[x.product_id]||0)+1;});
-        var to=0,tq=0,tp=0;
-        prods.forEach(function(p){to+=stats[p.id].orders;tq+=stats[p.id].qty;tp+=stats[p.id].pending;});
-        var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">';
-        h+='<div class="dstat"><div class="dsn">'+to+'</div><div class="dsl">Total Orders</div></div>';
-        h+='<div class="dstat"><div class="dsn" style="color:var(--warn)">'+tp+'</div><div class="dsl">Pending Stock</div></div>';
-        h+='<div class="dstat"><div class="dsn" style="color:var(--ok)">'+tq+'</div><div class="dsl">Total Sold</div></div></div>';
-        h+='<table class="otbl"><thead><tr><th>Product</th><th>Stock</th><th>Agents</th><th>Orders</th><th>Pending</th><th>Sold</th></tr></thead><tbody>';
-        prods.forEach(function(p){
-          var s=stats[p.id];
-          var ag=ac[p.id]||0;
-          h+='<tr><td>'+p.name+'</td><td>'+p.stock+'</td><td>'+ag+'</td><td>'+s.orders+'</td><td>'+s.pending+'</td><td>'+s.qty+'</td></tr>';
-        });
-        h+='</tbody></table>';
-        el.innerHTML=h;
-      }).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
+      // 统计
+      var tord=myOrders.length;
+      var tqty=myOrders.reduce(function(s,o){return s+o._myItems.reduce(function(ss,it){return ss+(it.qty||1);},0);},0);
+      var tpend=myOrders.filter(function(o){return o.order_status==='new'||o.order_status==='confirmed';}).length;
+      var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">';
+      h+='<div class="dstat"><div class="dsn" style="color:var(--g)">'+tord+'</div><div class="dsl">总订单数</div></div>';
+      h+='<div class="dstat"><div class="dsn" style="color:var(--warn)">'+tpend+'</div><div class="dsl">待备货</div></div>';
+      h+='<div class="dstat"><div class="dsn" style="color:var(--ok)">'+tqty+'</div><div class="dsl">已售数量</div></div></div>';
+      if(!myOrders.length){
+        el.innerHTML=h+'<div class="empty"><div>📋</div><p>暂无订单</p></div>';
+        return;
+      }
+      h+='<div style="margin-bottom:8px;font-size:12px;color:var(--gr)">↓ 点击订单行查看详情</div>';
+      h+='<table class="otbl"><thead><tr><th>订单号</th><th>下单时间</th><th style="color:var(--warn)">收货人</th><th style="color:var(--warn)">电话</th><th>产品</th><th>数量</th><th>金额</th><th>状态</th></tr></thead><tbody>';
+      myOrders.forEach(function(o){
+        var dt=new Date(o.created_at).toLocaleDateString('zh-CN');
+        var prodNames=o._myItems.map(function(it){return (pidSet[it.id]||it.name||'?')+(it.qty>1?' x'+it.qty:'');}).join(', ');
+        var myQty=o._myItems.reduce(function(s,it){return s+(it.qty||1);},0);
+        var stCls=o.payment_status==='paid'?'s-ok':'s-p';
+        var stTxt=o.payment_status==='paid'?'已付款':'待付款';
+        var ordStTxt=o.order_status==='new'?'新订单':o.order_status==='confirmed'?'已确认':o.order_status==='shipped'?'已发货':o.order_status==='done'?'已完成':o.order_status;
+        h+='<tr>';
+        h+='<td style="color:var(--g);font-weight:700">'+o.order_no+'</td>';
+        h+='<td style="font-size:11px">'+dt+'</td>';
+        h+='<td style="color:#fff;font-weight:700">'+o.customer_name+'</td>';
+        h+='<td style="color:var(--g);font-weight:700"><a href="tel:'+o.customer_phone+'" style="color:var(--g)">'+o.customer_phone+'</a></td>';
+        h+='<td style="font-size:11px">'+prodNames+'</td>';
+        h+='<td style="text-align:center">'+myQty+'</td>';
+        h+='<td>'+vnd(o.total)+'</td>';
+        h+='<td><span class="sb '+stCls+'">'+stTxt+'</span><br><span style="font-size:10px;color:var(--gr)">'+ordStTxt+'</span></td>';
+        h+='</tr>';
+        // 收货地址行
+        h+='<tr style="background:rgba(201,168,76,.04)"><td colspan="8" style="padding:6px 10px;font-size:11px">';
+        h+='<span style="color:var(--gr)">📦 收货地址：</span><span style="color:var(--w)">'+o.customer_address+'</span>';
+        if(o.note){h+='&nbsp;&nbsp;<span style="color:var(--gr)">备注：</span><span style="color:var(--warn)">'+o.note+'</span>';}
+        h+='</td></tr>';
+      });
+      h+='</tbody></table>';
+      el.innerHTML=h;
     }).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
   }).catch(function(e){el.innerHTML='<p>'+e.message+'</p>';});
 }
@@ -1193,19 +1213,41 @@ function loadAgOrders(){
   if(!logAg){return;}
   var el=document.getElementById('agol');
   el.innerHTML='<div class="ld">Loading</div>';
-  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc')
+  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc&select=id,order_no,created_at,customer_name,customer_phone,customer_address,items,subtotal,total,agent_commission,payment_status,order_status,note')
   .then(function(r){
-    document.getElementById('agoc').textContent=r.length;
+    var cnt=r.length;
     var tot=r.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
     var pend=r.filter(function(o){return o.payment_status!=='paid';}).reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
-    document.getElementById('agpr').textContent=vnd(tot);
-    document.getElementById('agpp').textContent=vnd(pend);
-    if(!r.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
-    var h='<table class="otbl"><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Profit</th><th>Status</th></tr></thead><tbody>';
+    // 统计数字加粗高亮
+    var ocEl=document.getElementById('agoc');
+    if(ocEl){ocEl.innerHTML='<span style="font-size:32px;font-weight:900;color:var(--g)">'+cnt+'</span>';}
+    var prEl=document.getElementById('agpr');
+    if(prEl){prEl.innerHTML='<span style="font-size:22px;font-weight:900;color:#f5c842">'+vnd(tot)+'</span>';}
+    var ppEl=document.getElementById('agpp');
+    if(ppEl){ppEl.innerHTML='<span style="font-size:18px;font-weight:700;color:#ff9f40">'+vnd(pend)+'</span>';}
+    if(!r.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders yet</p></div>';return;}
+    var h='<table class="otbl" style="font-size:12px"><thead><tr>';
+    h+='<th>订单号</th><th>时间</th><th style="color:#ff9f40">客户</th><th style="color:#ff9f40">电话</th><th>金额</th><th style="color:#f5c842">佣金</th><th>状态</th>';
+    h+='</tr></thead><tbody>';
     r.forEach(function(o){
-      h+='<tr><td style="color:var(--g)">'+o.order_no+'</td><td>'+o.customer_name+'</td>';
-      h+='<td>'+vnd(o.total)+'</td><td style="color:var(--ok)">+'+vnd(o.agent_commission||0)+'</td>';
-      h+='<td><span class="sb '+(o.payment_status==='paid'?'s-ok':'s-p')+'">'+(o.payment_status==='paid'?'Paid':'Pending')+'</span></td></tr>';
+      var dt=new Date(o.created_at).toLocaleDateString('zh-CN');
+      var comm=parseFloat(o.agent_commission||0);
+      var stCls=o.payment_status==='paid'?'s-ok':'s-p';
+      var stTxt=o.payment_status==='paid'?'已付款':'待付款';
+      h+='<tr>';
+      h+='<td style="color:var(--g);font-weight:700;font-size:11px">'+o.order_no+'</td>';
+      h+='<td style="font-size:10px">'+dt+'</td>';
+      h+='<td style="font-weight:700;color:#fff">'+o.customer_name+'</td>';
+      h+='<td style="color:var(--g);font-weight:600"><a href="tel:'+o.customer_phone+'" style="color:var(--g)">'+o.customer_phone+'</a></td>';
+      h+='<td style="font-size:11px">'+vnd(o.total)+'</td>';
+      h+='<td style="color:#f5c842;font-weight:900;font-size:13px">+'+vnd(comm)+'</td>';
+      h+='<td><span class="sb '+stCls+'">'+stTxt+'</span></td>';
+      h+='</tr>';
+      // 地址行
+      h+='<tr style="background:rgba(201,168,76,.05)"><td colspan="7" style="padding:5px 10px;font-size:10px">';
+      h+='<span style="color:var(--gr)">📍</span> <span style="color:var(--w)">'+o.customer_address+'</span>';
+      if(o.note){h+=' &nbsp;<span style="color:var(--gr)">备注:</span> <span style="color:#ff9f40">'+o.note+'</span>';}
+      h+='</td></tr>';
     });
     h+='</tbody></table>';
     el.innerHTML=h;
@@ -1215,14 +1257,33 @@ function loadAgProfit(){
   if(!logAg){return;}
   var el=document.getElementById('agpl');
   el.innerHTML='<div class="ld">Loading</div>';
-  GET('commissions?agent_id=eq.'+logAg.id+'&order=created_at.desc')
+  // 从 orders 表直接统计佣金，commissions 表可能为空
+  GET('orders?agent_id=eq.'+logAg.id+'&order=created_at.desc&select=order_no,created_at,total,agent_commission,payment_status,order_status')
   .then(function(r){
-    if(!r.length){el.innerHTML='<div class="empty"><div>💰</div><p>No profit records</p></div>';return;}
-    var h='<table class="otbl"><thead><tr><th>Date</th><th>Profit</th><th>Status</th></tr></thead><tbody>';
-    r.forEach(function(c){
-      h+='<tr><td>'+new Date(c.created_at).toLocaleDateString()+'</td>';
-      h+='<td style="color:var(--ok)">+'+vnd(c.amount)+'</td>';
-      h+='<td><span class="sb '+(c.status==='settled'?'s-ok':'s-p')+'">'+(c.status==='settled'?'Settled':'Pending')+'</span></td></tr>';
+    if(!r.length){el.innerHTML='<div class="empty"><div>💰</div><p>暂无佣金记录</p></div>';return;}
+    var paid=r.filter(function(o){return o.payment_status==='paid';});
+    var pending=r.filter(function(o){return o.payment_status!=='paid';});
+    var totPaid=paid.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    var totPend=pending.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    var totAll=r.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+    var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">';
+    h+='<div class="dstat"><div class="dsn" style="color:#f5c842;font-size:20px;font-weight:900">'+vnd(totAll)+'</div><div class="dsl">总佣金</div></div>';
+    h+='<div class="dstat"><div class="dsn" style="color:#4caf50;font-size:18px;font-weight:900">'+vnd(totPaid)+'</div><div class="dsl">已结算</div></div>';
+    h+='<div class="dstat"><div class="dsn" style="color:#ff9f40;font-size:18px;font-weight:800">'+vnd(totPend)+'</div><div class="dsl">待结算</div></div></div>';
+    h+='<table class="otbl" style="font-size:12px"><thead><tr>';
+    h+='<th>订单号</th><th>时间</th><th>订单金额</th><th style="color:#f5c842">佣金</th><th>状态</th>';
+    h+='</tr></thead><tbody>';
+    r.forEach(function(o){
+      var dt=new Date(o.created_at).toLocaleDateString('zh-CN');
+      var comm=parseFloat(o.agent_commission||0);
+      var isPaid=o.payment_status==='paid';
+      h+='<tr>';
+      h+='<td style="color:var(--g);font-size:11px;font-weight:600">'+o.order_no+'</td>';
+      h+='<td style="font-size:10px">'+dt+'</td>';
+      h+='<td style="font-size:11px">'+vnd(o.total)+'</td>';
+      h+='<td style="color:'+(isPaid?'#4caf50':'#f5c842')+';font-weight:900;font-size:14px">+'+vnd(comm)+'</td>';
+      h+='<td><span class="sb '+(isPaid?'s-ok':'s-p')+'">'+(isPaid?'已结算':'待结算')+'</span></td>';
+      h+='</tr>';
     });
     h+='</tbody></table>';
     el.innerHTML=h;
