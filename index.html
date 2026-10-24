@@ -1429,6 +1429,9 @@ function loadAdmData(){
   Promise.all([GET('suppliers?select=*&order=created_at.desc'),GET('products?select=*,suppliers(company_name)&order=created_at.desc'),GET('distributor_leads?select=*&order=created_at.desc'),GET('orders?select=id,order_no,created_at,updated_at,customer_name,customer_phone,customer_address,items,subtotal,total,agent_id,agent_commission,payment_method,payment_status,order_status,note&order=created_at.desc')])
   .then(function(res){
     var su=res[0],pr=res[1],ag=res[2],or=res[3];
+    // 构建 product_id → price_settlement 映射，供 renderOr 计算结算金额
+    window._admPriceMap={};
+    pr.forEach(function(p){window._admPriceMap[p.id]=parseFloat(p.price_settlement||0);});
     var pend=pr.filter(function(p){return p.status==='pending';});
     var appr=pr.filter(function(p){return p.status==='approved';});
     document.getElementById('adms').textContent=su.length;
@@ -1540,13 +1543,18 @@ function renderSu(su){
 function renderOr(or){
   var el=document.getElementById('orlist');
   if(!or.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
+  // 结算价映射：product_id → price_settlement（管理员加载时写入）
+  var pm=window._admPriceMap||{};
+  // 计算每笔订单的供应商结算金额 = Σ price_settlement[pid] × qty
+  function calcSettle(o){
+    var its=[];
+    try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
+    return its.reduce(function(s,it){return s+(pm[it.id]||0)*(it.qty||1);},0);
+  }
   // 汇总统计
   var totalAmt=or.reduce(function(s,o){return s+parseFloat(o.total||0);},0);
   var totalComm=or.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
-  var totalSettle=or.reduce(function(s,o){
-    // 结算金额 = 订单总额 - 代理商佣金（即应付供应商金额）
-    return s+(parseFloat(o.total||0)-parseFloat(o.agent_commission||0));
-  },0);
+  var totalSettle=or.reduce(function(s,o){return s+calcSettle(o);},0);
   var paidOrd=or.filter(function(o){return o.payment_status==='paid';});
   var pendOrd=or.filter(function(o){return o.payment_status!=='paid';});
 
@@ -1557,7 +1565,7 @@ function renderOr(or){
   h+='<div class="dstat"><div class="dsn" style="color:#ff9f40;font-size:16px;font-weight:900">'+vnd(totalComm)+'</div><div class="dsl">总代理佣金</div></div>';
   h+='</div>';
   h+='<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:14px;margin-bottom:18px;text-align:center">';
-  h+='<div style="font-size:12px;color:var(--gr);margin-bottom:4px">应付供应商总金额（销售额 − 佣金）</div>';
+  h+='<div style="font-size:12px;color:var(--gr);margin-bottom:4px">应付供应商总金额（结算价 × 数量 汇总）</div>';
   h+='<div style="font-size:26px;font-weight:900;color:#f5c842">'+vnd(totalSettle)+'</div>';
   h+='</div>';
 
@@ -1585,7 +1593,7 @@ function renderOr(or){
       settleDate=sd2.toLocaleDateString('zh-CN');
     }
     var comm=parseFloat(o.agent_commission||0);
-    var toSupplier=parseFloat(o.total||0)-comm;
+    var toSupplier=calcSettle(o);  // Σ price_settlement × qty
     var its=[];
     try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
     var prodStr=its.map(function(it){return (it.name||it.id)+(it.qty>1?' x'+it.qty:'');}).join(', ');
