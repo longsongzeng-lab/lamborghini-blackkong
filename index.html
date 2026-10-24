@@ -1431,7 +1431,11 @@ function loadAdmData(){
     var su=res[0],pr=res[1],ag=res[2],or=res[3];
     // 构建 product_id → price_settlement 映射，供 renderOr 计算结算金额
     window._admPriceMap={};
-    pr.forEach(function(p){window._admPriceMap[p.id]=parseFloat(p.price_settlement||0);});
+    window._admStockMap={};  // product_id → stock (原始库存)
+    pr.forEach(function(p){
+      window._admPriceMap[p.id]=parseFloat(p.price_settlement||0);
+      window._admStockMap[p.id]=parseInt(p.stock||0,10);
+    });
     // 代理商映射：agent_id → {shop_name, full_name, agent_code, agent_level}
     window._admAgMap={};
     ag.forEach(function(a){window._admAgMap[a.id]={shop_name:a.shop_name,full_name:a.full_name,agent_code:a.agent_code,agent_level:a.agent_level};});
@@ -1546,9 +1550,9 @@ function renderSu(su){
 function renderOr(or){
   var el=document.getElementById('orlist');
   if(!or.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
-  // 结算价映射：product_id → price_settlement（管理员加载时写入）
-  var pm=window._admPriceMap||{};
-  // 计算每笔订单的供应商结算金额 = Σ price_settlement[pid] × qty
+  var pm=window._admPriceMap||{};   // product_id → price_settlement
+  var sm=window._admStockMap||{};   // product_id → 原始库存
+  var am=window._admAgMap||{};      // agent_id → agent info
   function calcSettle(o){
     var its=[];
     try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
@@ -1561,6 +1565,16 @@ function renderOr(or){
   var paidAmt=paidOrd.reduce(function(s,o){return s+parseFloat(o.total||0);},0);
   var totalComm=paidOrd.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
   var totalSettle=paidOrd.reduce(function(s,o){return s+calcSettle(o);},0);
+  // 已付款消耗量：product_id → sold qty（用于计算剩余库存）
+  var soldMap={};
+  paidOrd.forEach(function(o){
+    var its=[];try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
+    its.forEach(function(it){soldMap[it.id]=(soldMap[it.id]||0)+(it.qty||1);});
+  });
+  function getRemainStock(pid){
+    var orig=sm[pid];if(orig===undefined)return null;
+    return Math.max(0,orig-(soldMap[pid]||0));
+  }
 
   var h='<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px">';
   h+='<div class="dstat"><div class="dsn" style="color:var(--g);font-size:28px;font-weight:900">'+or.length+'</div><div class="dsl">总订单数</div></div>';
@@ -1603,10 +1617,13 @@ function renderOr(or){
     var toSupplier=isPaid?calcSettle(o):0;
     var its=[];
     try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
-    var prodStr=its.map(function(it){return (it.name||it.id)+(it.qty>1?' x'+it.qty:'');}).join(', ');
-    var stockStr=its.map(function(it){return it.stock!==undefined?it.stock:'?';}).join('/');
-    // 代理商信息
-    var am=window._admAgMap||{};
+    var prodStr=its.map(function(it){return (it.name||it.id)+(it.qty>1?' ×'+it.qty:'');}).join(', ');
+    // 剩余库存：取订单里每个产品的剩余（产品原始库存 - 已付款消耗）
+    var stockParts=its.map(function(it){
+      var r=getRemainStock(it.id);
+      return r!==null?String(r):'?';
+    });
+    var stockStr=stockParts.join(' / ');
     var agInfo=o.agent_id&&am[o.agent_id]?am[o.agent_id]:null;
 
     h+='<tr>';
@@ -1615,6 +1632,7 @@ function renderOr(or){
     h+='<td style="font-weight:700;color:#fff">'+o.customer_name+'</td>';
     h+='<td style="color:var(--g)"><a href="tel:'+o.customer_phone+'" style="color:var(--g)">'+o.customer_phone+'</a></td>';
     h+='<td style="font-size:10px">'+prodStr+'</td>';
+    h+='<td style="text-align:center;font-size:11px;color:'+(stockParts.some(function(s){return parseInt(s,10)<5;})?'#f44336':'#4caf50')+'">'+stockStr+'</td>';
     h+='<td style="font-weight:700">'+vnd(o.total)+'</td>';
     // 佣金列：点击展开代理商详情
     h+='<td>';
