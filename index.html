@@ -1057,7 +1057,7 @@ function loadSupOrders(){
       h+='<div style="margin-bottom:8px;font-size:12px;color:var(--gr)">↓ 点击订单行查看详情</div>';
       h+='<table class="otbl"><thead><tr><th>订单号</th><th>下单时间</th><th style="color:var(--warn)">收货人</th><th style="color:var(--warn)">电话</th><th>产品</th><th>数量</th><th>金额</th><th>状态</th></tr></thead><tbody>';
       myOrders.forEach(function(o){
-        var dt=new Date(o.created_at).toLocaleDateString('zh-CN');
+        var dt=new Date(o.created_at).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
         var prodNames=o._myItems.map(function(it){return (pidSet[it.id]||it.name||'?')+(it.qty>1?' x'+it.qty:'');}).join(', ');
         var myQty=o._myItems.reduce(function(s,it){return s+(it.qty||1);},0);
         var stCls=o.payment_status==='paid'?'s-ok':'s-p';
@@ -1230,7 +1230,7 @@ function loadAgOrders(){
     h+='<th>订单号</th><th>时间</th><th style="color:#ff9f40">客户</th><th style="color:#ff9f40">电话</th><th>金额</th><th style="color:#f5c842">佣金</th><th>状态</th>';
     h+='</tr></thead><tbody>';
     r.forEach(function(o){
-      var dt=new Date(o.created_at).toLocaleDateString('zh-CN');
+      var dt=new Date(o.created_at).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
       var comm=parseFloat(o.agent_commission||0);
       var stCls=o.payment_status==='paid'?'s-ok':'s-p';
       var stTxt=o.payment_status==='paid'?'已付款':'待付款';
@@ -1274,7 +1274,7 @@ function loadAgProfit(){
     h+='<th>订单号</th><th>时间</th><th>订单金额</th><th style="color:#f5c842">佣金</th><th>状态</th>';
     h+='</tr></thead><tbody>';
     r.forEach(function(o){
-      var dt=new Date(o.created_at).toLocaleDateString('zh-CN');
+      var dt=new Date(o.created_at).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
       var comm=parseFloat(o.agent_commission||0);
       var isPaid=o.payment_status==='paid';
       h+='<tr>';
@@ -1426,7 +1426,7 @@ function doAdmLogin(){
   }).catch(function(e){toast(e.message);setBtn('admlbtn',false,'LOGIN');});
 }
 function loadAdmData(){
-  Promise.all([GET('suppliers?select=*&order=created_at.desc'),GET('products?select=*,suppliers(company_name)&order=created_at.desc'),GET('distributor_leads?select=*&order=created_at.desc'),GET('orders?select=*&order=created_at.desc')])
+  Promise.all([GET('suppliers?select=*&order=created_at.desc'),GET('products?select=*,suppliers(company_name)&order=created_at.desc'),GET('distributor_leads?select=*&order=created_at.desc'),GET('orders?select=id,order_no,created_at,updated_at,customer_name,customer_phone,customer_address,items,subtotal,total,agent_id,agent_commission,payment_method,payment_status,order_status,note&order=created_at.desc')])
   .then(function(res){
     var su=res[0],pr=res[1],ag=res[2],or=res[3];
     var pend=pr.filter(function(p){return p.status==='pending';});
@@ -1540,15 +1540,89 @@ function renderSu(su){
 function renderOr(or){
   var el=document.getElementById('orlist');
   if(!or.length){el.innerHTML='<div class="empty"><div>📋</div><p>No orders</p></div>';return;}
-  var h='<table class="otbl"><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Payment</th><th>Status</th><th>Commission</th></tr></thead><tbody>';
+  // 汇总统计
+  var totalAmt=or.reduce(function(s,o){return s+parseFloat(o.total||0);},0);
+  var totalComm=or.reduce(function(s,o){return s+parseFloat(o.agent_commission||0);},0);
+  var totalSettle=or.reduce(function(s,o){
+    // 结算金额 = 订单总额 - 代理商佣金（即应付供应商金额）
+    return s+(parseFloat(o.total||0)-parseFloat(o.agent_commission||0));
+  },0);
+  var paidOrd=or.filter(function(o){return o.payment_status==='paid';});
+  var pendOrd=or.filter(function(o){return o.payment_status!=='paid';});
+
+  var h='<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px">';
+  h+='<div class="dstat"><div class="dsn" style="color:var(--g);font-size:28px;font-weight:900">'+or.length+'</div><div class="dsl">总订单数</div></div>';
+  h+='<div class="dstat"><div class="dsn" style="color:#4caf50;font-size:18px;font-weight:900">'+paidOrd.length+' 已付 / '+pendOrd.length+' 待付</div><div class="dsl">付款状态</div></div>';
+  h+='<div class="dstat"><div class="dsn" style="color:#f5c842;font-size:16px;font-weight:900">'+vnd(totalAmt)+'</div><div class="dsl">总销售额</div></div>';
+  h+='<div class="dstat"><div class="dsn" style="color:#ff9f40;font-size:16px;font-weight:900">'+vnd(totalComm)+'</div><div class="dsl">总代理佣金</div></div>';
+  h+='</div>';
+  h+='<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:14px;margin-bottom:18px;text-align:center">';
+  h+='<div style="font-size:12px;color:var(--gr);margin-bottom:4px">应付供应商总金额（销售额 − 佣金）</div>';
+  h+='<div style="font-size:26px;font-weight:900;color:#f5c842">'+vnd(totalSettle)+'</div>';
+  h+='</div>';
+
+  // 详细订单列表
+  h+='<div style="overflow-x:auto"><table class="otbl" style="font-size:11px;min-width:900px"><thead><tr>';
+  h+='<th>订单号</th><th>下单时间</th><th style="color:#ff9f40">收货人</th><th style="color:#ff9f40">电话</th>';
+  h+='<th>产品/数量</th><th>剩余库存</th><th>订单金额</th>';
+  h+='<th style="color:#ff9f40">代理佣金<br><span style="font-size:9px;color:var(--gr)">（代理商收）</span></th>';
+  h+='<th style="color:#f5c842">应付供应商</th>';
+  h+='<th style="color:#f5c842">结算截止</th>';
+  h+='<th>付款</th><th>订单状态</th>';
+  h+='</tr></thead><tbody>';
+
   or.forEach(function(o){
-    h+='<tr><td style="color:var(--g)">'+o.order_no+'</td><td>'+o.customer_name+'</td>';
-    h+='<td>'+vnd(o.total)+'</td>';
-    h+='<td><span class="sb '+(o.payment_status==='paid'?'s-ok':'s-p')+'">'+(o.payment_status==='paid'?'Paid':'Pending')+'</span></td>';
-    h+='<td><span class="sb s-p">'+o.order_status+'</span></td>';
-    h+='<td style="color:var(--ok)">+'+vnd(o.agent_commission||0)+'</td></tr>';
+    var dt=new Date(o.created_at).toLocaleString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    // 结算时间：付款后10天
+    var settleDate='—';
+    if(o.payment_status==='paid'&&o.updated_at){
+      var sd=new Date(o.updated_at);
+      sd.setDate(sd.getDate()+10);
+      settleDate=sd.toLocaleDateString('zh-CN');
+    } else if(o.payment_status==='paid'){
+      var sd2=new Date(o.created_at);
+      sd2.setDate(sd2.getDate()+10);
+      settleDate=sd2.toLocaleDateString('zh-CN');
+    }
+    var comm=parseFloat(o.agent_commission||0);
+    var toSupplier=parseFloat(o.total||0)-comm;
+    var its=[];
+    try{its=typeof o.items==='string'?JSON.parse(o.items):o.items||[];}catch(e){}
+    var prodStr=its.map(function(it){return (it.name||it.id)+(it.qty>1?' x'+it.qty:'');}).join(', ');
+    // 库存：从 items 里拿 stock 字段（如果有）
+    var stockStr=its.map(function(it){return it.stock!==undefined?it.stock:'?';}).join('/');
+    var isPaid=o.payment_status==='paid';
+    var ordSt=o.order_status==='new'?'新订单':o.order_status==='confirmed'?'已确认':o.order_status==='shipped'?'已发货':o.order_status==='done'?'已完成':o.order_status;
+
+    h+='<tr>';
+    h+='<td style="color:var(--g);font-weight:700;font-size:10px">'+o.order_no+'</td>';
+    h+='<td style="font-size:10px;white-space:nowrap">'+dt+'</td>';
+    h+='<td style="font-weight:700;color:#fff">'+o.customer_name+'</td>';
+    h+='<td style="color:var(--g)"><a href="tel:'+o.customer_phone+'" style="color:var(--g)">'+o.customer_phone+'</a></td>';
+    h+='<td style="font-size:10px">'+prodStr+'</td>';
+    h+='<td style="text-align:center;color:var(--gr)">'+stockStr+'</td>';
+    h+='<td style="font-weight:700">'+vnd(o.total)+'</td>';
+    h+='<td style="color:#ff9f40;font-weight:900">+'+vnd(comm)+'</td>';
+    h+='<td style="color:#f5c842;font-weight:900">'+vnd(toSupplier)+'</td>';
+    h+='<td style="font-size:10px;color:'+(isPaid?'#4caf50':'var(--gr)')+'">'+settleDate+'</td>';
+    h+='<td><span class="sb '+(isPaid?'s-ok':'s-p')+'">'+(isPaid?'已付款':'待付款')+'</span></td>';
+    h+='<td><span class="sb s-p" style="font-size:10px">'+ordSt+'</span></td>';
+    h+='</tr>';
+    // 地址行
+    h+='<tr style="background:rgba(201,168,76,.03)"><td colspan="12" style="padding:4px 10px;font-size:10px">';
+    h+='<span style="color:var(--gr)">📍 地址：</span><span style="color:var(--w)">'+o.customer_address+'</span>';
+    if(o.note){h+='&nbsp;&nbsp;<span style="color:var(--gr)">备注：</span><span style="color:#ff9f40">'+o.note+'</span>';}
+    h+='</td></tr>';
   });
-  h+='</tbody></table>';
+  h+='</tbody></table></div>';
+  // 底部总计
+  h+='<div style="margin-top:16px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.4);border-radius:10px;padding:16px">';
+  h+='<div style="font-size:12px;color:var(--gr);margin-bottom:10px;font-weight:600">📊 账期结算汇总</div>';
+  h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">';
+  h+='<div><div style="font-size:11px;color:var(--gr)">总销售额</div><div style="font-size:18px;font-weight:900;color:#fff">'+vnd(totalAmt)+'</div></div>';
+  h+='<div><div style="font-size:11px;color:var(--gr)">代理佣金合计</div><div style="font-size:18px;font-weight:900;color:#ff9f40">−'+vnd(totalComm)+'</div></div>';
+  h+='<div><div style="font-size:11px;color:var(--gr)">应付供应商总额</div><div style="font-size:22px;font-weight:900;color:#f5c842">'+vnd(totalSettle)+'</div></div>';
+  h+='</div></div>';
   el.innerHTML=h;
 }
 function renderLd(ld){
