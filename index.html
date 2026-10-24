@@ -1364,6 +1364,8 @@ function loadShopPage(slug){
   .then(function(r){
     if(!r.length){el.innerHTML='<div class="empty"><div>🏪</div><p>Shop not found</p></div>';return;}
     var ag=r[0];
+    // 通过代理链接进入时，把代理商设为当前推荐人，下单时写入 agent_id
+    logAg=ag;
     document.getElementById('shname').textContent=ag.shop_name||'Shop LBK';
     document.getElementById('shlogo').textContent=(ag.shop_name||'S')[0];
     var su=window.location.href.split('?')[0]+'?shop='+slug;
@@ -1659,9 +1661,13 @@ function renderOr(or){
     h+='<td style="font-size:10px">'+prodStr+'</td>';
     h+='<td style="text-align:center;font-size:11px;color:'+(stockParts.some(function(s){return parseInt(s,10)<5;})?'#f44336':'#4caf50')+'">'+stockStr+'</td>';
     h+='<td style="font-weight:700">'+vnd(o.total)+'</td>';
-    // 佣金列：只有已付款才显示；未付款一律显示"—"
+    // 佣金列：无代理商→自来客；未付款→—；已付款→显示金额
     h+='<td>';
-    if(!isPaid){
+    if(!o.agent_id){
+      // 没有推荐代理商
+      h+='<span style="color:var(--gr);font-size:10px;font-style:italic">自来客</span>';
+    } else if(!isPaid){
+      // 有代理商但未付款，不结算
       h+='<span style="color:var(--gr);font-size:10px">—</span>';
     } else if(commNeedsfix){
       // 已付款但佣金漏算了：显示重算值+补录按钮
@@ -1669,6 +1675,7 @@ function renderOr(or){
       h+='<div style="font-size:9px;color:#f44336">⚠ 原记录为0</div>';
       h+='<button onclick="fixComm(\''+o.id+'\','+commCalc+')" style="margin-top:3px;background:#f5c842;color:#000;border:none;border-radius:4px;padding:2px 6px;font-size:9px;font-weight:700;cursor:pointer">补录佣金</button>';
     } else if(commCalc>0){
+      // 已付款且有佣金：点击展开代理商信息
       h+='<span style="color:#ff9f40;font-weight:900;cursor:pointer;user-select:none" onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\'">+'+vnd(commCalc)+' ▾</span>';
       h+='<div style="display:none;margin-top:4px;background:rgba(255,159,64,.1);border:1px solid rgba(255,159,64,.3);border-radius:6px;padding:5px 8px;font-size:10px;white-space:nowrap">';
       h+='<div style="color:#ff9f40;font-weight:700">'+(agInfo?(agInfo.shop_name||agInfo.full_name||'代理商'):'代理 '+o.agent_id)+'</div>';
