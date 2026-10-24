@@ -1659,21 +1659,23 @@ function renderOr(or){
     h+='<td style="font-size:10px">'+prodStr+'</td>';
     h+='<td style="text-align:center;font-size:11px;color:'+(stockParts.some(function(s){return parseInt(s,10)<5;})?'#f44336':'#4caf50')+'">'+stockStr+'</td>';
     h+='<td style="font-weight:700">'+vnd(o.total)+'</td>';
-    // 佣金列：点击展开代理商详情；佣金为0时显示重算金额+补录按钮
+    // 佣金列：只有已付款才显示；未付款一律显示"—"
     h+='<td>';
-    if(commNeedsfix){
-      // 有代理商但佣金漏算了：显示重算值+补录按钮
+    if(!isPaid){
+      h+='<span style="color:var(--gr);font-size:10px">—</span>';
+    } else if(commNeedsfix){
+      // 已付款但佣金漏算了：显示重算值+补录按钮
       h+='<div style="color:#f5c842;font-size:10px;font-weight:700">+'+vnd(commCalc)+'</div>';
       h+='<div style="font-size:9px;color:#f44336">⚠ 原记录为0</div>';
       h+='<button onclick="fixComm(\''+o.id+'\','+commCalc+')" style="margin-top:3px;background:#f5c842;color:#000;border:none;border-radius:4px;padding:2px 6px;font-size:9px;font-weight:700;cursor:pointer">补录佣金</button>';
     } else if(commCalc>0){
-      h+='<span style="color:#ff9f40;font-weight:900;cursor:pointer;user-select:none" onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\'">'+(isPaid?'+':'')+vnd(commCalc)+' ▾</span>';
+      h+='<span style="color:#ff9f40;font-weight:900;cursor:pointer;user-select:none" onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\'">+'+vnd(commCalc)+' ▾</span>';
       h+='<div style="display:none;margin-top:4px;background:rgba(255,159,64,.1);border:1px solid rgba(255,159,64,.3);border-radius:6px;padding:5px 8px;font-size:10px;white-space:nowrap">';
       h+='<div style="color:#ff9f40;font-weight:700">'+(agInfo?(agInfo.shop_name||agInfo.full_name||'代理商'):'代理 '+o.agent_id)+'</div>';
       if(agInfo){h+='<div style="color:var(--gr)">代码: '+agInfo.agent_code+'&nbsp;&nbsp;级别: '+agInfo.agent_level+'</div>';}
       h+='</div>';
     } else {
-      h+='<span style="color:var(--gr);font-size:10px">'+(o.agent_id?'无差价':'—')+'</span>';
+      h+='<span style="color:var(--gr);font-size:10px">—</span>';
     }
     h+='</td>';
     h+='<td style="color:'+(isPaid?'#f5c842':'var(--gr)')+';font-weight:'+(isPaid?'900':'400')+'">'+(isPaid?vnd(toSupplier):'—')+'</td>';
