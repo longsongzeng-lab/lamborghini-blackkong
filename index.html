@@ -279,9 +279,9 @@ footer span{color:var(--g)}
       </div>
     </div>
     <div style="display:flex;gap:6px">
-      <button class="nbtn nbtn-g" onclick="showPage('supplier')">供应商入口</button>
-      <button class="nbtn nbtn-o" onclick="showPage('agent-login')">代理商入口</button>
-      <button class="nbtn nbtn-o" style="font-size:10px" onclick="showPage('admin-login')">管理员</button>
+      <button class="nbtn nbtn-g" onclick="showPage('supplier')" data-vi="NCC" data-en="Supplier" data-zh="供应商入口">供应商入口</button>
+      <button class="nbtn nbtn-o" onclick="showPage('agent-login')" data-vi="Dai Ly" data-en="Agent" data-zh="代理商入口">代理商入口</button>
+      <button class="nbtn nbtn-o" style="font-size:10px" onclick="showPage('admin-login')" data-vi="Admin" data-en="Admin" data-zh="管理员">管理员</button>
     </div>
   </div>
 </nav>
@@ -289,11 +289,11 @@ footer span{color:var(--g)}
 <div class="toast" id="toast"></div>
 <div class="cov" id="cov" onclick="closeCart()"></div>
 <div class="csbar" id="csbar">
-  <div class="cshead"><h3>🛒 Cart</h3><button class="csx" onclick="closeCart()">x</button></div>
+  <div class="cshead"><h3 data-vi="Gio Hang" data-en="Cart" data-zh="购物车">🛒 Cart</h3><button class="csx" onclick="closeCart()">x</button></div>
   <div class="csitems" id="csitems"></div>
   <div class="csfoot">
-    <div class="ctotal"><span>Total</span><span id="ctotal">0d</span></div>
-    <button class="btnf" onclick="goCheckout()">THANH TOAN</button>
+    <div class="ctotal"><span data-vi="Tong cong" data-en="Total" data-zh="合计">Total</span><span id="ctotal">0d</span></div>
+    <button class="btnf" onclick="goCheckout()" data-vi="THANH TOAN" data-en="CHECKOUT" data-zh="去结算">THANH TOAN</button>
   </div>
 </div>
 
@@ -311,19 +311,19 @@ footer span{color:var(--g)}
       <h1>LAMBORGHINI<br><span>BLACK KONG</span></h1>
       <p class="hsub" data-vi="Doi tac phan phoi hang dau Viet Nam" data-en="Vietnam Premier Distribution Partner" data-zh="越南顶级分销伙伴">Doi tac phan phoi hang dau Viet Nam</p>
       <div class="hcta">
-        <button class="btn-p" onclick="document.getElementById('sec-prods').scrollIntoView({behavior:'smooth'})">Mua Ngay</button>
-        <button class="btn-o" onclick="document.getElementById('sec-agent').scrollIntoView({behavior:'smooth'})">Tro Thanh Dai Ly</button>
+        <button class="btn-p" onclick="document.getElementById('sec-prods').scrollIntoView({behavior:'smooth'})" data-vi="Mua Ngay" data-en="Shop Now" data-zh="立即购买">Mua Ngay</button>
+        <button class="btn-o" onclick="document.getElementById('sec-agent').scrollIntoView({behavior:'smooth'})" data-vi="Tro Thanh Dai Ly" data-en="Become Agent" data-zh="成为代理">Tro Thanh Dai Ly</button>
       </div>
       <div class="hstats">
-        <div><div class="hsn">12+</div><div class="hsl">Danh Muc</div></div>
-        <div><div class="hsn">500+</div><div class="hsl">Nha May</div></div>
-        <div><div class="hsn">TNL</div><div class="hsl">Plaza HCM</div></div>
+        <div><div class="hsn">12+</div><div class="hsl" data-vi="Danh Muc" data-en="Categories" data-zh="品类">Danh Muc</div></div>
+        <div><div class="hsn">500+</div><div class="hsl" data-vi="Nha May" data-en="Factories" data-zh="工厂">Nha May</div></div>
+        <div><div class="hsn">TNL</div><div class="hsl" data-vi="Plaza HCM" data-en="Plaza HCM" data-zh="胡志明广场">Plaza HCM</div></div>
       </div>
     </div>
   </div>
 
   <section>
-    <div class="stit"><h2 style="color:var(--g)">DANH MUC SAN PHAM</h2><div class="gline"></div></div>
+    <div class="stit"><h2 style="color:var(--g)" data-vi="DANH MUC SAN PHAM" data-en="CATEGORIES" data-zh="产品分类">DANH MUC SAN PHAM</h2><div class="gline"></div></div>
     <div class="cgrid">
       <div class="ccard" onclick="filterCat('Thoi Trang')"><div class="cicon">👗</div><div class="cname" data-vi="Thoi Trang" data-en="Fashion" data-zh="服装鞋帽">Thoi Trang</div></div>
       <div class="ccard" onclick="filterCat('Trang Suc')"><div class="cicon">💎</div><div class="cname" data-vi="Trang Suc" data-en="Jewelry" data-zh="珠宝手表">Trang Suc</div></div>
@@ -341,22 +341,22 @@ footer span{color:var(--g)}
   </section>
 
   <section id="sec-prods" style="background:var(--d2)">
-    <div class="stit"><h2 style="color:var(--g)">SAN PHAM NOI BAT</h2><div class="gline"></div><p id="flabel"></p></div>
+    <div class="stit"><h2 style="color:var(--g)" data-vi="SAN PHAM NOI BAT" data-en="FEATURED PRODUCTS" data-zh="明星产品">SAN PHAM NOI BAT</h2><div class="gline"></div><p id="flabel"></p></div>
     <div class="pgrid" id="pgrid"><div class="ld">Dang tai</div></div>
   </section>
 
   <section id="tnl" class="tnl-sec">
-    <div class="stit"><h2>TNL <span style="color:var(--g)">PLAZA</span></h2><div class="gline"></div><p>Showroom tai TP. Ho Chi Minh</p></div>
+    <div class="stit"><h2>TNL <span style="color:var(--g)">PLAZA</span></h2><div class="gline"></div><p data-vi="Showroom tai TP. Ho Chi Minh" data-en="Showroom in Ho Chi Minh City" data-zh="胡志明市实体展厅">Showroom tai TP. Ho Chi Minh</p></div>
     <div class="sshow">
       <div class="strack" id="strack">
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"><div class="scap">TNL Plaza ban ngay</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"><div class="scap">Ban dem</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"><div class="scap">Noi that</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl4.jpg"><div class="scap">Khu am thuc</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl5.jpg"><div class="scap">Loi vao</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl6.jpg"><div class="scap">Le hoi</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl7.jpg"><div class="scap">Hanh lang</div></div>
-        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl8.jpg"><div class="scap">Quang truong</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl1.jpg"><div class="scap" data-vi="TNL Plaza ban ngay" data-en="TNL Plaza by day" data-zh="TNL广场日景">TNL Plaza ban ngay</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl2.jpg"><div class="scap" data-vi="Ban dem" data-en="Night view" data-zh="夜景">Ban dem</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl3.jpg"><div class="scap" data-vi="Noi that" data-en="Interior" data-zh="内部陈设">Noi that</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl4.jpg"><div class="scap" data-vi="Khu am thuc" data-en="Food zone" data-zh="餐饮区">Khu am thuc</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl5.jpg"><div class="scap" data-vi="Loi vao" data-en="Entrance" data-zh="入口">Loi vao</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl6.jpg"><div class="scap" data-vi="Le hoi" data-en="Festival" data-zh="节庆活动">Le hoi</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl7.jpg"><div class="scap" data-vi="Hanh lang" data-en="Corridor" data-zh="走廊">Hanh lang</div></div>
+        <div class="sslide"><img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/tnl8.jpg"><div class="scap" data-vi="Quang truong" data-en="Plaza" data-zh="广场">Quang truong</div></div>
       </div>
       <button class="sbtn sprev" onclick="mvSlide(-1)">&#8249;</button>
       <button class="sbtn snext" onclick="mvSlide(1)">&#8250;</button>
@@ -364,42 +364,42 @@ footer span{color:var(--g)}
     </div>
     <div class="sdots" id="sdots"></div>
     <div class="tfeats">
-      <div class="tfeat"><div class="tfeat-t">12 Khu Vuc</div><div class="tfeat-d">Moi nganh hang co khu vuc rieng</div></div>
-      <div class="tfeat"><div class="tfeat-t">50+ Nha San Xuat</div><div class="tfeat-d">Nha san xuat uy tin</div></div>
-      <div class="tfeat"><div class="tfeat-t">Xem Hang That</div><div class="tfeat-d">Khong dat hang mu</div></div>
-      <div class="tfeat"><div class="tfeat-t">Chi Phi Toi Uu</div><div class="tfeat-d">Chi phi chia se</div></div>
+      <div class="tfeat"><div class="tfeat-t" data-vi="12 Khu Vuc" data-en="12 Zones" data-zh="12个专区">12 Khu Vuc</div><div class="tfeat-d" data-vi="Moi nganh hang co khu vuc rieng" data-en="Each category has its own zone" data-zh="每个品类独立区域">Moi nganh hang co khu vuc rieng</div></div>
+      <div class="tfeat"><div class="tfeat-t" data-vi="50+ Nha San Xuat" data-en="50+ Manufacturers" data-zh="50+制造商">50+ Nha San Xuat</div><div class="tfeat-d" data-vi="Nha san xuat uy tin" data-en="Trusted manufacturers" data-zh="信誉制造商">Nha san xuat uy tin</div></div>
+      <div class="tfeat"><div class="tfeat-t" data-vi="Xem Hang That" data-en="See Real Products" data-zh="看实物">Xem Hang That</div><div class="tfeat-d" data-vi="Khong dat hang mu" data-en="No blind ordering" data-zh="不盲目下单">Khong dat hang mu</div></div>
+      <div class="tfeat"><div class="tfeat-t" data-vi="Chi Phi Toi Uu" data-en="Optimized Cost" data-zh="成本最优">Chi Phi Toi Uu</div><div class="tfeat-d" data-vi="Chi phi chia se" data-en="Shared cost model" data-zh="成本共享模式">Chi phi chia se</div></div>
     </div>
   </section>
 
   <section id="sec-agent">
-    <div class="stit"><h2 style="color:var(--g)">TRO THANH DAI LY</h2><div class="gline"></div></div>
+    <div class="stit"><h2 style="color:var(--g)" data-vi="TRO THANH DAI LY" data-en="BECOME AN AGENT" data-zh="成为代理商">TRO THANH DAI LY</h2><div class="gline"></div></div>
     <div class="apromo">
-      <h3>Khoi Nghiep Nhe Voi Cua Hang Rieng</h3>
-      <p>Moi dai ly duoc cap cua hang online rieng. Chon san pham, chia se link, khach hang mua, ban huong chenh lech gia.</p>
+      <h3 data-vi="Khoi Nghiep Nhe Voi Cua Hang Rieng" data-en="Start Easy With Your Own Shop" data-zh="轻松创业拥有专属店铺">Khoi Nghiep Nhe Voi Cua Hang Rieng</h3>
+      <p data-vi="Moi dai ly duoc cap cua hang online rieng. Chon san pham, chia se link, khach hang mua, ban huong chenh lech gia." data-en="Every agent gets their own online shop. Choose products, share link, customers buy, you earn the price spread." data-zh="每位代理拥有独立网店。选品、分享链接、客户下单、赚取差价。">Moi dai ly duoc cap cua hang online rieng. Chon san pham, chia se link, khach hang mua, ban huong chenh lech gia.</p>
       <div class="lvls">
         <div class="lvl"><div class="lvl-i">🏪</div><div class="lvl-n" data-vi="Dai Ly Quan" data-en="District Agent" data-zh="区级代理">Dai Ly Quan</div><div class="lvl-d" data-vi="Huong chenh lech gia ban le" data-en="Earn retail price spread" data-zh="赚取零售差价">Huong chenh lech gia ban le</div><div class="lvl-b" data-vi="Dang Mo" data-en="Open" data-zh="招募中">Dang Mo</div></div>
         <div class="lvl"><div class="lvl-i">🏙️</div><div class="lvl-n" data-vi="Dai Ly TP" data-en="City Agent" data-zh="市级代理">Dai Ly TP</div><div class="lvl-d" data-vi="Chenh lech gia tot hon" data-en="Better price spread" data-zh="更优差价利润">Chenh lech gia tot hon</div><div class="lvl-b" data-vi="Dang Mo" data-en="Open" data-zh="招募中">Dang Mo</div></div>
         <div class="lvl"><div class="lvl-i">🌏</div><div class="lvl-n" data-vi="Dai Ly Tinh" data-en="Province Agent" data-zh="省级代理">Dai Ly Tinh</div><div class="lvl-d" data-vi="Chenh lech gia cao nhat" data-en="Highest price spread" data-zh="最高差价利润">Chenh lech gia cao nhat</div><div class="lvl-b" data-vi="Dang Mo" data-en="Open" data-zh="招募中">Dang Mo</div></div>
       </div>
-      <button class="btn-p" onclick="showPage('agent-login')">DANG KY DAI LY NGAY</button>
+      <button class="btn-p" onclick="showPage('agent-login')" data-vi="DANG KY DAI LY NGAY" data-en="BECOME AN AGENT NOW" data-zh="立即申请代理">DANG KY DAI LY NGAY</button>
     </div>
   </section>
 
   <section id="contact" class="csec">
-    <div class="stit"><h2>DANG KY <span style="color:var(--g)">DAI LY</span></h2><div class="gline"></div><p>Dien thong tin, chung toi lien he trong 24 gio</p></div>
+    <div class="stit"><h2 data-vi="DANG KY DAI LY" data-en="AGENT REGISTRATION" data-zh="代理商报名">DANG KY <span style="color:var(--g)">DAI LY</span></h2><div class="gline"></div><p data-vi="Dien thong tin, chung toi lien he trong 24 gio" data-en="Fill in your info, we will contact you within 24 hours" data-zh="填写信息，24小时内联系您">Dien thong tin, chung toi lien he trong 24 gio</p></div>
     <div class="cform">
       <div class="grow">
-        <div class="fg"><label>Ho va Ten</label><input type="text" id="ln" placeholder="Nguyen Van A"></div>
-        <div class="fg"><label>Dien Thoai</label><input type="text" id="lp" placeholder="+84 xxx xxx xxx"></div>
+        <div class="fg"><label data-vi="Ho va Ten" data-en="Full Name" data-zh="姓名">Ho va Ten</label><input type="text" id="ln" placeholder="Nguyen Van A"></div>
+        <div class="fg"><label data-vi="Dien Thoai" data-en="Phone" data-zh="电话">Dien Thoai</label><input type="text" id="lp" placeholder="+84 xxx xxx xxx"></div>
       </div>
       <div class="grow">
-        <div class="fg"><label>Thanh Pho</label><input type="text" id="lc" placeholder="TP. Ho Chi Minh"></div>
-        <div class="fg"><label>Nganh Hang</label>
+        <div class="fg"><label data-vi="Thanh Pho" data-en="City" data-zh="城市">Thanh Pho</label><input type="text" id="lc" placeholder="TP. Ho Chi Minh"></div>
+        <div class="fg"><label data-vi="Nganh Hang" data-en="Category" data-zh="经营品类">Nganh Hang</label>
           <select id="lcat"><option value="">-- Chon --</option><option>Thoi Trang</option><option>Trang Suc</option><option>My Pham</option><option>Dien Tu 3C</option><option>Dien Gia Dung</option><option>Tat Ca</option></select>
         </div>
       </div>
-      <div class="fg"><label>Kinh Nghiem</label><textarea id="le" placeholder="Mo ta kinh nghiem..."></textarea></div>
-      <button class="btnf" id="lbtn" onclick="submitLead()">GUI DANG KY</button>
+      <div class="fg"><label data-vi="Kinh Nghiem" data-en="Experience" data-zh="经营经验">Kinh Nghiem</label><textarea id="le" placeholder="Mo ta kinh nghiem..."></textarea></div>
+      <button class="btnf" id="lbtn" onclick="submitLead()" data-vi="GUI DANG KY" data-en="SUBMIT APPLICATION" data-zh="提交申请">GUI DANG KY</button>
     </div>
     <div class="channels">
       <div class="ch">Zalo: +84 0373306916</div>
@@ -407,25 +407,25 @@ footer span{color:var(--g)}
       <div class="ch">WeChat: wxid_p7gvsg6f7seu22</div>
     </div>
   </section>
-  <footer><p>2025 <span>LAMBORGHINI BLACK KONG</span></p><p style="margin-top:6px">TNL Plaza · TP. Ho Chi Minh</p></footer>
+  <footer><p>2025 <span>LAMBORGHINI BLACK KONG</span></p><p style="margin-top:6px" data-vi="TNL Plaza · TP. Ho Chi Minh" data-en="TNL Plaza · Ho Chi Minh City" data-zh="TNL广场 · 胡志明市">TNL Plaza · TP. Ho Chi Minh</p></footer>
 </div>
 
 <!-- CHECKOUT -->
 <div id="pg-checkout" class="pg">
   <div class="cowrap">
-    <button class="bbk" onclick="showPage('home')">Back</button>
-    <h2 style="color:var(--g);margin-bottom:18px;font-size:17px">Thanh Toan</h2>
+    <button class="bbk" onclick="showPage('home')" data-vi="Back" data-en="Back" data-zh="返回">Back</button>
+    <h2 style="color:var(--g);margin-bottom:18px;font-size:17px" data-vi="Thanh Toan" data-en="Checkout" data-zh="结算">Thanh Toan</h2>
     <div class="cogrid">
       <div>
         <div class="cobox">
-          <h3>Thong Tin Giao Hang</h3>
-          <div class="fg"><label>Ho Ten</label><input type="text" id="cn" placeholder="Nguyen Van A"></div>
-          <div class="fg"><label>Phone</label><input type="text" id="cp" placeholder="+84 xxx xxx xxx"></div>
-          <div class="fg"><label>Dia Chi</label><input type="text" id="ca" placeholder="So nha, duong, quan..."></div>
-          <div class="fg"><label>Ghi Chu</label><textarea id="cno" placeholder="Ghi chu..."></textarea></div>
+          <h3 data-vi="Thong Tin Giao Hang" data-en="Shipping Info" data-zh="收货信息">Thong Tin Giao Hang</h3>
+          <div class="fg"><label data-vi="Ho Ten" data-en="Full Name" data-zh="姓名">Ho Ten</label><input type="text" id="cn" placeholder="Nguyen Van A"></div>
+          <div class="fg"><label data-vi="Dien Thoai" data-en="Phone" data-zh="电话">Phone</label><input type="text" id="cp" placeholder="+84 xxx xxx xxx"></div>
+          <div class="fg"><label data-vi="Dia Chi" data-en="Address" data-zh="收货地址">Dia Chi</label><input type="text" id="ca" placeholder="So nha, duong, quan..."></div>
+          <div class="fg"><label data-vi="Ghi Chu" data-en="Notes" data-zh="备注">Ghi Chu</label><textarea id="cno" placeholder="Ghi chu..."></textarea></div>
         </div>
         <div class="cobox" style="margin-top:14px">
-          <h3>Chuyen Khoan Ngan Hang</h3>
+          <h3 data-vi="Chuyen Khoan Ngan Hang" data-en="Bank Transfer" data-zh="银行转账">Chuyen Khoan Ngan Hang</h3>
           <div style="background:var(--d3);border-radius:8px;padding:14px;text-align:center">
             <img src="https://leauestkrtvwyanfbghs.supabase.co/storage/v1/object/public/product-images/payment-qr.jpg"
               style="width:180px;height:180px;object-fit:contain;border-radius:8px;background:#fff;padding:6px;display:block;margin:0 auto 12px">
@@ -458,14 +458,14 @@ footer span{color:var(--g)}
         </div>
       </div>
       <div class="cobox">
-        <h3>Don Hang</h3>
+        <h3 data-vi="Don Hang" data-en="Order Summary" data-zh="订单明细">Don Hang</h3>
         <div id="coitems"></div>
         <div style="margin-top:14px">
           <div class="orow"><span>Subtotal</span><span id="cosub">0d</span></div>
           <div class="orow"><span>Ship</span><span>Free</span></div>
           <div class="orow"><span>Total</span><span id="cototal">0d</span></div>
         </div>
-        <button class="btnf" style="margin-top:18px" onclick="placeOrder()">XAC NHAN DAT HANG</button>
+        <button class="btnf" style="margin-top:18px" onclick="placeOrder()" data-vi="XAC NHAN DAT HANG" data-en="CONFIRM ORDER" data-zh="确认下单">XAC NHAN DAT HANG</button>
       </div>
     </div>
   </div>
@@ -476,7 +476,7 @@ footer span{color:var(--g)}
   <div class="shhead">
     <div class="shlogo" id="shlogo">S</div>
     <div class="shname" id="shname">Shop LBK</div>
-    <div class="shbadge">Dai Ly Chinh Thuc LBK</div>
+    <div class="shbadge" data-vi="Dai Ly Chinh Thuc LBK" data-en="Official LBK Agent" data-zh="LBK官方授权代理">Dai Ly Chinh Thuc LBK</div>
   </div>
   <div style="max-width:1000px;margin:0 auto;padding:20px 20px 0"><div id="sh-bcard"></div></div>
   <div class="shwrap"><div class="pgrid" id="shgrid"><div class="ld">Dang tai</div></div></div>
