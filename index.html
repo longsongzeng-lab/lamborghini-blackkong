@@ -1484,12 +1484,12 @@ function renderPr(appr){
     else{h+='<button class="bsm bsm-ok" onclick="togProd(\''+p.id+'\',true)">Publish</button>';}
     h+='</div></div>';
     h+='<div class="pgrid2">';
-    h+='<div class="pf"><label style="color:var(--red)">Settlement (USD)</label><input type="number" step="0.01" id="ps_'+p.id+'" value="'+(p.price_settlement||0)+'"></div>';
+    h+='<div class="pf"><label style="color:var(--red)">Settlement (USD)</label><input type="number" step="0.01" id="ps_'+p.id+'" value="'+(p.price_settlement||0)+'" oninput="updVnd(\'ps_'+p.id+'\',\'vs_'+p.id+'\')"><div class="vnd" id="vs_'+p.id+'">'+vnd(p.price_settlement||0)+'</div></div>';
     h+='<div class="pf"><label>Retail (USD)</label><input type="number" step="0.01" id="pr_'+p.id+'" value="'+(p.price_retail||p.price||0)+'" oninput="updVnd(\'pr_'+p.id+'\',\'vr_'+p.id+'\')"><div class="vnd" id="vr_'+p.id+'">'+vnd(p.price_retail||p.price||0)+'</div></div>';
-    h+='<div class="pf"><label style="color:#3B9EE8">Member (USD)</label><input type="number" step="0.01" id="pm_'+p.id+'" value="'+(p.price_member||0)+'"></div>';
+    h+='<div class="pf"><label style="color:#3B9EE8">Member (USD)</label><input type="number" step="0.01" id="pm_'+p.id+'" value="'+(p.price_member||0)+'" oninput="updVnd(\'pm_'+p.id+'\',\'vm_'+p.id+'\')"><div class="vnd" id="vm_'+p.id+'">'+vnd(p.price_member||0)+'</div></div>';
     h+='<div class="pf"><label style="color:var(--ok)">District (USD)</label><input type="number" step="0.01" id="pd_'+p.id+'" value="'+(p.price_district||0)+'" oninput="updVnd(\'pd_'+p.id+'\',\'vd_'+p.id+'\')"><div class="vnd" id="vd_'+p.id+'">'+vnd(p.price_district||0)+'</div></div>';
-    h+='<div class="pf"><label style="color:var(--warn)">City (USD)</label><input type="number" step="0.01" id="pc_'+p.id+'" value="'+(p.price_city||0)+'"></div>';
-    h+='<div class="pf"><label style="color:var(--g)">Province (USD)</label><input type="number" step="0.01" id="pp_'+p.id+'" value="'+(p.price_province||0)+'"></div>';
+    h+='<div class="pf"><label style="color:var(--warn)">City (USD)</label><input type="number" step="0.01" id="pc_'+p.id+'" value="'+(p.price_city||0)+'" oninput="updVnd(\'pc_'+p.id+'\',\'vc_'+p.id+'\')"><div class="vnd" id="vc_'+p.id+'">'+vnd(p.price_city||0)+'</div></div>';
+    h+='<div class="pf"><label style="color:var(--g)">Province (USD)</label><input type="number" step="0.01" id="pp_'+p.id+'" value="'+(p.price_province||0)+'" oninput="updVnd(\'pp_'+p.id+'\',\'vp_'+p.id+'\')"><div class="vnd" id="vp_'+p.id+'">'+vnd(p.price_province||0)+'</div></div>';
     h+='</div>';
     h+='<button class="bsm bsm-g" style="margin-top:10px;padding:8px 16px" onclick="savePr(\''+p.id+'\')">Save Prices</button>';
     h+='</div>';
