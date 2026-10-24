@@ -395,10 +395,10 @@ footer span{color:var(--g)}
       <div class="grow">
         <div class="fg"><label data-vi="Thanh Pho" data-en="City" data-zh="城市">Thanh Pho</label><input type="text" id="lc" placeholder="TP. Ho Chi Minh"></div>
         <div class="fg"><label data-vi="Nganh Hang" data-en="Category" data-zh="经营品类">Nganh Hang</label>
-          <select id="lcat"><option value="">-- Chon --</option><option>Thoi Trang</option><option>Trang Suc</option><option>My Pham</option><option>Dien Tu 3C</option><option>Dien Gia Dung</option><option>Tat Ca</option></select>
+          <select id="lcat"><option value="" data-vi="-- Chon --" data-en="-- Select --" data-zh="-- 选择 --">-- Chon --</option><option data-vi="Thoi Trang" data-en="Fashion" data-zh="服装鞋帽">Thoi Trang</option><option data-vi="Trang Suc" data-en="Jewelry" data-zh="珠宝手表">Trang Suc</option><option data-vi="My Pham" data-en="Beauty" data-zh="日化美妆">My Pham</option><option data-vi="Dien Tu 3C" data-en="Electronics" data-zh="3C电子">Dien Tu 3C</option><option data-vi="Dien Gia Dung" data-en="Appliances" data-zh="家用电器">Dien Gia Dung</option><option data-vi="Tat Ca" data-en="All Categories" data-zh="全部品类">Tat Ca</option></select>
         </div>
       </div>
-      <div class="fg"><label data-vi="Kinh Nghiem" data-en="Experience" data-zh="经营经验">Kinh Nghiem</label><textarea id="le" placeholder="Mo ta kinh nghiem..."></textarea></div>
+      <div class="fg"><label data-vi="Kinh Nghiem" data-en="Experience" data-zh="经营经验">Kinh Nghiem</label><textarea id="le" placeholder="Mo ta kinh nghiem..." data-ph-vi="Mo ta kinh nghiem..." data-ph-en="Describe your experience..." data-ph-zh="请描述您的经营经验..."></textarea></div>
       <button class="btnf" id="lbtn" onclick="submitLead()" data-vi="GUI DANG KY" data-en="SUBMIT APPLICATION" data-zh="提交申请">GUI DANG KY</button>
     </div>
     <div class="channels">
@@ -553,46 +553,46 @@ footer span{color:var(--g)}
 <div id="pg-agent-login" class="pg">
   <div id="ag-auth">
     <div class="awrap">
-      <button class="bbk" onclick="showPage('home')">Back</button>
+      <button class="bbk" onclick="showPage('home')" data-vi="← Tro Ve" data-en="← Back" data-zh="← 返回">Back</button>
       <div class="acard">
-        <div class="atit">🏪 Agent Portal</div>
-        <div class="asub">Login to manage your shop</div>
+        <div class="atit" data-vi="🏪 Cong Dai Ly" data-en="🏪 Agent Portal" data-zh="🏪 代理商入口">🏪 Agent Portal</div>
+        <div class="asub" data-vi="Dang nhap quan ly cua hang" data-en="Login to manage your shop" data-zh="登录管理您的店铺">Login to manage your shop</div>
         <div class="atabs">
-          <button class="atab on" id="agtab-l" onclick="agTab('l')">Login</button>
-          <button class="atab" id="agtab-a" onclick="agTab('a')">Apply</button>
+          <button class="atab on" id="agtab-l" onclick="agTab('l')" data-vi="Dang Nhap" data-en="Login" data-zh="登录">Login</button>
+          <button class="atab" id="agtab-a" onclick="agTab('a')" data-vi="Dang Ky" data-en="Apply" data-zh="申请">Apply</button>
         </div>
         <div id="agform-l" class="aform on">
-          <div class="fg"><label>Agent Code</label><input type="text" id="agc" placeholder="LBK-D001"></div>
-          <div class="fg"><label>Phone</label><input type="text" id="agph" placeholder="+84 xxx xxx xxx"></div>
-          <button class="btnf" id="aglbtn" onclick="doAgLogin()">LOGIN</button>
+          <div class="fg"><label data-vi="Ma Dai Ly" data-en="Agent Code" data-zh="代理编号">Agent Code</label><input type="text" id="agc" placeholder="LBK-D001"></div>
+          <div class="fg"><label data-vi="Dien Thoai" data-en="Phone" data-zh="手机号">Phone</label><input type="text" id="agph" placeholder="+84 xxx xxx xxx"></div>
+          <button class="btnf" id="aglbtn" onclick="doAgLogin()" data-vi="DANG NHAP" data-en="LOGIN" data-zh="登录">LOGIN</button>
         </div>
         <div id="agform-a" class="aform">
-          <div class="fg"><label>Full Name</label><input type="text" id="agn" placeholder="Nguyen Van A"></div>
-          <div class="fg"><label>Phone</label><input type="text" id="agap" placeholder="+84 xxx xxx xxx"></div>
-          <div class="fg"><label>City</label><input type="text" id="agct" placeholder="Ho Chi Minh"></div>
-          <div class="fg"><label>Shop Name</label><input type="text" id="agsh" placeholder="Shop LBK Q1"></div>
-          <div class="fg"><label>Category</label><select id="agcat"><option>Fashion</option><option>Jewelry</option><option>Beauty</option><option>Electronics</option><option>All</option></select></div>
-          <button class="btnf" id="agabtn" onclick="applyAgent()">APPLY</button>
+          <div class="fg"><label data-vi="Ho Ten" data-en="Full Name" data-zh="姓名">Full Name</label><input type="text" id="agn" placeholder="Nguyen Van A"></div>
+          <div class="fg"><label data-vi="Dien Thoai" data-en="Phone" data-zh="手机号">Phone</label><input type="text" id="agap" placeholder="+84 xxx xxx xxx"></div>
+          <div class="fg"><label data-vi="Thanh Pho" data-en="City" data-zh="城市">City</label><input type="text" id="agct" placeholder="Ho Chi Minh"></div>
+          <div class="fg"><label data-vi="Ten Cua Hang" data-en="Shop Name" data-zh="店铺名称">Shop Name</label><input type="text" id="agsh" placeholder="Shop LBK Q1"></div>
+          <div class="fg"><label data-vi="Nganh Hang" data-en="Category" data-zh="经营品类">Category</label><select id="agcat"><option data-vi="Thoi Trang" data-en="Fashion" data-zh="服装鞋帽">Fashion</option><option data-vi="Trang Suc" data-en="Jewelry" data-zh="珠宝手表">Jewelry</option><option data-vi="My Pham" data-en="Beauty" data-zh="日化美妆">Beauty</option><option data-vi="Dien Tu" data-en="Electronics" data-zh="3C电子">Electronics</option><option data-vi="Tat Ca" data-en="All" data-zh="全部品类">All</option></select></div>
+          <button class="btnf" id="agabtn" onclick="applyAgent()" data-vi="DANG KY" data-en="APPLY" data-zh="提交申请">APPLY</button>
         </div>
       </div>
     </div>
   </div>
   <div id="ag-dash" style="display:none">
     <div class="dwrap">
-      <div class="dhead"><div><h2 id="agt">My Shop</h2><p id="agsub" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="agLogout()">Logout</button></div>
+      <div class="dhead"><div><h2 id="agt">My Shop</h2><p id="agsub" style="font-size:11px;color:var(--gr)"></p></div><button class="bbk" onclick="agLogout()" data-vi="Dang Xuat" data-en="Logout" data-zh="退出登录">Logout</button></div>
       <div class="dstats">
-        <div class="dstat"><div class="dsn" id="agoc">-</div><div class="dsl">Orders</div></div>
-        <div class="dstat"><div class="dsn" id="agpr" style="color:var(--ok)">-</div><div class="dsl">Profit</div></div>
+        <div class="dstat"><div class="dsn" id="agoc">-</div><div class="dsl" data-vi="Don Hang" data-en="Orders" data-zh="订单">Orders</div></div>
+        <div class="dstat"><div class="dsn" id="agpr" style="color:var(--ok)">-</div><div class="dsl" data-vi="Loi Nhuan" data-en="Profit" data-zh="利润">Profit</div></div>
         <div class="dstat"><div class="dsn" id="agpp" style="color:var(--warn)">-</div><div class="dsl">Pending</div></div>
       </div>
       <div class="ainfo">
-        <div class="ainf-item"><div class="ainf-l">Level</div><div class="ainf-v" id="agld"></div></div>
-        <div class="ainf-item"><div class="ainf-l">Code</div><div class="ainf-v" style="color:var(--g)" id="agcd"></div></div>
-        <div class="ainf-item"><div class="ainf-l">Products</div><div class="ainf-v" style="color:var(--g)" id="agpc">-</div></div>
+        <div class="ainf-item"><div class="ainf-l" data-vi="Cap Do" data-en="Level" data-zh="代理级别">Level</div><div class="ainf-v" id="agld"></div></div>
+        <div class="ainf-item"><div class="ainf-l" data-vi="Ma Dai Ly" data-en="Code" data-zh="代理编号">Code</div><div class="ainf-v" style="color:var(--g)" id="agcd"></div></div>
+        <div class="ainf-item"><div class="ainf-l" data-vi="San Pham" data-en="Products" data-zh="推广产品">Products</div><div class="ainf-v" style="color:var(--g)" id="agpc">-</div></div>
       </div>
       <div class="sbox">
-        <h4>🔗 Shop Link</h4>
-        <div class="surl"><input type="text" id="agurl" readonly><button onclick="copyShopUrl()">Copy</button></div>
+        <h4 data-vi="🔗 Link Cua Hang" data-en="🔗 Shop Link" data-zh="🔗 店铺链接">🔗 Shop Link</h4>
+        <div class="surl"><input type="text" id="agurl" readonly><button onclick="copyShopUrl()" data-vi="Sao Chep" data-en="Copy" data-zh="复制">Copy</button></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="sbt sbt-fb" onclick="shareFB()">Facebook</button>
           <button class="sbt sbt-wa" onclick="shareWA()">WhatsApp</button>
@@ -602,18 +602,18 @@ footer span{color:var(--g)}
       </div>
       <div id="ag-bcard"></div>
       <div style="background:var(--d2);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px;margin-bottom:14px">
-        <p style="font-size:12px;color:var(--g);margin-bottom:10px">Contact Info (shown on business card)</p>
+        <p style="font-size:12px;color:var(--g);margin-bottom:10px" data-vi="Thong Tin Lien He (hien tren danh thiep)" data-en="Contact Info (shown on business card)" data-zh="联系信息（显示在名片上）">Contact Info (shown on business card)</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div class="fg"><label>Email</label><input type="email" id="agei" placeholder="your@email.com"></div>
-          <div class="fg"><label>Zalo</label><input type="text" id="agzi" placeholder="+84 xxx xxx xxx"></div>
+          <div class="fg"><label data-vi="Email" data-en="Email" data-zh="邮箱">Email</label><input type="email" id="agei" placeholder="your@email.com"></div>
+          <div class="fg"><label data-vi="Zalo" data-en="Zalo" data-zh="Zalo">Zalo</label><input type="text" id="agzi" placeholder="+84 xxx xxx xxx"></div>
         </div>
-        <button class="btnf" onclick="saveAgContact()">Save Contact</button>
+        <button class="btnf" onclick="saveAgContact()" data-vi="Luu Lien He" data-en="Save Contact" data-zh="保存联系方式">Save Contact</button>
       </div>
       <div class="dtabs">
-        <button class="dtab on" id="agdt-o" onclick="agDT('o')">Orders</button>
-        <button class="dtab" id="agdt-p" onclick="agDT('p')">Profit</button>
-        <button class="dtab" id="agdt-s" onclick="agDT('s')">Select Products</button>
-        <button class="dtab" id="agdt-v" onclick="agDT('v')">Preview Shop</button>
+        <button class="dtab on" id="agdt-o" onclick="agDT('o')" data-vi="Don Hang" data-en="Orders" data-zh="订单">Orders</button>
+        <button class="dtab" id="agdt-p" onclick="agDT('p')" data-vi="Loi Nhuan" data-en="Profit" data-zh="利润">Profit</button>
+        <button class="dtab" id="agdt-s" onclick="agDT('s')" data-vi="Chon San Pham" data-en="Select Products" data-zh="选品">Select Products</button>
+        <button class="dtab" id="agdt-v" onclick="agDT('v')" data-vi="Xem Cua Hang" data-en="Preview Shop" data-zh="预览店铺">Preview Shop</button>
       </div>
       <div id="agp-o" class="dpanel on"><div id="agol"><div class="ld">Loading</div></div></div>
       <div id="agp-p" class="dpanel"><div id="agpl"><div class="ld">Loading</div></div></div>
@@ -621,7 +621,7 @@ footer span{color:var(--g)}
       <div id="agp-v" class="dpanel">
         <div style="background:var(--d2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:18px;text-align:center">
           <div style="font-size:28px;margin-bottom:10px">🏪</div>
-          <button class="btn-p" onclick="prevMyShop()">Preview My Shop</button>
+          <button class="btn-p" onclick="prevMyShop()" data-vi="Xem Cua Hang Cua Toi" data-en="Preview My Shop" data-zh="预览我的店铺">Preview My Shop</button>
         </div>
       </div>
     </div>
@@ -633,12 +633,12 @@ footer span{color:var(--g)}
   <div class="awrap">
     <button class="bbk" onclick="showPage('home')">Back</button>
     <div class="acard">
-      <div class="atit">👑 Admin Login</div>
-      <div class="asub">Management System</div>
+      <div class="atit" data-vi="👑 Admin Login" data-en="👑 Admin Login" data-zh="👑 管理员登录">👑 Admin Login</div>
+      <div class="asub" data-vi="He Thong Quan Ly" data-en="Management System" data-zh="管理系统">Management System</div>
       <div style="margin-top:16px">
-        <div class="fg"><label>Username</label><input type="text" id="admu" placeholder="admin"></div>
-        <div class="fg"><label>Password</label><input type="password" id="admp" placeholder="password"></div>
-        <button class="btnf" id="admlbtn" onclick="doAdmLogin()">LOGIN</button>
+        <div class="fg"><label data-vi="Ten Dang Nhap" data-en="Username" data-zh="用户名">Username</label><input type="text" id="admu" placeholder="admin"></div>
+        <div class="fg"><label data-vi="Mat Khau" data-en="Password" data-zh="密码">Password</label><input type="password" id="admp" placeholder="password"></div>
+        <button class="btnf" id="admlbtn" onclick="doAdmLogin()" data-vi="DANG NHAP" data-en="LOGIN" data-zh="登录">LOGIN</button>
       </div>
     </div>
   </div>
@@ -737,7 +737,19 @@ function setLang(l){
   document.querySelectorAll('.lbtn').forEach(function(b){
     if(b.getAttribute('onclick')==="setLang('"+l+"')"){b.classList.add('on');}
   });
-  document.querySelectorAll('[data-'+l+']').forEach(function(el){el.textContent=el.getAttribute('data-'+l);});
+  document.querySelectorAll('[data-'+l+']').forEach(function(el){
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){
+      // input/textarea 不改text，只改placeholder
+    } else if(el.tagName==='OPTION'){
+      el.textContent=el.getAttribute('data-'+l);
+    } else {
+      el.textContent=el.getAttribute('data-'+l);
+    }
+  });
+  // Update placeholders
+  document.querySelectorAll('[data-ph-'+l+']').forEach(function(el){
+    el.placeholder=el.getAttribute('data-ph-'+l);
+  });
 }
 
 function showPage(p){
