@@ -874,13 +874,13 @@ function openPMod(pid){
   document.getElementById('m-prod').classList.add('on');
 }
 
-/* ── 修复1：addCart 使用 agCP(p) 代理商采购价 ── */
+/* 顾客始终支付零售价；代理商佣金由后台差价计算，不影响前端价格 */
 function addCart(pid){
   var p=allP.find(function(x){return x.id===pid;});
   if(!p){return;}
   var ex=cart.find(function(i){return i.id===pid;});
   if(ex){ex.qty++;}
-  else{var o=JSON.parse(JSON.stringify(p));o.qty=1;o.dp=agCP(p);cart.push(o);}
+  else{var o=JSON.parse(JSON.stringify(p));o.qty=1;o.dp=retP(p);cart.push(o);}
   updCart();toast('Added to cart!');
 }
 function buyNow(pid){addCart(pid);openCart();}
