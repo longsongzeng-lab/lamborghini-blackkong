@@ -1613,8 +1613,21 @@ function renderOr(or){
     h+='<td style="color:#ff9f40;font-weight:900">+'+vnd(comm)+'</td>';
     h+='<td style="color:#f5c842;font-weight:900">'+vnd(toSupplier)+'</td>';
     h+='<td style="font-size:10px;color:'+(isPaid?'#4caf50':'var(--gr)')+'">'+settleDate+'</td>';
-    h+='<td><span class="sb '+(isPaid?'s-ok':'s-p')+'">'+(isPaid?'已付款':'待付款')+'</span></td>';
-    h+='<td><span class="sb s-p" style="font-size:10px">'+ordSt+'</span></td>';
+    h+='<td>';
+    h+='<select onchange="updOrdStatus(\''+o.id+'\',\'payment_status\',this.value)" style="background:var(--d3);color:'+(isPaid?'#4caf50':o.payment_status==='refunded'?'#f44':'#ff9f40')+';border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:3px 6px;font-size:11px;font-weight:700;cursor:pointer">';
+    h+='<option value="pending"'+(o.payment_status==='pending'?' selected':'')+'>待付款</option>';
+    h+='<option value="paid"'+(o.payment_status==='paid'?' selected':'')+'>✓ 已付款</option>';
+    h+='<option value="refunded"'+(o.payment_status==='refunded'?' selected':'')+'>↩ 已退款</option>';
+    h+='<option value="cancelled"'+(o.payment_status==='cancelled'?' selected':'')+'>✕ 已取消</option>';
+    h+='</select></td>';
+    h+='<td>';
+    h+='<select onchange="updOrdStatus(\''+o.id+'\',\'order_status\',this.value)" style="background:var(--d3);color:var(--gr);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:3px 6px;font-size:11px;cursor:pointer">';
+    h+='<option value="new"'+(o.order_status==='new'?' selected':'')+'>新订单</option>';
+    h+='<option value="confirmed"'+(o.order_status==='confirmed'?' selected':'')+'>已确认</option>';
+    h+='<option value="shipped"'+(o.order_status==='shipped'?' selected':'')+'>已发货</option>';
+    h+='<option value="done"'+(o.order_status==='done'?' selected':'')+'>已完成</option>';
+    h+='<option value="cancelled"'+(o.order_status==='cancelled'?' selected':'')+'>已取消</option>';
+    h+='</select></td>';
     h+='</tr>';
     // 地址行
     h+='<tr style="background:rgba(201,168,76,.03)"><td colspan="12" style="padding:4px 10px;font-size:10px">';
@@ -1632,6 +1645,17 @@ function renderOr(or){
   h+='<div><div style="font-size:11px;color:var(--gr)">应付供应商总额</div><div style="font-size:22px;font-weight:900;color:#f5c842">'+vnd(totalSettle)+'</div></div>';
   h+='</div></div>';
   el.innerHTML=h;
+}
+function updOrdStatus(oid,field,val){
+  var patch={};
+  patch[field]=val;
+  if(field==='payment_status'){patch.updated_at=new Date().toISOString();}
+  PATCH('orders?id=eq.'+oid,patch)
+  .then(function(){
+    toast(field==='payment_status'?'付款状态已更新':'订单状态已更新');
+    loadAdmData();
+  })
+  .catch(function(e){toast('更新失败: '+e.message);});
 }
 function renderLd(ld){
   var el=document.getElementById('ldlist');
