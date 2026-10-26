@@ -1157,8 +1157,7 @@ function applyAgent(){
   if(!nm||!ph||!sh){toast('Fill all fields');return;}
   setBtn('agabtn',true);
   var lvSel=document.getElementById('aglevel').value||'district';
-  var cmSel={district:10,city:15,province:20}[lvSel]||10;
-  POST('distributor_leads',{full_name:nm,phone:ph,city:document.getElementById('agct').value.trim(),category_interest:document.getElementById('agcat').value,shop_name:sh,status:'new',agent_level:lvSel,is_active:false,commission_rate:cmSel})
+  POST('distributor_leads',{full_name:nm,phone:ph,city:document.getElementById('agct').value.trim(),category_interest:document.getElementById('agcat').value,shop_name:sh,status:'new',agent_level:lvSel,is_active:false})
   .then(function(){toast('Applied! Admin will contact you.');setBtn('agabtn',false,'APPLY');})
   .catch(function(e){toast(e.message);setBtn('agabtn',false,'APPLY');});
 }
@@ -1570,8 +1569,7 @@ function renderAg(ag){
   el.innerHTML=h;
 }
 function updAgLevel(id,lv){
-  var cm={district:10,city:15,province:20};
-  PATCH('distributor_leads?id=eq.'+id,{agent_level:lv,commission_rate:cm[lv]||10})
+  PATCH('distributor_leads?id=eq.'+id,{agent_level:lv})
   .then(function(){
     var lb={district:'区级',city:'市级',province:'省级'};
     toast('✅ 已更新为'+( lb[lv]||lv)+'代理');
@@ -1838,7 +1836,7 @@ function confActivate(){
   var lv=document.getElementById('malv').value;
   var cm={district:10,city:15,province:20};
   if(!cd||!sn||!sl){toast('Fill all fields');return;}
-  PATCH('distributor_leads?id=eq.'+curAgActId,{agent_code:cd,shop_name:sn,shop_slug:sl,agent_level:lv,commission_rate:cm[lv]||10,is_active:true,status:'converted'})
+  PATCH('distributor_leads?id=eq.'+curAgActId,{agent_code:cd,shop_name:sn,shop_slug:sl,agent_level:lv,is_active:true,status:'converted'})
   .then(function(){toast('Activated! Code: '+cd);closeMod();loadAdmData();}).catch(function(e){toast(e.message);});
 }
 function deActAg(id){PATCH('distributor_leads?id=eq.'+id,{is_active:false}).then(function(){toast('Deactivated');loadAdmData();}).catch(function(e){toast(e.message);});}
