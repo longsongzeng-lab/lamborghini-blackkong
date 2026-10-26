@@ -572,6 +572,7 @@ footer span{color:var(--g)}
           <div class="fg"><label data-vi="Thanh Pho" data-en="City" data-zh="城市">City</label><input type="text" id="agct" placeholder="Ho Chi Minh"></div>
           <div class="fg"><label data-vi="Ten Cua Hang" data-en="Shop Name" data-zh="店铺名称">Shop Name</label><input type="text" id="agsh" placeholder="Shop LBK Q1"></div>
           <div class="fg"><label data-vi="Nganh Hang" data-en="Category" data-zh="经营品类">Category</label><select id="agcat"><option data-vi="Thoi Trang" data-en="Fashion" data-zh="服装鞋帽">Fashion</option><option data-vi="Trang Suc" data-en="Jewelry" data-zh="珠宝手表">Jewelry</option><option data-vi="My Pham" data-en="Beauty" data-zh="日化美妆">Beauty</option><option data-vi="Dien Tu" data-en="Electronics" data-zh="3C电子">Electronics</option><option data-vi="Tat Ca" data-en="All" data-zh="全部品类">All</option></select></div>
+          <div class="fg"><label data-vi="Cap Dai Ly" data-en="Agent Level" data-zh="代理等级">Agent Level</label><select id="aglevel"><option value="district" data-vi="Cap Quan/Huyen" data-en="District Agent" data-zh="区级代理">District Agent（区级）</option><option value="city" data-vi="Cap Thanh Pho" data-en="City Agent" data-zh="市级代理">City Agent（市级）</option><option value="province" data-vi="Cap Tinh" data-en="Province Agent" data-zh="省级代理">Province Agent（省级）</option></select></div>
           <button class="btnf" id="agabtn" onclick="applyAgent()" data-vi="DANG KY" data-en="APPLY" data-zh="提交申请">APPLY</button>
         </div>
       </div>
@@ -1155,7 +1156,9 @@ function applyAgent(){
   var sh=document.getElementById('agsh').value.trim();
   if(!nm||!ph||!sh){toast('Fill all fields');return;}
   setBtn('agabtn',true);
-  POST('distributor_leads',{full_name:nm,phone:ph,city:document.getElementById('agct').value.trim(),category_interest:document.getElementById('agcat').value,shop_name:sh,status:'new',agent_level:'district',is_active:false,commission_rate:10})
+  var lvSel=document.getElementById('aglevel').value||'district';
+  var cmSel={district:10,city:15,province:20}[lvSel]||10;
+  POST('distributor_leads',{full_name:nm,phone:ph,city:document.getElementById('agct').value.trim(),category_interest:document.getElementById('agcat').value,shop_name:sh,status:'new',agent_level:lvSel,is_active:false,commission_rate:cmSel})
   .then(function(){toast('Applied! Admin will contact you.');setBtn('agabtn',false,'APPLY');})
   .catch(function(e){toast(e.message);setBtn('agabtn',false,'APPLY');});
 }
@@ -1537,15 +1540,44 @@ function pubAll(){
 function renderAg(ag){
   var el=document.getElementById('aglist');
   if(!ag.length){el.innerHTML='<div class="empty"><div>🏪</div><p>No agents</p></div>';return;}
+  var lvColor={district:'var(--ok)',city:'var(--warn)',province:'var(--g)'};
+  var lvLabel={district:'区级 District',city:'市级 City',province:'省级 Province'};
   var h='';
   ag.forEach(function(a){
-    h+='<div class="rowcard"><div class="ri"><h3>'+(a.shop_name||a.full_name)+' <span class="sb '+(a.is_active?'s-ok':'s-p')+'"> '+(a.is_active?'Active':'Pending')+'</span> <span class="sb s-p" style="background:rgba(201,168,76,.15);color:var(--g);border-color:rgba(201,168,76,.3)">'+(a.agent_level||'district')+'</span></h3>';
-    h+='<p>'+a.full_name+' '+a.phone+' '+(a.city||'')+' Code:'+(a.agent_code||'-')+'</p></div>';
-    h+='<div class="ras">'+(!a.is_active?'<button class="bsm bsm-ok" onclick="openAgAct(\''+a.id+'\',\''+a.full_name+'\')">Activate</button>':'');
+    var lv=a.agent_level||'district';
+    h+='<div class="rowcard">';
+    h+='<div class="ri">';
+    h+='<h3>'+(a.shop_name||a.full_name);
+    h+=' <span class="sb '+(a.is_active?'s-ok':'s-p')+'">'+(a.is_active?'✓ Active':'⏳ Pending')+'</span>';
+    h+=' <span class="sb" style="background:rgba(201,168,76,.15);color:'+(lvColor[lv]||'var(--g)')+';border-color:rgba(201,168,76,.3)">'+( lvLabel[lv]||lv)+'</span>';
+    h+='</h3>';
+    h+='<p style="font-size:11px;color:var(--gr)">'+a.full_name+' · '+a.phone+' · '+(a.city||'')+(a.agent_code?' · 编号: '+a.agent_code:'')+'</p>';
+    h+='</div>';
+    h+='<div class="ras" style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">';
+    // 等级修改下拉
+    h+='<select onchange="updAgLevel(\''+a.id+'\',this.value)" style="background:var(--d3);color:'+(lvColor[lv]||'var(--g)')+';border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:4px 6px;font-size:11px;font-weight:700;cursor:pointer">';
+    h+='<option value="district"'+(lv==='district'?' selected':'')+'>区级 District</option>';
+    h+='<option value="city"'+(lv==='city'?' selected':'')+'>市级 City</option>';
+    h+='<option value="province"'+(lv==='province'?' selected':'')+'>省级 Province</option>';
+    h+='</select>';
+    // 激活 / 停用按钮
+    h+='<div style="display:flex;gap:6px">';
+    h+=(!a.is_active?'<button class="bsm bsm-ok" onclick="openAgAct(\''+a.id+'\',\''+a.full_name+'\')">Activate</button>':'');
     h+=(a.is_active?'<button class="bsm bsm-no" onclick="deActAg(\''+a.id+'\')">Deactivate</button>':'');
+    h+='</div>';
     h+='</div></div>';
   });
   el.innerHTML=h;
+}
+function updAgLevel(id,lv){
+  var cm={district:10,city:15,province:20};
+  PATCH('distributor_leads?id=eq.'+id,{agent_level:lv,commission_rate:cm[lv]||10})
+  .then(function(){
+    var lb={district:'区级',city:'市级',province:'省级'};
+    toast('✅ 已更新为'+( lb[lv]||lv)+'代理');
+    loadAdmData();
+  })
+  .catch(function(e){toast('更新失败: '+e.message);});
 }
 function renderSu(su){
   var el=document.getElementById('sulist');
